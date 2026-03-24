@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Template - Diodo Zener</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Paleta de Cores IEEE Spectrum */
+        .bg-ieee-blue { background-color: #00629B; }
+        .text-ieee-blue { color: #00629B; }
+        .bg-ieee-dark { background-color: #002855; }
+        .text-ieee-dark { color: #002855; }
+        .text-ieee-orange { color: #E37222; }
+        .border-ieee-orange { border-color: #E37222; }
+        .bg-ieee-gray { background-color: #F3F4F6; }
+        .bg-ieee-light { background-color: #E6F0F5; }
+
+        /* Estilos específicos para a animação interna do Zener */
+        input[type=range] {
+            accent-color: #00629B;
+        }
+        .junction-container {
+            display: flex;
+            height: 120px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .region-p { background-color: #3b82f6; width: 40%; transition: width 0.3s; }
+        .region-n { background-color: #ef4444; width: 40%; transition: width 0.3s; }
+        .depletion-region { 
+            background: repeating-linear-gradient(45deg, #cbd5e1, #cbd5e1 10px, #e2e8f0 10px, #e2e8f0 20px);
+            width: 20%; 
+            transition: width 0.3s; 
+            position: relative;
+            overflow: hidden;
+        }
+        .electron {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #fbbf24;
+            border-radius: 50%;
+            top: 50%;
+            opacity: 0;
+            box-shadow: 0 0 5px #f59e0b;
+        }
+        .zener-active .electron {
+            animation: moveElectron 0.6s linear infinite;
+            opacity: 1;
+        }
+        .electron:nth-child(1) { top: 20%; animation-delay: 0.1s; }
+        .electron:nth-child(2) { top: 40%; animation-delay: 0.4s; }
+        .electron:nth-child(3) { top: 60%; animation-delay: 0.2s; }
+        .electron:nth-child(4) { top: 80%; animation-delay: 0.5s; }
+
+        @keyframes moveElectron {
+            0% { right: -10px; }
+            100% { right: 100%; }
+        }
+
+        /* Gráfico IV Animado */
+        .chart-dot {
+            transition: all 0.3s ease-out;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+    
+    <div class="w-16 bg-ieee-dark h-full flex flex-col items-center justify-between py-8 z-20 shrink-0">
+        <div class="text-white font-bold text-xl">01</div>
+        <div class="h-1/2 w-0.5 bg-white opacity-20"></div>
+        <div class="text-ieee-orange text-2xl"><i class="fas fa-microchip"></i></div>
+    </div>
+
+    <div class="flex-1 flex flex-col p-10 relative overflow-hidden bg-white">
+        
+        <div class="mb-6 z-10">
+            <div class="flex items-center space-x-4 mb-2">
+                <div class="h-1 w-12 bg-ieee-orange"></div>
+                <p class="text-ieee-orange font-bold uppercase tracking-widest text-sm">Eletrônica Analógica / Semicondutores</p>
+            </div>
+            <h1 class="font-montserrat font-bold text-4xl text-ieee-dark">
+                Comportamento Interno do <span class="text-ieee-blue">Diodo Zener</span>
+            </h1>
+        </div>
+
+        <div class="flex-1 flex gap-6 relative z-10">
+            
+            <div class="w-1/2 flex flex-col bg-white rounded-xl border border-gray-200 shadow-lg p-6">
+                
+                <h2 class="text-lg font-bold text-ieee-dark mb-4"><i class="fas fa-sliders-h mr-2"></i>Controle de Tensão Reversa</h2>
+                
+                <div class="mb-6">
+                    <input type="range" id="voltageSlider" min="0" max="15" value="0" step="0.1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    <div class="flex justify-between text-sm text-gray-500 font-bold mt-2">
+                        <span>0V</span>
+                        <span>Vz = 10V</span>
+                        <span>15V</span>
+                    </div>
+                </div>
+
+                <div class="text-center mb-6">
+                    <span class="text-sm uppercase tracking-wide text-gray-500">Tensão Aplicada</span>
+                    <div id="voltageDisplay" class="text-4xl font-montserrat font-bold text-ieee-blue mt-1">0.0 V</div>
+                </div>
+
+                <h3 class="text-sm font-bold text-ieee-dark mb-2 uppercase"><i class="fas fa-search-plus mr-2"></i>Estrutura Interna (Junção P-N)</h3>
+                <div class="junction-container border-2 border-gray-300 relative">
+                    <div id="regionP" class="region-p flex items-center justify-center text-white font-bold">Tipo P</div>
+                    <div id="depletion" class="depletion-region flex items-center justify-center relative">
+                        <span class="bg-white px-2 py-1 text-xs rounded text-gray-700 font-bold shadow-sm z-10 text-center">Região de<br>Depleção</span>
+                        <div class="electron"></div>
+                        <div class="electron"></div>
+                        <div class="electron"></div>
+                        <div class="electron"></div>
+                    </div>
+                    <div id="regionN" class="region-n flex items-center justify-center text-white font-bold">Tipo N</div>
+                </div>
+                <p class="text-xs text-center text-gray-500 mt-2">Diagrama representativo em polarização reversa.</p>
+            </div>
+
+            <div class="w-1/2 flex flex-col space-y-4">
+                
+                <div class="bg-ieee-gray rounded-xl p-4 h-48 border border-gray-200 relative flex flex-col">
+                    <h3 class="text-sm font-bold text-ieee-dark mb-2 text-center">Curva Característica (Polarização Reversa)</h3>
+                    <div class="flex-1 relative border-l-2 border-b-2 border-ieee-dark mx-4 mb-4">
+                        <span class="absolute -left-6 bottom-1/2 -rotate-90 text-xs font-bold text-gray-600">Corrente (mA)</span>
+                        <span class="absolute bottom--6 left-1/2 text-xs font-bold text-gray-600 mb-1">Tensão Reversa (-V)</span>
+                        
+                        <svg class="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none">
+                            <path d="M 0,10 C 150,10 200,10 220,10 C 230,10 240,30 240,120" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"></path>
+                            <line x1="240" y1="0" x2="240" y2="120" stroke="#E37222" stroke-width="2" stroke-dasharray="4"></line>
+                            <text x="235" y="-5" fill="#E37222" font-size="12" font-weight="bold">-10V (Vz)</text>
+                        </svg>
+
+                        <div id="chartDot" class="chart-dot absolute w-4 h-4 bg-ieee-blue rounded-full shadow border-2 border-white" style="left: 0px; top: 6px; transform: translate(-50%, -50%);"></div>
+                    </div>
+                </div>
+
+                <div id="infoBox" class="flex-1 bg-ieee-light rounded-xl p-6 border-l-4 border-gray-400 transition-colors duration-300 flex flex-col justify-center">
+                    <div class="flex items-center space-x-3 mb-2">
+                        <div id="statusIcon" class="w-8 h-8 rounded-full bg-gray-400 flex items-center justify-center text-white">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3 id="statusTitle" class="text-xl font-bold text-ieee-dark">Estado: Bloqueio</h3>
+                    </div>
+                    <p id="statusDesc" class="text-gray-700 leading-relaxed text-sm mt-2">
+                        Com pouca ou nenhuma tensão reversa aplicada, a região de depleção possui sua largura padrão. Não há campo elétrico suficiente para gerar condução.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const slider = document.getElementById('voltageSlider');
+    const display = document.getElementById('voltageDisplay');
+    
+    // Elementos Internos
+    const regionP = document.getElementById('regionP');
+    const regionN = document.getElementById('regionN');
+    const depletion = document.getElementById('depletion');
+    
+    // Gráfico e Textos
+    const chartDot = document.getElementById('chartDot');
+    const infoBox = document.getElementById('infoBox');
+    const statusIcon = document.getElementById('statusIcon');
+    const statusTitle = document.getElementById('statusTitle');
+    const statusDesc = document.getElementById('statusDesc');
+    
+    const VZ = 10.0; // Tensão Zener
+
+    slider.addEventListener('input', function() {
+        const v = parseFloat(this.value);
+        display.textContent = v.toFixed(1) + ' V';
+
+        // Lógica do Gráfico I-V
+        // Mapeando 0V a 15V para largura no CSS do gráfico (estimativa visual de X=0 a X=280px)
+        let dotX = (v / 15) * 360; // Fator de escala adaptado para a div
+        if (dotX > 240) dotX = 240; // Trava o eixo X em VZ
+        
+        let dotY = 10; // Corrente zero (topo do gráfico visualmente invertido)
+        if (v >= VZ) {
+            // Curva cai bruscamente na corrente
+            dotY = 10 + ((v - VZ) / 5) * 110; 
+        }
+        chartDot.style.left = dotX + 'px';
+        chartDot.style.top = dotY + 'px';
+
+        // Lógica do Comportamento Interno
+        if (v < VZ) {
+            // Antes de VZ: Região de depleção alarga, s/ elétrons
+            depletion.classList.remove('zener-active');
+            let depletionWidth = 20 + (v * 2.5); // Aumenta de 20% até 45%
+            let sideWidth = (100 - depletionWidth) / 2;
+            
+            depletion.style.width = depletionWidth + '%';
+            regionP.style.width = sideWidth + '%';
+            regionN.style.width = sideWidth + '%';
+
+            infoBox.className = "flex-1 bg-ieee-light rounded-xl p-6 border-l-4 border-ieee-blue transition-colors duration-300 flex flex-col justify-center";
+            statusIcon.className = "w-8 h-8 rounded-full bg-ieee-blue flex items-center justify-center text-white";
+            statusIcon.innerHTML = '<i class="fas fa-shield-alt"></i>';
+            statusTitle.textContent = "Alargamento da Região de Depleção";
+            statusDesc.innerHTML = `Com <b>${v.toFixed(1)}V</b> reversos, os portadores majoritários são atraídos para os terminais da fonte, afastando-se da junção. A barreira de potencial aumenta, impedindo o fluxo de corrente (exceto uma mínima corrente de fuga).`;
+
+        } else {
+            // Em VZ ou maior: Efeito Zener/Avalanche
+            depletion.classList.add('zener-active');
+            
+            // Região de depleção não alarga mais, a corrente flui
+            infoBox.className = "flex-1 bg-orange-50 rounded-xl p-6 border-l-4 border-ieee-orange transition-colors duration-300 flex flex-col justify-center shadow-inner";
+            statusIcon.className = "w-8 h-8 rounded-full bg-ieee-orange flex items-center justify-center text-white animate-bounce";
+            statusIcon.innerHTML = '<i class="fas fa-bolt"></i>';
+            statusTitle.textContent = "Ruptura Zener! (Condução)";
+            statusDesc.innerHTML = `Ao atingir ou superar <b>Vz (10V)</b>, o campo elétrico na junção torna-se tão intenso que arranca elétrons da banda de valência (Tunelamento Zener). A corrente flui de forma controlada, estabilizando a tensão sobre o componente!`;
+        }
+        
+        // Estado zero absoluto
+        if (v === 0) {
+            infoBox.className = "flex-1 bg-gray-100 rounded-xl p-6 border-l-4 border-gray-400 transition-colors duration-300 flex flex-col justify-center";
+            statusIcon.className = "w-8 h-8 rounded-full bg-gray-400 flex items-center justify-center text-white";
+            statusIcon.innerHTML = '<i class="fas fa-lock"></i>';
+            statusTitle.textContent = "Estado de Equilíbrio";
+            statusDesc.innerHTML = "Em 0V, a junção PN está em equilíbrio. A região de depleção mantém sua largura natural criada pela difusão de lacunas e elétrons.";
+        }
+    });
+</script>
+</body>
+</html>

@@ -3,20 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apresentação: Diodo Zener</title>
+    <title>Apresentação</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="presentation-container" id="container">
-        <iframe id="slideFrame" src="slides\p1.html"></iframe>
 
-        <div class="ui-overlay">
+    <!-- Tela de carregamento -->
+    <div class="dropzone" id="dropzone">
+        <div class="drop-content">
+            <span class="drop-icon">📂</span>
+            <h2>Arraste os slides aqui</h2>
+            <p>Selecione um ou mais arquivos <strong>.html</strong> para iniciar a apresentação</p>
+            <label class="file-btn" for="fileInput">Selecionar arquivos</label>
+            <input type="file" id="fileInput" accept=".html" multiple hidden>
+        </div>
+    </div>
+
+    <!-- Tela de apresentação -->
+    <div class="presentation-container hidden" id="container">
+        <iframe id="slideFrame"></iframe>
+
+        <div class="ui-overlay" id="overlay">
             <div class="controls">
-                <button id="prevBtn" onclick="prevSlide()" disabled>&#9664; Anterior</button>
-                <div class="counter"><span id="currentSlide">1</span> / 13</div>
-                <button id="nextBtn" onclick="nextSlide()">Próximo &#9654;</button>
+                <button id="prevBtn" disabled>&#9664; Anterior</button>
+                <div class="counter"><span id="currentSlide">1</span> / <span id="totalSlides">1</span></div>
+                <button id="nextBtn">Próximo &#9654;</button>
             </div>
-            <div class="hint">Dica: Você também pode usar as setas do teclado para navegar.</div>
+            <div class="hint">Use as setas do teclado para navegar • <span id="resetBtn" class="reset-link">Carregar novos slides</span></div>
         </div>
     </div>
 
