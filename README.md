@@ -7,7 +7,6 @@ Um gerenciador de apresentações leve e sem dependências que roda direto no na
 ## ✨ Funcionalidades
 
 - **Drag & Drop ou seleção de arquivos** — arraste seus slides diretamente para a tela
-- **Suporte a imagens locais** — imagens referenciadas nos slides são carregadas junto e resolvidas automaticamente, sem quebrar caminhos relativos
 - **Escala responsiva** — os slides sempre se ajustam ao tamanho da janela mantendo proporção 16:9 (1280×720)
 - **Navegação por teclado** — use `←` e `→` para navegar entre slides
 - **Barra de controles auto-ocultável** — aparece ao mover o mouse e some após 3 segundos
@@ -56,9 +55,9 @@ start index.html
 
 ### 3. Carregue seus slides
 
-Na tela inicial, **arraste todos os arquivos juntos** — HTMLs e imagens — ou clique em **"Selecionar arquivos"**.
+Na tela inicial, **arraste os arquivos `.html`** ou clique em **"Selecionar arquivos"**.
 
-> ⚠️ **Importante:** selecione os arquivos de imagem junto com os HTMLs na mesma operação. O gerenciador separa automaticamente os tipos e resolve as referências internas.
+> ⚠️ **Atenção:** imagens referenciadas nos slides com caminhos relativos (`img/foto.png`) não serão exibidas. Consulte a seção [Melhorias Futuras](#-melhorias-futuras) para entender a limitação atual.
 
 ### 4. Navegue
 
@@ -102,16 +101,6 @@ Os slides são arquivos `.html` independentes. O gerenciador os exibe dentro de 
 </body>
 </html>
 ```
-
-### Referenciando imagens
-
-Use caminhos relativos normalmente. Ao carregar no gerenciador, **selecione as imagens junto com os HTMLs**:
-
-```html
-<img src="img/grafico.png" alt="Gráfico"/>
-```
-
-O gerenciador resolve automaticamente o caminho pelo **nome do arquivo**, independentemente da subpasta.
 
 ---
 
