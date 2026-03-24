@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação: Diodo Zener</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="presentation-container" id="container">
+        <iframe id="slideFrame" src="slides\p1.html"></iframe>
+
+        <div class="ui-overlay">
+            <div class="controls">
+                <button id="prevBtn" onclick="prevSlide()" disabled>&#9664; Anterior</button>
+                <div class="counter"><span id="currentSlide">1</span> / 13</div>
+                <button id="nextBtn" onclick="nextSlide()">Próximo &#9654;</button>
+            </div>
+            <div class="hint">Dica: Você também pode usar as setas do teclado para navegar.</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Princípio de Funcionamento - Diodo Zener</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        /* IEEE Spectrum Color Palette Reference */
+        .bg-ieee-blue { background-color: #00629B; }
+        .text-ieee-blue { color: #00629B; }
+        .bg-ieee-dark { background-color: #002855; }
+        .text-ieee-dark { color: #002855; }
+        .text-ieee-orange { color: #E37222; }
+        .border-ieee-orange { border-color: #E37222; }
+        .bg-ieee-gray { background-color: #F3F4F6; }
+        .bg-ieee-light-blue { background-color: #E6F0F5; }
+
+        .process-card {
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .arrow-divider {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            background: white;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-bullet {
+            position: relative;
+            padding-left: 20px;
+        }
+        .custom-bullet::before {
+            content: "•";
+            color: #E37222;
+            font-weight: bold;
+            font-size: 1.5em;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Sidebar Navigation/Indicator -->
+<div class="w-16 bg-ieee-dark h-full flex flex-col items-center justify-between py-8 z-20 shrink-0">
+<div class="text-white font-bold text-xl">03</div>
+<div class="h-1/2 w-0.5 bg-white opacity-20"></div>
+<div class="text-ieee-orange text-2xl"><i class="fas fa-cogs"></i></div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col p-12 relative overflow-hidden bg-white">
+<!-- Header -->
+<div class="mb-8 z-10">
+<div class="flex items-center space-x-4 mb-2">
+<div class="h-1 w-12 bg-ieee-orange"></div>
+<p class="text-ieee-orange font-bold uppercase tracking-widest text-sm">Física dos Semicondutores</p>
+</div>
+<h1 class="font-montserrat font-bold text-4xl text-ieee-dark">
+                Princípio de <span class="text-ieee-blue">Funcionamento</span>
+</h1>
+</div>
+<!-- Two Columns Content -->
+<div class="flex-1 grid grid-cols-2 gap-12 relative">
+<!-- Column 1: Polarization Modes -->
+<div class="flex flex-col h-full">
+<div class="bg-ieee-light-blue rounded-xl p-6 mb-6 border-l-4 border-ieee-blue shadow-sm flex-1">
+<div class="flex items-center mb-4">
+<div class="w-10 h-10 rounded-full bg-ieee-blue text-white flex items-center justify-center mr-3">
+<i class="fas fa-forward"></i>
+</div>
+<h3 class="font-montserrat font-bold text-xl text-ieee-dark">Polarização Direta</h3>
+</div>
+<div class="text-gray-700 space-y-2">
+<p class="custom-bullet">Comporta-se como um diodo de silício comum.</p>
+<p class="custom-bullet">Conduz corrente significativa após ultrapassar a tensão de barreira (Vd ≈ 0,6–0,7 V).</p>
+</div>
+</div>
+<div class="bg-orange-50 rounded-xl p-6 border-l-4 border-ieee-orange shadow-sm flex-1">
+<div class="flex items-center mb-4">
+<div class="w-10 h-10 rounded-full bg-ieee-orange text-white flex items-center justify-center mr-3">
+<i class="fas fa-backward"></i>
+</div>
+<h3 class="font-montserrat font-bold text-xl text-ieee-dark">Polarização Reversa</h3>
+</div>
+<div class="text-gray-700 space-y-2">
+<p class="custom-bullet">Corrente quase nula (fuga) até atingir a tensão de ruptura (<span class="font-mono font-bold">VBR</span> ou <span class="font-mono font-bold">Vz</span>).</p>
+<p class="custom-bullet">Após Vz, a corrente cresce abruptamente enquanto a tensão permanece praticamente fixa.</p>
+</div>
+</div>
+</div>
+<!-- Central Visual Divider -->
+<div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-full w-px bg-gray-200"></div>
+<div class="arrow-divider">
+<i class="fas fa-exchange-alt text-ieee-blue text-xl"></i>
+</div>
+<!-- Column 2: Breakdown Mechanisms -->
+<div class="flex flex-col h-full justify-center">
+<h3 class="font-montserrat font-bold text-2xl text-ieee-dark mb-6 text-center border-b-2 border-gray-100 pb-2">Mecanismos de Ruptura</h3>
+<div class="space-y-6">
+<!-- Zener Effect -->
+<div class="flex items-start">
+<div class="mr-4 mt-1">
+<div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-ieee-dark font-bold border border-gray-300">
+<i class="fas fa-atom text-xl"></i>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-lg text-ieee-blue mb-1">Efeito Zener (Tunelamento)</h4>
+<p class="text-sm text-gray-600 mb-2 font-semibold">Tensão: ~2V a 6V</p>
+<p class="text-gray-700 text-sm leading-relaxed">
+                                Ocorre em junções <span class="font-bold">fortemente dopadas</span> com região de depleção estreita. O campo elétrico intenso consegue arrancar elétrons das ligações covalentes diretamente.
+                            </p>
+</div>
+</div>
+<!-- Avalanche Effect -->
+<div class="flex items-start">
+<div class="mr-4 mt-1">
+<div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-ieee-orange font-bold border border-gray-300">
+<i class="fas fa-meteor text-xl"></i>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-lg text-ieee-orange mb-1">Efeito Avalanche</h4>
+<p class="text-sm text-gray-600 mb-2 font-semibold">Tensão: &gt; 6V</p>
+<p class="text-gray-700 text-sm leading-relaxed">
+                                Ocorre em junções menos dopadas. Portadores acelerados pelo campo colidem com a rede cristalina, liberando novos pares elétron-lacuna em <span class="font-bold">cadeia</span> (multiplicação por impacto).
+                            </p>
+</div>
+</div>
+<div class="bg-gray-50 p-3 rounded border border-gray-200 mt-2">
+<p class="text-xs text-gray-500 italic text-center">
+<i class="fas fa-info-circle mr-1"></i> Muitos diodos "Zener" comerciais operam com uma combinação de ambos os efeitos.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="mt-4 flex justify-between items-center text-xs text-gray-400 border-t border-gray-200 pt-4">
+<p>Eletrônica Analógica - Diodos Especiais</p>
+<p>Slide 03/13</p>
+</div>
+</div>
+</div>
+</body>
+</html>

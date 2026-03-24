@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Conclusão - Resumo</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        /* IEEE Spectrum Color Palette Reference */
+        .bg-ieee-blue { background-color: #00629B; }
+        .text-ieee-blue { color: #00629B; }
+        .bg-ieee-dark { background-color: #002855; }
+        .text-ieee-dark { color: #002855; }
+        .text-ieee-orange { color: #E37222; }
+        .border-ieee-orange { border-color: #E37222; }
+        .bg-ieee-gray { background-color: #F3F4F6; }
+
+        .conclusion-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-left: 6px solid #00629B;
+            padding: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .conclusion-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .conclusion-card.highlight {
+            border-left-color: #E37222;
+            background-color: #fafafa;
+        }
+
+        .conclusion-card.final {
+            border-left-color: #002855;
+        }
+
+        .number-badge {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 3rem;
+            line-height: 1;
+            margin-right: 1.5rem;
+            opacity: 0.15;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+        }
+        
+        .icon-circle {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            flex-shrink: 0;
+        }
+
+        .bg-icon-blue { background-color: #E6F0F5; color: #00629B; }
+        .bg-icon-orange { background-color: #FEF3C7; color: #E37222; }
+        .bg-icon-dark { background-color: #E2E8F0; color: #002855; }
+
+        .check-list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Sidebar Navigation -->
+<div class="w-16 bg-ieee-dark h-full flex flex-col items-center justify-between py-8 z-20 shrink-0">
+<div class="text-white font-bold text-xl">12</div>
+<div class="h-1/2 w-0.5 bg-white opacity-20"></div>
+<div class="text-ieee-orange text-2xl"><i class="fas fa-flag-checkered"></i></div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col p-10 relative overflow-hidden bg-white">
+<!-- Header -->
+<div class="mb-8 z-10 text-center">
+<div class="flex items-center justify-center space-x-4 mb-2">
+<div class="h-1 w-12 bg-ieee-orange"></div>
+<p class="text-ieee-orange font-bold uppercase tracking-widest text-sm">Resumo Final</p>
+<div class="h-1 w-12 bg-ieee-orange"></div>
+</div>
+<h1 class="font-montserrat font-bold text-4xl text-ieee-dark">
+                    Conclusão e <span class="text-ieee-blue">Pontos Chave</span>
+</h1>
+<p class="text-gray-500 mt-2 max-w-2xl mx-auto">Síntese dos conceitos fundamentais sobre o Diodo Zener e suas aplicações.</p>
+</div>
+<!-- Content Grid -->
+<div class="flex-1 grid grid-cols-3 gap-8 pb-4">
+<!-- Point 1: Pillar of Regulation -->
+<div class="conclusion-card relative">
+<div class="number-badge text-ieee-blue">01</div>
+<div class="icon-circle bg-icon-blue">
+<i class="fas fa-anchor"></i>
+</div>
+<h3 class="font-montserrat font-bold text-xl text-ieee-dark mb-3">Pilar da Regulação</h3>
+<p class="text-gray-600 text-sm leading-relaxed mb-4">
+                        O diodo Zener é fundamental na eletrônica analógica moderna, sendo a solução mais simples e eficaz para estabelecer <strong>referências de tensão estáveis</strong>.
+                    </p>
+<div class="border-t border-gray-100 pt-3 mt-auto">
+<div class="check-list-item">
+<i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+<p class="text-xs text-gray-500">Essencial em fontes lineares e comparadores.</p>
+</div>
+</div>
+</div>
+<!-- Point 2: Physics Mechanisms -->
+<div class="conclusion-card highlight relative">
+<div class="number-badge text-ieee-orange">02</div>
+<div class="icon-circle bg-icon-orange">
+<i class="fas fa-atom"></i>
+</div>
+<h3 class="font-montserrat font-bold text-xl text-ieee-dark mb-3">Dualidade Física</h3>
+<p class="text-gray-600 text-sm leading-relaxed mb-4">
+                        Seu funcionamento baseia-se em dois fenômenos distintos de ruptura reversa: o <strong>Efeito Zener</strong> (tunelamento quântico em baixas tensões) e o <strong>Mecanismo de Avalanche</strong> (multiplicação por impacto em altas tensões).
+                    </p>
+<div class="border-t border-gray-100 pt-3 mt-auto">
+<div class="check-list-item">
+<i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+<p class="text-xs text-gray-500">Determina o coeficiente térmico e ruído.</p>
+</div>
+</div>
+</div>
+<!-- Point 3: Critical Dimensioning -->
+<div class="conclusion-card final relative">
+<div class="number-badge text-ieee-dark">03</div>
+<div class="icon-circle bg-icon-dark">
+<i class="fas fa-ruler-combined"></i>
+</div>
+<h3 class="font-montserrat font-bold text-xl text-ieee-dark mb-3">Projeto Seguro</h3>
+<p class="text-gray-600 text-sm leading-relaxed mb-4">
+                        A confiabilidade depende estritamente do <strong>dimensionamento correto</strong> do resistor limitador (R), garantindo Iz mínima para regulação e respeitando a potência máxima (Pz) para evitar destruição térmica.
+                    </p>
+<div class="border-t border-gray-100 pt-3 mt-auto">
+<div class="check-list-item">
+<i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+<p class="text-xs text-gray-500">Cálculo de pior caso é obrigatório.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Graphic Element -->
+<div class="mt-4 flex items-center justify-center opacity-50">
+<div class="h-1 bg-gray-200 w-1/4 rounded-full"></div>
+<i class="fas fa-infinity mx-4 text-gray-300"></i>
+<div class="h-1 bg-gray-200 w-1/4 rounded-full"></div>
+</div>
+<!-- Footer -->
+<div class="mt-4 flex justify-between items-center text-xs text-gray-400 border-t border-gray-200 pt-2">
+<p>Síntese Acadêmica</p>
+<p>Slide 12/13</p>
+</div>
+</div>
+</div>
+</body>
+</html>

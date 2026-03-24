@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>O que é o Diodo Zener?</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        /* IEEE Spectrum Color Palette Reference */
+        .bg-ieee-blue { background-color: #00629B; }
+        .text-ieee-blue { color: #00629B; }
+        .bg-ieee-dark { background-color: #002855; }
+        .text-ieee-dark { color: #002855; }
+        .text-ieee-orange { color: #E37222; }
+        .border-ieee-orange { border-color: #E37222; }
+        .bg-ieee-gray { background-color: #F3F4F6; }
+
+        .definition-card {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .zener-icon-container {
+            position: absolute;
+            right: -50px;
+            bottom: -50px;
+            width: 400px;
+            height: 400px;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Sidebar Navigation/Indicator -->
+<div class="w-16 bg-ieee-dark h-full flex flex-col items-center justify-between py-8 z-20">
+<div class="text-white font-bold text-xl">02</div>
+<div class="h-1/2 w-0.5 bg-white opacity-20"></div>
+<div class="text-ieee-orange text-2xl"><i class="fas fa-microchip"></i></div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col p-16 relative overflow-hidden">
+<!-- Background Watermark -->
+<div class="zener-icon-container text-ieee-dark">
+<svg class="w-full h-full" fill="currentColor" viewbox="0 0 100 100">
+<path d="M50 0L50 100M0 50L100 50M20 20L80 80M80 20L20 80" fill="none" stroke="currentColor" stroke-width="1"></path>
+</svg>
+</div>
+<!-- Header -->
+<div class="mb-12 z-10">
+<div class="flex items-center space-x-4 mb-2">
+<div class="h-1 w-12 bg-ieee-orange"></div>
+<p class="text-ieee-orange font-bold uppercase tracking-widest text-sm">Fundamentos</p>
+</div>
+<h1 class="font-montserrat font-bold text-5xl text-ieee-dark">
+                    O que é o <span class="text-ieee-blue">Diodo Zener</span>?
+                </h1>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-12 gap-8 z-10 flex-1">
+<!-- Left Column: Main Definition -->
+<div class="col-span-7 flex flex-col justify-between">
+<div class="bg-ieee-gray p-8 rounded-lg border-l-4 border-ieee-orange mb-8 definition-card">
+<div class="flex items-start space-x-4">
+<i class="fas fa-book text-3xl text-ieee-dark mt-1"></i>
+<div>
+<h3 class="font-montserrat font-bold text-xl text-ieee-dark mb-2">Definição Técnica</h3>
+<p class="text-gray-700 leading-relaxed text-lg">
+                                    É um dispositivo semicondutor de junção p-n projetado especificamente para operar de forma segura e estável na região de <span class="font-bold text-ieee-blue">ruptura reversa</span> (breakdown region).
+                                </p>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="flex items-center space-x-6">
+<div class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center border-2 border-ieee-blue text-ieee-blue shadow-sm shrink-0">
+<i class="fas fa-tag text-2xl"></i>
+</div>
+<div>
+<h4 class="font-montserrat font-bold text-lg text-ieee-dark">Tipo de Componente</h4>
+<p class="text-gray-600">Classificado como <span class="font-semibold">Diodo Regulador de Tensão</span> ou Referência de Tensão.</p>
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<div class="w-16 h-16 rounded-full bg-orange-50 flex items-center justify-center border-2 border-ieee-orange text-ieee-orange shadow-sm shrink-0">
+<i class="fas fa-bolt text-2xl"></i>
+</div>
+<div>
+<h4 class="font-montserrat font-bold text-lg text-ieee-dark">Principal Característica</h4>
+<p class="text-gray-600">
+                                    Mantém a tensão entre seus terminais (<span class="font-mono font-bold">Vz</span>) praticamente <span class="font-bold text-ieee-orange">constante</span> quando polarizado reversamente, desde que a corrente seja limitada externamente.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Visual Representation -->
+<div class="col-span-5 flex flex-col items-center justify-center relative">
+<!-- Zener Symbol Card -->
+<div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 w-full max-w-sm flex flex-col items-center">
+<p class="text-gray-400 text-xs font-bold uppercase tracking-wider mb-6 self-start">Símbolo Esquemático</p>
+<div class="w-48 h-48 relative mb-4">
+<svg class="w-full h-full" viewbox="0 0 200 200">
+<!-- Anode Line -->
+<line stroke="#002855" stroke-width="4" x1="100" x2="100" y1="160" y2="200"></line>
+<!-- Cathode Line -->
+<line stroke="#002855" stroke-width="4" x1="100" x2="100" y1="40" y2="0"></line>
+<!-- Triangle (Body) -->
+<path d="M50 160 L150 160 L100 80 Z" fill="#00629B" stroke="#002855" stroke-width="4"></path>
+<!-- Z-Bar (Cathode) -->
+<polyline fill="none" points="40 90 40 80 160 80 160 70" stroke="#E37222" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></polyline>
+<!-- Labels -->
+<text fill="#E37222" font-family="Montserrat" font-size="14" font-weight="bold" x="170" y="85">K (Catodo)</text>
+<text fill="#00629B" font-family="Montserrat" font-size="14" font-weight="bold" x="160" y="165">A (Anodo)</text>
+</svg>
+</div>
+<div class="w-full bg-gray-50 rounded-lg p-3 text-center border border-gray-200 mt-2">
+<p class="text-sm text-gray-600">
+<span class="font-bold">Nota:</span> Diferente do diodo comum, o Zener é usado principalmente polarizado no sentido <span class="text-ieee-orange font-bold">reverso</span>.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer decoration -->
+<div class="absolute bottom-0 right-0 w-64 h-2 bg-ieee-blue"></div>
+</div>
+</div>
+</body>
+</html>

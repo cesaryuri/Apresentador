@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pergunta para a Turma</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Open Sans', sans-serif;
+        background-color: #f5f5f5;
+        overflow: hidden;
+    }
+    .slide-container {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        background: white;
+        position: relative;
+        overflow: hidden;
+    }
+    /* IEEE Spectrum Color Palette Reference */
+    .bg-ieee-blue { background-color: #00629B; }
+    .text-ieee-blue { color: #00629B; }
+    .bg-ieee-dark { background-color: #002855; }
+    .text-ieee-dark { color: #002855; }
+    .text-ieee-orange { color: #E37222; }
+    .border-ieee-orange { border-color: #E37222; }
+    .bg-ieee-gray { background-color: #F3F4F6; }
+    
+    .question-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e5e7eb;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .parameter-box {
+        background-color: #F8FAFC;
+        border-radius: 8px;
+        padding: 1rem;
+        border-left: 4px solid #00629B;
+        transition: transform 0.2s;
+    }
+    
+    .parameter-box:hover {
+        transform: translateY(-2px);
+        background-color: #F1F5F9;
+    }
+
+    .task-circle {
+        width: 32px;
+        height: 32px;
+        background-color: #E37222;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+
+    .chalkboard-effect {
+        background-color: #2D3748;
+        color: white;
+        border-radius: 8px;
+        padding: 1.5rem;
+        font-family: 'Courier New', monospace;
+        position: relative;
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+    }
+    
+    .chalk-text {
+        color: #E2E8F0;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Sidebar Navigation -->
+<div class="w-16 bg-ieee-dark h-full flex flex-col items-center justify-between py-8 z-20 shrink-0">
+<div class="text-white font-bold text-xl">13</div>
+<div class="h-1/2 w-0.5 bg-white opacity-20"></div>
+<div class="text-ieee-orange text-2xl"><i class="fas fa-question-circle"></i></div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col p-10 relative overflow-hidden bg-white">
+<!-- Header -->
+<div class="mb-6 z-10 text-center">
+<div class="flex items-center justify-center space-x-4 mb-2">
+<div class="h-1 w-12 bg-ieee-orange"></div>
+<p class="text-ieee-orange font-bold uppercase tracking-widest text-sm">Desafio Prático</p>
+<div class="h-1 w-12 bg-ieee-orange"></div>
+</div>
+<h1 class="font-montserrat font-bold text-4xl text-ieee-dark">
+            Dimensionamento do <span class="text-ieee-blue">Regulador</span>
+</h1>
+<p class="text-gray-500 mt-2">Aplique os conceitos aprendidos para resolver o problema abaixo.</p>
+</div>
+<!-- Content Grid -->
+<div class="flex-1 grid grid-cols-12 gap-8">
+<!-- Left Column: The Problem Setup -->
+<div class="col-span-7 flex flex-col space-y-6">
+<div class="question-card p-8 flex-1">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<i class="fas fa-calculator text-8xl text-ieee-dark"></i>
+</div>
+<h3 class="font-montserrat font-bold text-2xl text-ieee-dark mb-6 flex items-center">
+<i class="fas fa-clipboard-list mr-3 text-ieee-orange"></i> Dados do Projeto
+                </h3>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="parameter-box">
+<p class="text-xs text-gray-500 uppercase font-bold mb-1">Diodo Zener</p>
+<p class="text-2xl font-bold text-ieee-blue">Vz = 9,1 V</p>
+<p class="text-xs text-gray-400 mt-1">Tensão Nominal</p>
+</div>
+<div class="parameter-box">
+<p class="text-xs text-gray-500 uppercase font-bold mb-1">Carga</p>
+<p class="text-2xl font-bold text-ieee-blue">IL = 10 mA</p>
+<p class="text-xs text-gray-400 mt-1">Corrente Constante</p>
+</div>
+<div class="parameter-box col-span-2">
+<p class="text-xs text-gray-500 uppercase font-bold mb-1">Fonte de Entrada (Vin)</p>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-2xl font-bold text-ieee-dark">10 V <span class="text-gray-400 text-lg mx-2">a</span> 14 V</p>
+</div>
+<div class="text-right">
+<span class="bg-gray-200 text-gray-600 text-xs px-2 py-1 rounded">Variação: ±2V</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-blue-50 border border-blue-100 rounded-lg p-4">
+<p class="font-bold text-ieee-dark mb-2 text-sm"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Dica de Ouro:</p>
+<p class="text-sm text-gray-600 leading-relaxed">
+                        Lembre-se que o resistor deve ser calculado para garantir a condução do Zener no <strong>pior caso</strong> (menor tensão de entrada).
+                    </p>
+</div>
+</div>
+</div>
+<!-- Right Column: The Questions & Workspace -->
+<div class="col-span-5 flex flex-col">
+<div class="chalkboard-effect flex-1 flex flex-col justify-center">
+<h3 class="text-ieee-orange font-bold text-xl mb-6 border-b border-gray-600 pb-2">
+                    O que calcular?
+                </h3>
+<ul class="space-y-6">
+<li class="flex items-start">
+<div class="task-circle mt-1 mr-4">1</div>
+<div>
+<p class="font-bold text-white text-lg">Resistor Série (R)</p>
+<p class="text-sm text-gray-400 mt-1">Qual o valor comercial mais próximo?</p>
+</div>
+</li>
+<li class="flex items-start">
+<div class="task-circle mt-1 mr-4">2</div>
+<div>
+<p class="font-bold text-white text-lg">Correntes Limite</p>
+<p class="text-sm text-gray-400 mt-1">Determine Iz_min (segurança) e Iz_max (para potência).</p>
+</div>
+</li>
+<li class="flex items-start">
+<div class="task-circle mt-1 mr-4">3</div>
+<div>
+<p class="font-bold text-white text-lg">Verificação de Potência</p>
+<p class="text-sm text-gray-400 mt-1">O Zener de 0,5W suportaria o pior caso (sem carga)?</p>
+</div>
+</li>
+</ul>
+<div class="mt-auto pt-6 border-t border-gray-600">
+<p class="text-xs text-gray-400 text-center italic">
+                        "Engenharia é a arte de modelar materiais que não compreendemos completamente..."
+                    </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="mt-6 flex justify-between items-center text-xs text-gray-400 border-t border-gray-200 pt-3">
+<p>Atividade de Fixação</p>
+<p>Slide 13/13</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aplicações Principais</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        /* IEEE Spectrum Color Palette Reference */
+        .bg-ieee-blue { background-color: #00629B; }
+        .text-ieee-blue { color: #00629B; }
+        .bg-ieee-dark { background-color: #002855; }
+        .text-ieee-dark { color: #002855; }
+        .text-ieee-orange { color: #E37222; }
+        .border-ieee-orange { border-color: #E37222; }
+        .bg-ieee-gray { background-color: #F3F4F6; }
+        
+        .app-card {
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 4px solid transparent;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .app-card-blue:hover { border-bottom-color: #00629B; }
+        .app-card-orange:hover { border-bottom-color: #E37222; }
+        .app-card-dark:hover { border-bottom-color: #002855; }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Sidebar Navigation -->
+<div class="w-16 bg-ieee-dark h-full flex flex-col items-center justify-between py-8 z-20 shrink-0">
+<div class="text-white font-bold text-xl">06</div>
+<div class="h-1/2 w-0.5 bg-white opacity-20"></div>
+<div class="text-ieee-orange text-2xl"><i class="fas fa-plug"></i></div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col p-12 relative overflow-hidden bg-white">
+<!-- Header -->
+<div class="mb-10 z-10">
+<div class="flex items-center space-x-4 mb-2">
+<div class="h-1 w-12 bg-ieee-orange"></div>
+<p class="text-ieee-orange font-bold uppercase tracking-widest text-sm">Usos Práticos</p>
+</div>
+<h1 class="font-montserrat font-bold text-4xl text-ieee-dark">
+                    Aplicações <span class="text-ieee-blue">Principais</span>
+</h1>
+</div>
+<!-- Applications Grid -->
+<div class="flex-1 grid grid-cols-3 gap-8 relative z-10">
+<!-- Card 1: Regulador de Tensão -->
+<div class="bg-gray-50 rounded-xl p-8 app-card app-card-blue shadow-sm">
+<div class="icon-circle bg-blue-100 text-ieee-blue">
+<i class="fas fa-sliders-h"></i>
+</div>
+<h3 class="font-montserrat font-bold text-xl text-ieee-dark mb-3">Regulador de Tensão</h3>
+<div class="flex-1">
+<p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Aplicação mais clássica. Utilizado em fontes de alimentação simples (shunt regulator) para manter a saída fixa.
+                        </p>
+<ul class="text-sm text-gray-700 space-y-2">
+<li class="flex items-start">
+<i class="fas fa-check text-ieee-blue mt-1 mr-2 text-xs"></i>
+<span>Fontes de 5,1 V, 9,1 V, 12 V.</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check text-ieee-blue mt-1 mr-2 text-xs"></i>
+<span>Estabilização local em placas (on-board).</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Card 2: Referência de Tensão -->
+<div class="bg-gray-50 rounded-xl p-8 app-card app-card-orange shadow-sm">
+<div class="icon-circle bg-orange-100 text-ieee-orange">
+<i class="fas fa-crosshairs"></i>
+</div>
+<h3 class="font-montserrat font-bold text-xl text-ieee-dark mb-3">Referência de Tensão</h3>
+<div class="flex-1">
+<p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Fornece uma tensão estável e precisa para circuitos de controle e medição, independente de oscilações na alimentação.
+                        </p>
+<ul class="text-sm text-gray-700 space-y-2">
+<li class="flex items-start">
+<i class="fas fa-check text-ieee-orange mt-1 mr-2 text-xs"></i>
+<span>Comparadores de tensão e Op-Amps.</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check text-ieee-orange mt-1 mr-2 text-xs"></i>
+<span>Conversores Analógico-Digitais (ADCs).</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Card 3: Proteção e Limitador -->
+<div class="bg-gray-50 rounded-xl p-8 app-card app-card-dark shadow-sm">
+<div class="icon-circle bg-gray-200 text-ieee-dark">
+<i class="fas fa-shield-alt"></i>
+</div>
+<h3 class="font-montserrat font-bold text-xl text-ieee-dark mb-3">Limitador / Proteção</h3>
+<div class="flex-1">
+<p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Atua ceifando (clamping) sinais que ultrapassam um nível seguro, protegendo componentes sensíveis.
+                        </p>
+<ul class="text-sm text-gray-700 space-y-2">
+<li class="flex items-start">
+<i class="fas fa-check text-ieee-dark mt-1 mr-2 text-xs"></i>
+<span>Proteção de portas de Microcontroladores.</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check text-ieee-dark mt-1 mr-2 text-xs"></i>
+<span>Supressão de transientes em bobinas.</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check text-ieee-dark mt-1 mr-2 text-xs"></i>
+<span>Modelagem de onda (Wave shaping).</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Footer Note -->
+<div class="mt-8 flex items-center bg-blue-50 p-4 rounded-lg border border-blue-100">
+<i class="fas fa-info-circle text-ieee-blue text-lg mr-3"></i>
+<p class="text-sm text-gray-700">
+<span class="font-bold">Nota de Projeto:</span> Em todas as aplicações, o Zener deve operar com corrente de polarização reversa suficiente (Iz &gt; Iz_min) para garantir a regulação, mas abaixo de Iz_max para evitar superaquecimento.
+                </p>
+</div>
+<!-- Footer -->
+<div class="mt-4 flex justify-between items-center text-xs text-gray-400 border-t border-gray-200 pt-2">
+<p>Eletrônica de Potência e Controle</p>
+<p>Slide 06/13</p>
+</div>
+</div>
+</div>
+</body>
+</html>

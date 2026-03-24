@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Curiosidade e Aplicação Avançada</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        /* IEEE Spectrum Color Palette Reference */
+        .bg-ieee-blue { background-color: #00629B; }
+        .text-ieee-blue { color: #00629B; }
+        .bg-ieee-dark { background-color: #002855; }
+        .text-ieee-dark { color: #002855; }
+        .text-ieee-orange { color: #E37222; }
+        .border-ieee-orange { border-color: #E37222; }
+        .bg-ieee-gray { background-color: #F3F4F6; }
+        
+        .highlight-card {
+            background: linear-gradient(135deg, #002855 0%, #00629B 100%);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 40, 85, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: #00629B;
+        }
+
+        .icon-badge {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .balance-graphic {
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            opacity: 0.1;
+            font-size: 15rem;
+            color: white;
+        }
+
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 3.5rem;
+            line-height: 1;
+            color: #E37222;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Sidebar Navigation -->
+<div class="w-16 bg-ieee-dark h-full flex flex-col items-center justify-between py-8 z-20 shrink-0">
+<div class="text-white font-bold text-xl">11</div>
+<div class="h-1/2 w-0.5 bg-white opacity-20"></div>
+<div class="text-ieee-orange text-2xl"><i class="fas fa-lightbulb"></i></div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col p-10 relative overflow-hidden bg-white">
+<!-- Header -->
+<div class="mb-8 z-10">
+<div class="flex items-center space-x-4 mb-2">
+<div class="h-1 w-12 bg-ieee-orange"></div>
+<p class="text-ieee-orange font-bold uppercase tracking-widest text-sm">Fronteira Tecnológica</p>
+</div>
+<h1 class="font-montserrat font-bold text-4xl text-ieee-dark">
+                    Curiosidades &amp; <span class="text-ieee-blue">Aplicações Avançadas</span>
+</h1>
+</div>
+<div class="flex-1 grid grid-cols-12 gap-8">
+<!-- Left Column: The Hero Curiosity (5.6V) -->
+<div class="col-span-5 flex flex-col">
+<div class="highlight-card p-8 flex-1 flex flex-col justify-center relative">
+<!-- Background Graphic -->
+<i class="fas fa-balance-scale balance-graphic"></i>
+<div class="relative z-10">
+<div class="inline-block px-3 py-1 bg-ieee-orange text-white text-xs font-bold rounded-full mb-4 uppercase tracking-wider">
+                                Fato Curioso
+                            </div>
+<h2 class="font-montserrat font-bold text-2xl mb-2">O Equilíbrio Perfeito</h2>
+<div class="my-6">
+<span class="stat-value">5,6 V</span>
+<p class="text-blue-200 font-medium text-lg">Tensão de Ruptura Ideal</p>
+</div>
+<p class="text-gray-100 leading-relaxed mb-6">
+                                Nesta tensão específica, ocorre um fenômeno físico interessante: o <strong>Coeficiente de Temperatura</strong> torna-se praticamente nulo.
+                            </p>
+<div class="bg-white/10 p-4 rounded-lg backdrop-filter backdrop-blur-sm border border-white/20">
+<ul class="space-y-3 text-sm text-white">
+<li class="flex items-start">
+<i class="fas fa-arrow-down text-ieee-orange mt-1 mr-2"></i>
+<span><strong>Efeito Zener (&lt; 5V):</strong> Coeficiente Negativo (Vz cai com calor).</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-arrow-up text-ieee-orange mt-1 mr-2"></i>
+<span><strong>Avalanche (&gt; 6V):</strong> Coeficiente Positivo (Vz sobe com calor).</span>
+</li>
+<li class="flex items-start pt-2 border-t border-white/20">
+<i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+<span><strong>Resultado:</strong> Cancelamento mútuo, ideal para referências de alta precisão.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Advanced Related Tech -->
+<div class="col-span-7 flex flex-col space-y-6">
+<div class="flex items-center mb-2">
+<i class="fas fa-microchip text-ieee-dark mr-2"></i>
+<h3 class="font-bold text-ieee-dark uppercase tracking-wide text-sm">Tecnologias Relacionadas</h3>
+<div class="h-px bg-gray-200 flex-1 ml-4"></div>
+</div>
+<!-- Card 1: TVS Diodes -->
+<div class="tech-card border-l-4 border-l-red-500">
+<div class="flex items-start">
+<div class="icon-badge bg-red-50 text-red-600 mr-4 shrink-0">
+<i class="fas fa-bolt"></i>
+</div>
+<div>
+<h4 class="font-montserrat font-bold text-lg text-ieee-dark mb-1">Diodos TVS (Transorb)</h4>
+<p class="text-xs font-bold text-red-500 mb-2 uppercase">Proteção Robusta</p>
+<p class="text-sm text-gray-600 leading-relaxed">
+                                    Dispositivos otimizados para maximizar o <strong>efeito avalanche</strong> de forma não destrutiva. Capazes de absorver picos de energia gigantescos (kW) em tempos de nanossegundos. Essenciais para proteção contra ESD e raios.
+                                </p>
+</div>
+</div>
+</div>
+<!-- Card 2: Varactor -->
+<div class="tech-card border-l-4 border-l-purple-500">
+<div class="flex items-start">
+<div class="icon-badge bg-purple-50 text-purple-600 mr-4 shrink-0">
+<i class="fas fa-broadcast-tower"></i>
+</div>
+<div>
+<h4 class="font-montserrat font-bold text-lg text-ieee-dark mb-1">Diodo Varactor (Varicap)</h4>
+<p class="text-xs font-bold text-purple-500 mb-2 uppercase">Capacitância Variável</p>
+<p class="text-sm text-gray-600 leading-relaxed">
+                                    Opera na região reversa <em>antes</em> da ruptura. Explora a variação da largura da <strong>camada de depleção</strong> com a tensão para funcionar como um capacitor variável controlado por tensão. Usado em sintonizadores de rádio e osciladores (VCOs).
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="mt-6 flex justify-between items-center text-xs text-gray-400 border-t border-gray-200 pt-3">
+<p>Inovação em Semicondutores</p>
+<p>Slide 11/13</p>
+</div>
+</div>
+</div>
+</body>

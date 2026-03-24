@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aplicações em Engenharia - Setores</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        /* IEEE Spectrum Color Palette Reference */
+        .bg-ieee-blue { background-color: #00629B; }
+        .text-ieee-blue { color: #00629B; }
+        .bg-ieee-dark { background-color: #002855; }
+        .text-ieee-dark { color: #002855; }
+        .text-ieee-orange { color: #E37222; }
+        .border-ieee-orange { border-color: #E37222; }
+        .bg-ieee-gray { background-color: #F3F4F6; }
+        
+        .sector-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            border-left: 5px solid transparent;
+        }
+        
+        .sector-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .sector-card.comp { border-left-color: #00629B; }
+        .sector-card.auto { border-left-color: #E37222; }
+        .sector-card.emb { border-left-color: #002855; }
+        .sector-card.iot { border-left-color: #10B981; }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .comp .icon-box { background-color: #E6F0F5; color: #00629B; }
+        .auto .icon-box { background-color: #FEF3C7; color: #E37222; }
+        .emb .icon-box { background-color: #E2E8F0; color: #002855; }
+        .iot .icon-box { background-color: #D1FAE5; color: #10B981; }
+
+        .dashed-connector {
+            position: absolute;
+            border-top: 2px dashed #CBD5E1;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Sidebar Navigation -->
+<div class="w-16 bg-ieee-dark h-full flex flex-col items-center justify-between py-8 z-20 shrink-0">
+<div class="text-white font-bold text-xl">07</div>
+<div class="h-1/2 w-0.5 bg-white opacity-20"></div>
+<div class="text-ieee-orange text-2xl"><i class="fas fa-industry"></i></div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col p-10 relative overflow-hidden bg-white">
+<!-- Header -->
+<div class="mb-8 z-10">
+<div class="flex items-center space-x-4 mb-2">
+<div class="h-1 w-12 bg-ieee-orange"></div>
+<p class="text-ieee-orange font-bold uppercase tracking-widest text-sm">Contexto Profissional</p>
+</div>
+<h1 class="font-montserrat font-bold text-4xl text-ieee-dark">
+                    Aplicação em <span class="text-ieee-blue">Engenharia</span>
+</h1>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-2 gap-8 flex-1 relative z-10">
+<!-- Card 1: Engenharia de Computação -->
+<div class="sector-card comp p-6 flex flex-col">
+<div class="flex items-center mb-4">
+<div class="icon-box">
+<i class="fas fa-laptop-code"></i>
+</div>
+<h3 class="font-montserrat font-bold text-xl text-ieee-dark">Engenharia de Computação</h3>
+</div>
+<div class="pl-3 border-l-2 border-gray-100 ml-6 flex-1">
+<p class="text-gray-600 text-sm mb-3 font-semibold">Foco: Estabilização e Interfaces</p>
+<ul class="text-sm text-gray-700 space-y-2">
+<li class="flex items-start">
+<i class="fas fa-check text-ieee-blue mt-1 mr-2 text-xs"></i>
+<span>Estabilização de trilhas de 3,3V e 5V em placas mãe e periféricos.</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check text-ieee-blue mt-1 mr-2 text-xs"></i>
+<span>Proteção de pinos GPIO contra sobretensão em interfaces externas (USB, Serial).</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Card 2: Automação Industrial -->
+<div class="sector-card auto p-6 flex flex-col">
+<div class="flex items-center mb-4">
+<div class="icon-box">
+<i class="fas fa-robot"></i>
+</div>
+<h3 class="font-montserrat font-bold text-xl text-ieee-dark">Automação e Controle</h3>
+</div>
+<div class="pl-3 border-l-2 border-gray-100 ml-6 flex-1">
+<p class="text-gray-600 text-sm mb-3 font-semibold">Foco: Robustez e Proteção</p>
+<ul class="text-sm text-gray-700 space-y-2">
+<li class="flex items-start">
+<i class="fas fa-check text-ieee-orange mt-1 mr-2 text-xs"></i>
+<span>Proteção de entradas digitais (24V) em PLCs e controladores.</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check text-ieee-orange mt-1 mr-2 text-xs"></i>
+<span>Supressão de picos indutivos em relés e atuadores (Flyback Zener).</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Card 3: Sistemas Embarcados -->
+<div class="sector-card emb p-6 flex flex-col">
+<div class="flex items-center mb-4">
+<div class="icon-box">
+<i class="fas fa-microchip"></i>
+</div>
+<h3 class="font-montserrat font-bold text-xl text-ieee-dark">Sistemas Embarcados</h3>
+</div>
+<div class="pl-3 border-l-2 border-gray-100 ml-6 flex-1">
+<p class="text-gray-600 text-sm mb-3 font-semibold">Foco: Referência e Condicionamento</p>
+<ul class="text-sm text-gray-700 space-y-2">
+<li class="flex items-start">
+<i class="fas fa-check text-ieee-dark mt-1 mr-2 text-xs"></i>
+<span>Referência de precisão para conversores A/D (ex: 2,5V ou 4,096V).</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check text-ieee-dark mt-1 mr-2 text-xs"></i>
+<span>Clamp em barramentos de comunicação automotiva (CAN, LIN) com redes resistivas.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Card 4: Internet das Coisas (IoT) -->
+<div class="sector-card iot p-6 flex flex-col">
+<div class="flex items-center mb-4">
+<div class="icon-box">
+<i class="fas fa-wifi"></i>
+</div>
+<h3 class="font-montserrat font-bold text-xl text-ieee-dark">IoT (Internet of Things)</h3>
+</div>
+<div class="pl-3 border-l-2 border-gray-100 ml-6 flex-1">
+<p class="text-gray-600 text-sm mb-3 font-semibold">Foco: Baixa Potência e RF</p>
+<ul class="text-sm text-gray-700 space-y-2">
+<li class="flex items-start">
+<i class="fas fa-check text-green-600 mt-1 mr-2 text-xs"></i>
+<span>Regulação local em nós sensores (atenção crítica ao consumo de corrente Iz).</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check text-green-600 mt-1 mr-2 text-xs"></i>
+<span>Proteção de estágios de RF contra descargas eletrostáticas (ESD).</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Background Elements -->
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 opacity-5 pointer-events-none z-0">
+<svg fill="none" stroke="#002855" stroke-width="0.5" viewbox="0 0 100 100">
+<circle cx="50" cy="50" r="40"></circle>
+<circle cx="50" cy="50" r="30"></circle>
+<circle cx="50" cy="50" r="20"></circle>
+<line x1="50" x2="50" y1="10" y2="90"></line>
+<line x1="10" x2="90" y1="50" y2="50"></line>
+</svg>
+</div>
+<!-- Footer -->
+<div class="mt-6 flex justify-between items-center text-xs text-gray-400 border-t border-gray-200 pt-3 z-10">
+<p>Aplicações Interdisciplinares</p>
+<p>Slide 07/13</p>
+</div>
+</div>
+</div>
+</body>
+</html>
