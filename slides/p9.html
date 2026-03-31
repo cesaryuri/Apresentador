@@ -4,242 +4,505 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Vantagens e Desvantagens</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<title>Vantagens e Desvantagens do Diodo Schottky</title>
+<script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Open Sans', sans-serif;
-            background-color: #f5f5f5;
             overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            background: #f8fafc;
         }
         .slide-container {
+            position: relative;
             width: 1280px;
             height: 720px;
-            display: flex;
-            background: white;
-            position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
-        /* IEEE Spectrum Color Palette Reference */
-        .bg-ieee-blue { background-color: #00629B; }
-        .text-ieee-blue { color: #00629B; }
-        .bg-ieee-dark { background-color: #002855; }
-        .text-ieee-dark { color: #002855; }
-        .text-ieee-orange { color: #E37222; }
-        .border-ieee-orange { border-color: #E37222; }
-        .bg-ieee-gray { background-color: #F3F4F6; }
-        .bg-ieee-light { background-color: #E6F0F5; }
-        
-        .pros-cons-card {
-            background: white;
-            border-radius: 8px;
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(90deg, #1e3a5f 0%, #2c5282 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            height: 100%;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .header-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        .header-title {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+        }
+        .header-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-top: 2px;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .header-info {
+            text-align: right;
+            color: white;
+        }
+        .header-info-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .header-info-value {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .main-content {
+            position: absolute;
+            top: 100px;
+            left: 40px;
+            right: 40px;
+            bottom: 40px;
+            display: flex;
+            gap: 20px;
+        }
+        .left-column {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            gap: 20px;
         }
-
+        .right-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
         .card-header {
-            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a5f 100%);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
+            font-size: 18px;
+        }
+        .card-title {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            position: relative;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e3a5f;
+            margin: 0;
         }
-
-        .header-pros {
-            background-color: #00629B;
-        }
-
-        .header-cons {
-            background-color: #E37222;
-        }
-        
-        .header-icon {
-            position: absolute;
-            left: 1.5rem;
-            font-size: 1.8rem;
-            opacity: 0.8;
-        }
-
-        .card-body {
-            padding: 2rem;
+        .card-content {
             flex: 1;
-            background-color: #FAFAFA;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
-
-        .list-item {
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .bullet-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 1.25rem;
-            padding-bottom: 1.25rem;
-            border-bottom: 1px solid #E5E7EB;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #4a5568;
+            line-height: 1.5;
         }
-
-        .list-item:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
+        .bullet-icon {
+            color: #3b82f6;
+            font-size: 12px;
+            margin-top: 4px;
         }
-
-        .item-icon {
-            flex-shrink: 0;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
+        .bullet-text {
+            flex: 1;
+        }
+        .highlight {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #1e3a5f;
+            font-weight: 500;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .comparison-table th {
+            background: #f8fafc;
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 12px;
+            color: #1e3a5f;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .comparison-table td {
+            padding: 8px 12px;
+            font-size: 12px;
+            color: #4a5568;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .comparison-table tr:hover {
+            background: #f8fafc;
+        }
+        .status-bar {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            margin-top: 0.25rem;
-            font-size: 0.8rem;
-            color: white;
+            gap: 10px;
+            margin-top: 10px;
         }
-
-        .icon-pros {
-            background-color: #10B981;
+        .status-label {
+            font-size: 12px;
+            color: #4a5568;
+            width: 100px;
         }
-
-        .icon-cons {
-            background-color: #EF4444;
+        .status-value {
+            flex: 1;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
         }
-
-        .vs-circle {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background-color: #002855;
-            color: white;
-            border-radius: 50%;
+        .status-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6 0%, #1e3a5f 100%);
+            border-radius: 4px;
+        }
+        .status-text {
+            font-size: 11px;
+            color: #1e3a5f;
+            margin-left: 5px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .feature-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+        .feature-label {
+            font-size: 11px;
+            color: #4a5568;
+            margin-bottom: 2px;
+        }
+        .feature-value {
+            font-size: 13px;
+            color: #1e3a5f;
+            font-weight: 600;
+        }
+        .pros-cons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .pros-column, .cons-column {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 1.2rem;
-            z-index: 20;
-            border: 4px solid white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex-direction: column;
+            gap: 10px;
+        }
+        .pros-item, .cons-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .pros-text, .cons-text {
+            flex: 1;
+            font-size: 12px;
+            color: #4a5568;
+            line-height: 1.4;
+            padding-right: 5px; /* Added to give more space to the right of the text */
         }
     </style>
 </head>
 <body>
 <div class="slide-container">
-<!-- Sidebar Navigation -->
-<div class="w-16 bg-ieee-dark h-full flex flex-col items-center justify-between py-8 z-20 shrink-0">
-<div class="text-white font-bold text-xl">09</div>
-<div class="h-1/2 w-0.5 bg-white opacity-20"></div>
-<div class="text-ieee-orange text-2xl"><i class="fas fa-balance-scale"></i></div>
+<div class="header">
+<div class="header-left">
+<div class="header-icon">
+<i class="fas fa-microchip"></i>
 </div>
-<!-- Main Content -->
-<div class="flex-1 flex flex-col p-10 relative overflow-hidden bg-white">
-<!-- Header -->
-<div class="mb-8 z-10 text-center">
-<div class="flex items-center justify-center space-x-4 mb-2">
-<div class="h-1 w-12 bg-ieee-orange"></div>
-<p class="text-ieee-orange font-bold uppercase tracking-widest text-sm">Análise Comparativa</p>
-<div class="h-1 w-12 bg-ieee-orange"></div>
-</div>
-<h1 class="font-montserrat font-bold text-4xl text-ieee-dark">
-                    Vantagens <span class="text-gray-400 mx-2">&amp;</span> Desvantagens
-                </h1>
-</div>
-<!-- Content Grid -->
-<div class="flex-1 grid grid-cols-2 gap-12 relative">
-<!-- VS Element -->
-<div class="vs-circle">VS</div>
-<!-- Left Column: Advantages -->
-<div class="pros-cons-card">
-<div class="card-header header-pros">
-<i class="fas fa-thumbs-up header-icon"></i>
-<span>Pontos Fortes</span>
-</div>
-<div class="card-body">
-<div class="list-item">
-<div class="item-icon icon-pros"><i class="fas fa-check"></i></div>
 <div>
-<p class="font-bold text-gray-800 mb-1">Simplicidade e Custo</p>
-<p class="text-sm text-gray-600">Componente barato, fácil de implementar e disponível em ampla gama de tensões comerciais.</p>
+<div class="header-title">Diodo Schottky</div>
+<div class="header-subtitle">Vantagens e Desvantagens</div>
 </div>
 </div>
-<div class="list-item">
-<div class="item-icon icon-pros"><i class="fas fa-check"></i></div>
-<div>
-<p class="font-bold text-gray-800 mb-1">Estabilidade na Ruptura</p>
-<p class="text-sm text-gray-600">Mantém a tensão de saída fixa (Vz) mesmo com grandes variações na tensão de entrada, ideal para referências locais.</p>
+<div class="header-right">
+<div class="header-info">
+<div class="header-info-label">Disciplina</div>
+<div class="header-info-value">Dispositivos Eletrônicos</div>
 </div>
-</div>
-<div class="list-item">
-<div class="item-icon icon-pros"><i class="fas fa-check"></i></div>
-<div>
-<p class="font-bold text-gray-800 mb-1">Resposta Rápida</p>
-<p class="text-sm text-gray-600">Tempo de resposta veloz a transientes de tensão, sendo eficaz como elemento de proteção (clamp).</p>
-</div>
-</div>
-<div class="list-item">
-<div class="item-icon icon-pros"><i class="fas fa-check"></i></div>
-<div>
-<p class="font-bold text-gray-800 mb-1">Reprodutibilidade</p>
-<p class="text-sm text-gray-600">O processo de ruptura não é destrutivo e pode ser repetido infinitamente dentro dos limites de potência.</p>
+<div class="header-info">
+<div class="header-info-label">Data</div>
+<div class="header-info-value">31/03/2026</div>
 </div>
 </div>
 </div>
+<div class="main-content">
+<div class="left-column">
+<div class="card">
+<div class="card-header">
+<div class="card-icon">
+<i class="fas fa-plus-circle"></i>
 </div>
-<!-- Right Column: Disadvantages -->
-<div class="pros-cons-card">
-<div class="card-header header-cons">
-<i class="fas fa-thumbs-down header-icon"></i>
-<span>Limitações</span>
+<div class="card-title">Vantagens do Diodo Schottky</div>
 </div>
-<div class="card-body">
-<div class="list-item">
-<div class="item-icon icon-cons"><i class="fas fa-times"></i></div>
-<div>
-<p class="font-bold text-gray-800 mb-1">Baixa Eficiência Energética</p>
-<p class="text-sm text-gray-600">Dissipa potência constantemente (Pz = Vz·Iz) mesmo sem carga, gerando calor e desperdício em altas correntes.</p>
+<div class="card-content">
+<div class="pros-cons-grid">
+<div class="pros-column">
+<div class="pros-item">
+<div class="pros-icon"><i class="fas fa-check-circle"></i></div>
+<div class="pros-text">
+<strong>Baixa queda de tensão:</strong> 0,15-0,45V vs 0,6-0,7V em diodos PN
+                                    </div>
 </div>
+<div class="pros-item">
+<div class="pros-icon"><i class="fas fa-bolt"></i></div>
+<div class="pros-text">
+<strong>Alta velocidade:</strong> t_rr ≈ 0, sem recuperação reversa
+                                    </div>
 </div>
-<div class="list-item">
-<div class="item-icon icon-cons"><i class="fas fa-times"></i></div>
-<div>
-<p class="font-bold text-gray-800 mb-1">Regulação de Carga Limitada</p>
-<p class="text-sm text-gray-600">A tensão Vz não é perfeitamente constante; varia levemente com a corrente (devido à resistência dinâmica rz).</p>
+<div class="pros-item">
+<div class="pros-icon"><i class="fas fa-thermometer-half"></i></div>
+<div class="pros-text">
+<strong>Menor aquecimento:</strong> Menores perdas por condução
+                                    </div>
 </div>
-</div>
-<div class="list-item">
-<div class="item-icon icon-cons"><i class="fas fa-times"></i></div>
-<div>
-<p class="font-bold text-gray-800 mb-1">Sensibilidade Térmica</p>
-<p class="text-sm text-gray-600">O valor de Vz varia com a temperatura (coeficiente negativo em baixas tensões, positivo em altas).</p>
-</div>
-</div>
-<div class="list-item">
-<div class="item-icon icon-cons"><i class="fas fa-times"></i></div>
-<div>
-<p class="font-bold text-gray-800 mb-1">Ruído Elétrico</p>
-<p class="text-sm text-gray-600">Gera ruído branco considerável na região de avalanche, exigindo capacitores de filtro em circuitos sensíveis.</p>
-</div>
-</div>
-</div>
+<div class="pros-item">
+<div class="pros-icon"><i class="fas fa-wave-square"></i></div>
+<div class="pros-text">
+<strong>Baixa EMI:</strong> Melhor desempenho em alta frequência
+                                    </div>
 </div>
 </div>
-<!-- Footer -->
-<div class="mt-6 flex justify-between items-center text-xs text-gray-400 border-t border-gray-200 pt-3">
-<p>Engenharia de Componentes - Avaliação Técnica</p>
-<p>Slide 09/13</p>
+<div class="pros-column">
+<div class="pros-item">
+<div class="pros-icon"><i class="fas fa-battery-full"></i></div>
+<div class="pros-text">
+<strong>Alta eficiência:</strong> 95%+ em retificação
+                                    </div>
+</div>
+<div class="pros-item">
+<div class="pros-icon"><i class="fas fa-compress-arrows-alt"></i></div>
+<div class="pros-text">
+<strong>Compacto:</strong> Menor tamanho físico
+                                    </div>
+</div>
+<div class="pros-item">
+<div class="pros-icon"><i class="fas fa-clock"></i></div>
+<div class="pros-text">
+<strong>Resposta rápida:</strong> Ideal para comutação
+                                    </div>
+</div>
+<div class="pros-item">
+<div class="pros-icon"><i class="fas fa-shield-alt"></i></div>
+<div class="pros-text">
+<strong>Proteção eficiente:</strong> Contra surtos
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<div class="card-icon">
+<i class="fas fa-chart-bar"></i>
+</div>
+<div class="card-title">Comparação de Desempenho</div>
+</div>
+<div class="card-content">
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Parâmetro</th>
+<th>Schottky</th>
+<th>Diodo PN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V_f (V)</td>
+<td>0,15-0,45</td>
+<td>0,6-0,7</td>
+</tr>
+<tr>
+<td>t_rr (ns)</td>
+<td>&lt; 10</td>
+<td>50-1000</td>
+</tr>
+<tr>
+<td>Eficiência (%)</td>
+<td>95+</td>
+<td>85-90</td>
+</tr>
+<tr>
+<td>Freq. máx (MHz)</td>
+<td>100+</td>
+<td>1-10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="right-column">
+<div class="card">
+<div class="card-header">
+<div class="card-icon">
+<i class="fas fa-exclamation-triangle"></i>
+</div>
+<div class="card-title">Desvantagens do Diodo Schottky</div>
+</div>
+<div class="card-content">
+<div class="pros-cons-grid">
+<div class="cons-column">
+<div class="cons-item">
+<div class="cons-icon"><i class="fas fa-times-circle"></i></div>
+<div class="cons-text">
+<strong>Corrente de fuga:</strong> Elevada, especialmente em alta temperatura
+                                    </div>
+</div>
+<div class="cons-item">
+<div class="cons-icon"><i class="fas fa-voltage-high"></i></div>
+<div class="cons-text">
+<strong>Baixa tensão reversa:</strong> Limitada a 20-100V (Si)
+                                    </div>
+</div>
+<div class="cons-item">
+<div class="cons-icon"><i class="fas fa-thermometer-full"></i></div>
+<div class="cons-text">
+<strong>Sensibilidade térmica:</strong> Performance degradada &gt;150°C
+                                    </div>
+</div>
+<div class="cons-item">
+<div class="cons-icon"><i class="fas fa-dollar-sign"></i></div>
+<div class="cons-text">
+<strong>Custo:</strong> Mais caro que diodos convencionais
+                                    </div>
+</div>
+</div>
+<div class="cons-column">
+<div class="cons-item">
+<div class="cons-icon"><i class="fas fa-battery-half"></i></div>
+<div class="cons-text">
+<strong>Consumo:</strong> Maior corrente de fuga
+                                    </div>
+</div>
+<div class="cons-item">
+<div class="cons-icon"><i class="fas fa-shield-alt"></i></div>
+<div class="cons-text">
+<strong>Proteção:</strong> Menor robustez a surtos
+                                    </div>
+</div>
+<div class="cons-item">
+<div class="cons-icon"><i class="fas fa-wave-square"></i></div>
+<div class="cons-text">
+<strong>Ruído:</strong> Maior em algumas aplicações
+                                    </div>
+</div>
+<div class="cons-item">
+<div class="cons-icon"><i class="fas fa-wrench"></i></div>
+<div class="cons-text">
+<strong>Manutenção:</strong> Requer cuidados especiais
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<div class="card-icon">
+<i class="fas fa-info-circle"></i>
+</div>
+<div class="card-title">Considerações de Uso</div>
+</div>
+<div class="card-content">
+<div class="status-bar">
+<div class="status-label">Eficiência</div>
+<div class="status-value">
+<div class="status-fill" style="width: 95%;"></div>
+</div>
+<div class="status-text">95%</div>
+</div>
+<div class="status-bar">
+<div class="status-label">Velocidade</div>
+<div class="status-value">
+<div class="status-fill" style="width: 98%;"></div>
+</div>
+<div class="status-text">98%</div>
+</div>
+<div class="status-bar">
+<div class="status-label">Custo</div>
+<div class="status-value">
+<div class="status-fill" style="width: 75%;"></div>
+</div>
+<div class="status-text">75%</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </body>
+</html>

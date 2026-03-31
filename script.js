@@ -1,7 +1,7 @@
 // ── Estado ──
 let slides = [];   // array de object URLs dos arquivos carregados
 let current = 0;
-const HIDE_DELAY = 3000;
+const HIDE_DELAY = 2000;
 
 // ── Elementos ──
 const dropzone   = document.getElementById('dropzone');

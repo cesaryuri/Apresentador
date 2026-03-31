@@ -1,218 +1,438 @@
 <!DOCTYPE html>
 
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Limitações e Cuidados</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<style>
+<html lang="pt-BR"><head><meta charset="utf-8"/><script src="https://cdn.tailwindcss.com"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/><style>
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Open Sans', sans-serif;
-            background-color: #f5f5f5;
             overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            background: #f8fafc;
         }
         .slide-container {
+            position: relative;
             width: 1280px;
             height: 720px;
-            display: flex;
-            background: white;
-            position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
-        /* IEEE Spectrum Color Palette Reference */
-        .bg-ieee-blue { background-color: #00629B; }
-        .text-ieee-blue { color: #00629B; }
-        .bg-ieee-dark { background-color: #002855; }
-        .text-ieee-dark { color: #002855; }
-        .text-ieee-orange { color: #E37222; }
-        .border-ieee-orange { border-color: #E37222; }
-        .bg-ieee-gray { background-color: #F3F4F6; }
-        
-        .alert-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e5e7eb;
-            height: 100%;
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(90deg, #1e3a5f 0%, #2c5282 100%);
             display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-
-        .alert-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
-
-        .alert-icon-box {
+        .header-icon {
             width: 50px;
             height: 50px;
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            margin-right: 1rem;
-            flex-shrink: 0;
+            color: white;
+            font-size: 24px;
         }
-
-        .warning-stripes {
-            background-image: repeating-linear-gradient(
-                45deg,
-                #fcd34d,
-                #fcd34d 10px,
-                #fbbf24 10px,
-                #fbbf24 20px
-            );
-            /* Fallback solid color for export compatibility */
-            background-color: #fbbf24;
-            background-image: none; 
+        .header-title {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
         }
-
-        /* Custom scrollbar for content area if needed */
-        .content-scroll::-webkit-scrollbar {
-            width: 6px;
+        .header-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-top: 2px;
         }
-        .content-scroll::-webkit-scrollbar-track {
-            background: #f1f1f1;
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
-        .content-scroll::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 3px;
+        .header-info {
+            text-align: right;
+            color: white;
+        }
+        .header-info-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .header-info-value {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .main-content {
+            position: absolute;
+            top: 100px;
+            left: 40px;
+            right: 40px;
+            bottom: 40px;
+            display: flex;
+            gap: 20px;
+        }
+        .left-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .right-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a5f 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e3a5f;
+            margin: 0;
+        }
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .bullet-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+        .bullet-icon {
+            color: #3b82f6;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+        .bullet-text {
+            flex: 1;
+        }
+        .highlight {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #1e3a5f;
+            font-weight: 500;
+        }
+        .warning-box {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+        .warning-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .warning-text {
+            font-size: 12px;
+            color: #92400e;
+        }
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 0 15px; /* Added horizontal padding for alignment */
+        }
+        .status-label {
+            font-size: 12px;
+            color: #4a5568;
+            width: 100px;
+        }
+        .status-value {
+            flex: 1;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .status-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6 0%, #1e3a5f 100%);
+            border-radius: 4px;
+        }
+        .status-text {
+            font-size: 11px;
+            color: #1e3a5f;
+            width: 60px; /* Fixed width for alignment */
+            text-align: right; /* Right align the text */
+            /* Removed margin-left: 5px; */
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .feature-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+        .feature-label {
+            font-size: 11px;
+            color: #4a5568;
+            margin-bottom: 2px;
+        }
+        .feature-value {
+            font-size: 13px;
+            color: #1e3a5f;
+            font-weight: 600;
+        }
+        .limitation-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px; /* Adjusted horizontal padding for better spacing */
+            background: #f8fafc;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+        .limitation-icon {
+            color: #ef4444;
+            font-size: 14px;
+        }
+        .limitation-text {
+            font-size: 12px;
+            color: #4a5568;
+            flex: 1;
+        }
+        .limitation-value {
+            font-size: 11px;
+            color: #1e3a5f;
+            font-weight: 600;
+            text-align: right; /* Right align the text */
         }
     </style>
 </head>
 <body>
 <div class="slide-container">
-<!-- Sidebar Navigation -->
-<div class="w-16 bg-ieee-dark h-full flex flex-col items-center justify-between py-8 z-20 shrink-0">
-<div class="text-white font-bold text-xl">10</div>
-<div class="h-1/2 w-0.5 bg-white opacity-20"></div>
-<div class="text-ieee-orange text-2xl"><i class="fas fa-exclamation-triangle"></i></div>
-</div>
-<!-- Main Content -->
-<div class="flex-1 flex flex-col p-10 relative overflow-hidden bg-white">
-<!-- Header -->
-<div class="mb-8 z-10">
-<div class="flex items-center space-x-4 mb-2">
-<div class="h-1 w-12 bg-ieee-orange"></div>
-<p class="text-ieee-orange font-bold uppercase tracking-widest text-sm">Operação Segura</p>
-</div>
-<h1 class="font-montserrat font-bold text-4xl text-ieee-dark">
-                Limitações e <span class="text-ieee-blue">Cuidados</span>
-</h1>
-</div>
-<!-- Content Grid -->
-<div class="flex-1 grid grid-cols-2 gap-8">
-<!-- Left Column: Critical Limits -->
-<div class="flex flex-col space-y-6">
-<!-- Card 1: Corrente Máxima -->
-<div class="alert-card p-5 border-l-4 border-red-500 bg-red-50">
-<div class="flex items-start">
-<div class="alert-icon-box bg-red-100 text-red-600">
-<i class="fas fa-bolt"></i>
+<div class="header">
+<div class="header-left">
+<div class="header-icon">
+<i class="fas fa-exclamation-triangle"></i>
 </div>
 <div>
-<h3 class="font-montserrat font-bold text-lg text-gray-800 mb-1">Limite de Corrente (Iz_max)</h3>
-<p class="text-sm text-gray-600 leading-relaxed mb-2">
-                                Nunca exceda a corrente máxima especificada (Iz_max). A dissipação excessiva destruirá a junção p-n permanentemente.
-                            </p>
-<div class="bg-white p-2 rounded border border-red-100 inline-block">
-<p class="text-xs font-bold text-red-700">
-<i class="fas fa-shield-alt mr-1"></i> Solução: Sempre use um resistor limitador em série.
-                                </p>
+<div class="header-title">Limitações e Cuidados</div>
+<div class="header-subtitle">Diodo Schottky - Parâmetros de Operação</div>
+</div>
+</div>
+<div class="header-right">
+<div class="header-info">
+<div class="header-info-label">Disciplina</div>
+<div class="header-info-value">Dispositivos Eletrônicos</div>
+</div>
+<div class="header-info">
+<div class="header-info-label">Data</div>
+<div class="header-info-value">31/03/2026</div>
 </div>
 </div>
 </div>
-</div>
-<!-- Card 2: Potência Máxima -->
-<div class="alert-card p-5 border-l-4 border-orange-500 bg-orange-50">
-<div class="flex items-start">
-<div class="alert-icon-box bg-orange-100 text-orange-600">
-<i class="fas fa-fire"></i>
-</div>
-<div>
-<h3 class="font-montserrat font-bold text-lg text-gray-800 mb-1">Dissipação de Potência (Pz)</h3>
-<p class="text-sm text-gray-600 leading-relaxed mb-2">
-                                A potência dissipada (Pz = Vz · Iz) deve ser menor que a nominal (Pz_max), geralmente 400mW, 1W ou 5W.
-                            </p>
-<div class="bg-white p-2 rounded border border-orange-100 inline-block">
-<p class="text-xs font-bold text-orange-700">
-<i class="fas fa-calculator mr-1"></i> Dica: Projete para operar com folga de 20-30%.
-                                </p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Right Column: Performance Factors -->
-<div class="flex flex-col space-y-6">
-<!-- Card 3: Temperatura -->
-<div class="alert-card p-5 border-l-4 border-yellow-500 bg-yellow-50">
-<div class="flex items-start">
-<div class="alert-icon-box bg-yellow-100 text-yellow-600">
+<div class="main-content">
+<div class="left-column">
+<div class="card">
+<div class="card-header">
+<div class="card-icon">
 <i class="fas fa-thermometer-half"></i>
 </div>
-<div>
-<h3 class="font-montserrat font-bold text-lg text-gray-800 mb-1">Efeito da Temperatura</h3>
-<p class="text-sm text-gray-600 leading-relaxed mb-2">
-                                A tensão Vz varia com o calor. Coeficiente térmico é negativo para Vz &lt; 5V (Zener) e positivo para Vz &gt; 6V (Avalanche).
-                            </p>
-<div class="bg-white p-2 rounded border border-yellow-100 inline-block">
-<p class="text-xs font-bold text-yellow-700">
-<i class="fas fa-snowflake mr-1"></i> Cuidado: Em precisão, use compensação térmica.
-                                </p>
+<div class="card-title">Limites de Operação</div>
+</div>
+<div class="card-content">
+<div class="limitation-item">
+<i class="fas fa-bolt limitation-icon"></i><!-- Changed from fa-voltage-high to fa-bolt -->
+<div class="limitation-text">Tensão reversa máxima (VRRM)</div>
+<div class="limitation-value">20-100V</div>
+</div>
+<div class="limitation-item">
+<i class="fas fa-bolt limitation-icon"></i>
+<div class="limitation-text">Corrente direta média (IF(AV))</div>
+<div class="limitation-value">1-10A</div>
+</div>
+<div class="limitation-item">
+<i class="fas fa-bolt limitation-icon"></i>
+<div class="limitation-text">Corrente de surto (IFSM)</div>
+<div class="limitation-value">10-50A</div>
+</div>
+<div class="limitation-item">
+<i class="fas fa-temperature-high limitation-icon"></i>
+<div class="limitation-text">Temperatura de junção (Tj)</div>
+<div class="limitation-value">-55°C a +150°C</div>
+</div>
+<div class="warning-box">
+<div class="warning-title">
+<i class="fas fa-info-circle"></i>
+<span>Importante</span>
+</div>
+<div class="warning-text">Respeitar sempre os limites do datasheet para evitar danos permanentes.</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<div class="card-icon">
+<i class="fas fa-chart-line"></i>
+</div>
+<div class="card-title">Dimensionamento</div>
+</div>
+<div class="card-content">
+<div class="status-bar">
+<div class="status-label">Margem VRRM</div>
+<div class="status-value">
+<div class="status-fill" style="width: 80%;"></div>
+</div>
+<div class="status-text">20-30%</div>
+</div>
+<div class="status-bar">
+<div class="status-label">Margem IF</div>
+<div class="status-value">
+<div class="status-fill" style="width: 75%;"></div>
+</div>
+<div class="status-text">20-30%</div>
+</div>
+<div class="status-bar">
+<div class="status-label">Margem Tj</div>
+<div class="status-value">
+<div class="status-fill" style="width: 85%;"></div>
+</div>
+<div class="status-text">15-20%</div>
 </div>
 </div>
 </div>
 </div>
-<!-- Card 4: Impedância Dinâmica -->
-<div class="alert-card p-5 border-l-4 border-blue-500 bg-blue-50">
-<div class="flex items-start">
-<div class="alert-icon-box bg-blue-100 text-blue-600">
-<i class="fas fa-wave-square"></i>
+<div class="right-column">
+<div class="card">
+<div class="card-header">
+<div class="card-icon">
+<i class="fas fa-gear"></i><!-- Changed from fa-fire to fa-gear -->
 </div>
-<div>
-<h3 class="font-montserrat font-bold text-lg text-gray-800 mb-1">Impedância Dinâmica (rz)</h3>
-<p class="text-sm text-gray-600 leading-relaxed mb-2">
-                                A curva I-V não é perfeitamente vertical. Existe uma resistência interna (rz) que causa pequenas variações em Vz com a corrente.
-                            </p>
-<div class="bg-white p-2 rounded border border-blue-100 inline-block">
-<p class="text-xs font-bold text-blue-700">
-<i class="fas fa-microchip mr-1"></i> Atenção: Iz muito baixa aumenta drasticamente rz.
-                                </p>
+<div class="card-title">Aquecimento e Dissipação</div>
 </div>
+<div class="card-content">
+<div class="bullet-list">
+<div class="bullet-item">
+<i class="fas fa-check-circle bullet-icon"></i>
+<div class="bullet-text">
+<strong>Potência dissipada:</strong> P = I·Vf + Vr·Ir
+                                    </div>
 </div>
+<div class="bullet-item">
+<i class="fas fa-check-circle bullet-icon"></i>
+<div class="bullet-text">
+<strong>Prever dissipação:</strong> Usar dissipadores quando necessário
+                                    </div>
 </div>
+<div class="bullet-item">
+<i class="fas fa-check-circle bullet-icon"></i>
+<div class="bullet-text">
+<strong>Layout:</strong> Trilhas curtas, baixa indutância
+                                    </div>
 </div>
-</div>
-</div>
-<!-- Bottom Warning Banner -->
-<div class="mt-8 bg-gray-800 rounded-lg p-4 flex items-center justify-between text-white shadow-lg">
-<div class="flex items-center">
-<div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center mr-4 animate-pulse">
-<i class="fas fa-exclamation text-white text-lg"></i>
-</div>
-<div>
-<p class="font-bold text-sm uppercase tracking-wider">Regra de Ouro</p>
-<p class="text-xs text-gray-300">Sempre dimensione o resistor série para o pior caso: Entrada máxima (Vin_max) e carga mínima (IL=0).</p>
-</div>
-</div>
-<div class="text-right">
-<p class="text-2xl font-bold font-montserrat text-red-500">Pz &lt; Pz_max</p>
-</div>
-</div>
-<!-- Footer -->
-<div class="mt-4 flex justify-between items-center text-xs text-gray-400 border-t border-gray-200 pt-2">
-<p>Confiabilidade em Projetos Eletrônicos</p>
-<p>Slide 10/13</p>
+<div class="bullet-item">
+<i class="fas fa-check-circle bullet-icon"></i>
+<div class="bullet-text">
+<strong>Verificar Cj:</strong> Em alta frequência
+                                    </div>
 </div>
 </div>
+<div class="warning-box">
+<div class="warning-title">
+<i class="fas fa-exclamation-circle"></i>
+<span>Cuidado</span>
 </div>
-</body>
+<div class="warning-text">Aquecimento excessivo pode degradar o desempenho e reduzir a vida útil.</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<div class="card-icon">
+<i class="fas fa-shield-alt"></i>
+</div>
+<div class="card-title">Proteção e Segurança</div>
+</div>
+<div class="card-content">
+<div class="bullet-list">
+<div class="bullet-item">
+<i class="fas fa-check-circle bullet-icon"></i>
+<div class="bullet-text">
+<strong>Proteção térmica:</strong> Usar fusíveis ou circuitos de proteção
+                                    </div>
+</div>
+<div class="bullet-item">
+<i class="fas fa-check-circle bullet-icon"></i>
+<div class="bullet-text">
+<strong>Isolamento:</strong> Manter distância adequada entre componentes
+                                    </div>
+</div>
+<div class="bullet-item">
+<i class="fas fa-check-circle bullet-icon"></i>
+<div class="bullet-text">
+<strong>Teste:</strong> Verificar funcionamento regularmente
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></body>
 </html>

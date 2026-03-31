@@ -1,173 +1,476 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Princípio de Funcionamento - Diodo Zener</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Princípio de Funcionamento - Diodo Schottky</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet"/>
+    <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Open Sans', sans-serif;
-            background-color: #f5f5f5;
             overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            background: #f8fafc;
         }
         .slide-container {
+            position: relative;
             width: 1280px;
             height: 720px;
-            display: flex;
-            background: white;
-            position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            display: flex;
+            flex-direction: column;
         }
-        /* IEEE Spectrum Color Palette Reference */
-        .bg-ieee-blue { background-color: #00629B; }
-        .text-ieee-blue { color: #00629B; }
-        .bg-ieee-dark { background-color: #002855; }
-        .text-ieee-dark { color: #002855; }
-        .text-ieee-orange { color: #E37222; }
-        .border-ieee-orange { border-color: #E37222; }
-        .bg-ieee-gray { background-color: #F3F4F6; }
-        .bg-ieee-light-blue { background-color: #E6F0F5; }
-
-        .process-card {
-            transition: all 0.3s ease;
-            height: 100%;
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(90deg, #1e3a5f 0%, #2c5282 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 100;
         }
-        
-        .arrow-divider {
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .header-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        .header-title {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+        }
+        .header-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-top: 2px;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .header-info {
+            text-align: right;
+            color: white;
+        }
+        .header-info-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .header-info-value {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .main-content {
+            position: absolute;
+            top: 100px;
+            left: 40px;
+            right: 40px;
+            bottom: 60px;
+            display: flex;
+            gap: 20px;
+        }
+        .left-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .right-column {
+            width: 450px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e3a5f;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-title i {
+            color: #3b82f6;
+        }
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .bullet-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 15px;
+            color: #4a5568;
+            line-height: 1.4;
+        }
+        .bullet-icon {
+            color: #3b82f6;
+            font-size: 14px;
+            margin-top: 3px;
+        }
+        .bullet-text {
+            flex: 1;
+        }
+        .highlight {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #1e3a5f;
+            font-weight: 500;
+        }
+        .parameter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .parameter-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .parameter-icon {
+            width: 36px;
+            height: 36px;
+            background: #3b82f6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+        .parameter-info {
+            flex: 1;
+        }
+        .parameter-label {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
+        }
+        .parameter-value {
+            font-size: 13px;
+            color: #4a5568;
+            margin-top: 4px;
+            line-height: 1.3;
+        }
+        .diagram-container {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 8px;
+            padding: 30px 20px;
+            border: 1px solid #3b82f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .diagram-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e3a5f;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .diagram-box {
+            width: 130px;
+            height: 90px;
+            border: 2px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: white;
+            z-index: 2;
+        }
+        .diagram-box.metal {
+            border-radius: 8px 0 0 8px;
+            background: #f1f5f9;
+        }
+        .diagram-box.semi {
+            border-radius: 0 8px 8px 0;
+            border-left: none;
+        }
+        .diagram-label {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 5px;
+        }
+        .barrier {
             position: absolute;
             left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            background: white;
-            border-radius: 50%;
-            padding: 10px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            top: -10px;
+            bottom: -10px;
+            width: 8px;
+            background: #ef4444;
+            transform: translateX(-50%);
+            z-index: 3;
+            border-radius: 4px;
         }
-
-        .custom-bullet {
-            position: relative;
-            padding-left: 20px;
-        }
-        .custom-bullet::before {
-            content: "•";
-            color: #E37222;
-            font-weight: bold;
-            font-size: 1.5em;
+        .barrier-label {
             position: absolute;
-            left: 0;
-            top: -5px;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #ef4444;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .footer {
+            position: absolute;
+            bottom: 15px;
+            left: 40px;
+            right: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 500;
+        }
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        /* Classe adicionada para representar os elétrons no diagrama */
+        .electron {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #eff6ff;
+            border: 1px solid #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            color: #1e3a5f;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
-<div class="slide-container">
-<!-- Sidebar Navigation/Indicator -->
-<div class="w-16 bg-ieee-dark h-full flex flex-col items-center justify-between py-8 z-20 shrink-0">
-<div class="text-white font-bold text-xl">03</div>
-<div class="h-1/2 w-0.5 bg-white opacity-20"></div>
-<div class="text-ieee-orange text-2xl"><i class="fas fa-cogs"></i></div>
-</div>
-<!-- Main Content -->
-<div class="flex-1 flex flex-col p-12 relative overflow-hidden bg-white">
-<!-- Header -->
-<div class="mb-8 z-10">
-<div class="flex items-center space-x-4 mb-2">
-<div class="h-1 w-12 bg-ieee-orange"></div>
-<p class="text-ieee-orange font-bold uppercase tracking-widest text-sm">Física dos Semicondutores</p>
-</div>
-<h1 class="font-montserrat font-bold text-4xl text-ieee-dark">
-                Princípio de <span class="text-ieee-blue">Funcionamento</span>
-</h1>
-</div>
-<!-- Two Columns Content -->
-<div class="flex-1 grid grid-cols-2 gap-12 relative">
-<!-- Column 1: Polarization Modes -->
-<div class="flex flex-col h-full">
-<div class="bg-ieee-light-blue rounded-xl p-6 mb-6 border-l-4 border-ieee-blue shadow-sm flex-1">
-<div class="flex items-center mb-4">
-<div class="w-10 h-10 rounded-full bg-ieee-blue text-white flex items-center justify-center mr-3">
-<i class="fas fa-forward"></i>
-</div>
-<h3 class="font-montserrat font-bold text-xl text-ieee-dark">Polarização Direta</h3>
-</div>
-<div class="text-gray-700 space-y-2">
-<p class="custom-bullet">Comporta-se como um diodo de silício comum.</p>
-<p class="custom-bullet">Conduz corrente significativa após ultrapassar a tensão de barreira (Vd ≈ 0,6–0,7 V).</p>
-</div>
-</div>
-<div class="bg-orange-50 rounded-xl p-6 border-l-4 border-ieee-orange shadow-sm flex-1">
-<div class="flex items-center mb-4">
-<div class="w-10 h-10 rounded-full bg-ieee-orange text-white flex items-center justify-center mr-3">
-<i class="fas fa-backward"></i>
-</div>
-<h3 class="font-montserrat font-bold text-xl text-ieee-dark">Polarização Reversa</h3>
-</div>
-<div class="text-gray-700 space-y-2">
-<p class="custom-bullet">Corrente quase nula (fuga) até atingir a tensão de ruptura (<span class="font-mono font-bold">VBR</span> ou <span class="font-mono font-bold">Vz</span>).</p>
-<p class="custom-bullet">Após Vz, a corrente cresce abruptamente enquanto a tensão permanece praticamente fixa.</p>
-</div>
-</div>
-</div>
-<!-- Central Visual Divider -->
-<div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-full w-px bg-gray-200"></div>
-<div class="arrow-divider">
-<i class="fas fa-exchange-alt text-ieee-blue text-xl"></i>
-</div>
-<!-- Column 2: Breakdown Mechanisms -->
-<div class="flex flex-col h-full justify-center">
-<h3 class="font-montserrat font-bold text-2xl text-ieee-dark mb-6 text-center border-b-2 border-gray-100 pb-2">Mecanismos de Ruptura</h3>
-<div class="space-y-6">
-<!-- Zener Effect -->
-<div class="flex items-start">
-<div class="mr-4 mt-1">
-<div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-ieee-dark font-bold border border-gray-300">
-<i class="fas fa-atom text-xl"></i>
-</div>
-</div>
-<div>
-<h4 class="font-bold text-lg text-ieee-blue mb-1">Efeito Zener (Tunelamento)</h4>
-<p class="text-sm text-gray-600 mb-2 font-semibold">Tensão: ~2V a 6V</p>
-<p class="text-gray-700 text-sm leading-relaxed">
-                                Ocorre em junções <span class="font-bold">fortemente dopadas</span> com região de depleção estreita. O campo elétrico intenso consegue arrancar elétrons das ligações covalentes diretamente.
-                            </p>
-</div>
-</div>
-<!-- Avalanche Effect -->
-<div class="flex items-start">
-<div class="mr-4 mt-1">
-<div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-ieee-orange font-bold border border-gray-300">
-<i class="fas fa-meteor text-xl"></i>
-</div>
-</div>
-<div>
-<h4 class="font-bold text-lg text-ieee-orange mb-1">Efeito Avalanche</h4>
-<p class="text-sm text-gray-600 mb-2 font-semibold">Tensão: &gt; 6V</p>
-<p class="text-gray-700 text-sm leading-relaxed">
-                                Ocorre em junções menos dopadas. Portadores acelerados pelo campo colidem com a rede cristalina, liberando novos pares elétron-lacuna em <span class="font-bold">cadeia</span> (multiplicação por impacto).
-                            </p>
-</div>
-</div>
-<div class="bg-gray-50 p-3 rounded border border-gray-200 mt-2">
-<p class="text-xs text-gray-500 italic text-center">
-<i class="fas fa-info-circle mr-1"></i> Muitos diodos "Zener" comerciais operam com uma combinação de ambos os efeitos.
-                        </p>
-</div>
-</div>
-</div>
-</div>
-<!-- Footer -->
-<div class="mt-4 flex justify-between items-center text-xs text-gray-400 border-t border-gray-200 pt-4">
-<p>Eletrônica Analógica - Diodos Especiais</p>
-<p>Slide 03/13</p>
-</div>
-</div>
-</div>
+    <div class="slide-container">
+        <div class="header">
+            <div class="header-left">
+                <div class="header-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <div>
+                    <div class="header-title">Diodo Schottky</div>
+                    <div class="header-subtitle">Dispositivos Eletrônicos - Engenharia de Computação</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="header-info">
+                    <div class="header-info-label">Disciplina</div>
+                    <div class="header-info-value">Dispositivos Eletrônicos</div>
+                </div>
+                <div class="header-info">
+                    <div class="header-info-label">Data</div>
+                    <div class="header-info-value">31/03/2026</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-column">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-wave-square"></i>
+                        Fenômeno Físico e Funcionamento
+                    </div>
+                    <ul class="bullet-list">
+                        <li class="bullet-item">
+                            <i class="fas fa-check-circle bullet-icon"></i>
+                            <span class="bullet-text">
+                                <strong>Barreira de Schottky:</strong> É a barreira de energia potencial criada na junção de contato direto entre o <span class="highlight">metal</span> e o <span class="highlight">semicondutor tipo N</span>.
+                            </span>
+                        </li>
+                        <li class="bullet-item">
+                            <i class="fas fa-check-circle bullet-icon"></i>
+                            <span class="bullet-text">
+                                <strong>Condução Unipolar:</strong> A corrente flui apenas por <span class="highlight">elétrons (portadores majoritários)</span>. Quando polarizados, ganham energia para cruzar a barreira rumo ao metal.
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-bolt"></i>
+                        Comportamento sob Polarização
+                    </div>
+                    <div class="parameter-grid">
+                        <div class="parameter-item">
+                            <div class="parameter-icon" style="background: #22c55e;">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <div class="parameter-info">
+                                <div class="parameter-label">Polarização Direta</div>
+                                <div class="parameter-value">Elétrons fluem livremente com baixa resistência (liga a partir de ~0.2V).</div>
+                            </div>
+                        </div>
+                        <div class="parameter-item">
+                            <div class="parameter-icon" style="background: #ef4444;">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <div class="parameter-info">
+                                <div class="parameter-label">Polarização Reversa</div>
+                                <div class="parameter-value">Barreira impede o fluxo, mas permite uma corrente de fuga maior que nos diodos P-N.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-layer-group"></i>
+                        Materiais e Elementos da Junção
+                    </div>
+                    <ul class="bullet-list">
+                        <li class="bullet-item">
+                            <i class="fas fa-cube bullet-icon"></i>
+                            <span class="bullet-text">
+                                <strong>Metal (Anodo):</strong> Platina (Pt), Tungstênio (W), Molibdênio (Mo).
+                            </span>
+                        </li>
+                        <li class="bullet-item">
+                            <i class="fas fa-microchip bullet-icon"></i>
+                            <span class="bullet-text">
+                                <strong>Semicondutor (Catodo):</strong> Silício (Si) dopado N, Arseneto de Gálio (GaAs), Carbeto de Silício (SiC).
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-project-diagram"></i>
+                        Estrutura Física e Funcionamento
+                    </div>
+                    <div class="diagram-container">
+                        <div class="diagram" style="gap: 0; margin-top: 15px;">
+                            
+                            <div style="display: flex; align-items: center;">
+                                <div style="font-size: 12px; font-weight: bold; margin-right: 5px; color: #1e3a5f;">Anode<br>(A)</div>
+                                <div style="width: 15px; height: 3px; background: #4a5568;"></div>
+                                <div style="width: 8px; height: 30px; background: #4a5568; border-radius: 2px;"></div>
+                            </div>
+                            
+                            <div class="diagram-box metal" style="position: relative; background: #dcfce7; border-color: #22c55e; border-right: none; border-radius: 0; width: 100px;">
+                                <div style="font-size: 14px; font-weight: 700; color: #166534;">Metal</div>
+                                <div class="diagram-label" style="margin-top: 2px;">Pt, W, Mo</div>
+                                <div class="electron" style="top: 8px; right: 10px;">e⁻</div>
+                                <div class="electron" style="bottom: 12px; right: 20px;">e⁻</div>
+                                <div class="electron" style="top: 35px; right: 35px;">e⁻</div>
+                            </div>
+
+                            <div style="position: relative; height: 90px; display: flex; flex-direction: column;">
+                                <div style="position: absolute; top: -35px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #ca8a04; font-weight: 600; text-align: center; white-space: nowrap;">Thin<br>Junction</div>
+                                <div style="width: 25px; height: 100%; background: #fef08a; border-left: 2px dashed #ca8a04; border-right: 2px dashed #ca8a04; display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; z-index: 3;">
+                                    <i class="fas fa-arrow-left" style="color: #ca8a04; font-size: 10px;"></i>
+                                    <i class="fas fa-arrow-left" style="color: #ca8a04; font-size: 10px;"></i>
+                                    <i class="fas fa-arrow-left" style="color: #ca8a04; font-size: 10px;"></i>
+                                </div>
+                                <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #ca8a04; font-weight: 600; text-align: center; white-space: nowrap;">Schottky<br>Barrier</div>
+                            </div>
+
+                            <div class="diagram-box semi" style="position: relative; background: #fee2e2; border-color: #ef4444; border-left: none; border-radius: 0; width: 110px;">
+                                <div style="font-size: 14px; font-weight: 700; color: #991b1b;">N-Si</div>
+                                <div class="diagram-label" style="text-align: center; margin-top: 2px;">N-Type<br>Semiconductor</div>
+                                <div class="electron" style="top: 8px; left: 10px;">e⁻</div>
+                                <div class="electron" style="bottom: 10px; left: 25px;">e⁻</div>
+                                <div class="electron" style="top: 35px; left: 35px;">e⁻</div>
+                                <div class="electron" style="bottom: 35px; left: 5px;">e⁻</div>
+                            </div>
+
+                            <div style="display: flex; align-items: center;">
+                                <div style="width: 8px; height: 30px; background: #4a5568; border-radius: 2px;"></div>
+                                <div style="width: 15px; height: 3px; background: #4a5568;"></div>
+                                <div style="font-size: 12px; font-weight: bold; margin-left: 5px; color: #1e3a5f;">Cathode<br>(K)</div>
+                            </div>
+
+                        </div>
+                        <div style="margin-top: 45px; font-size: 12px; color: #4a5568; text-align: center; line-height: 1.4;">
+                            <i class="fas fa-info-circle" style="color: #3b82f6;"></i> Na polarização direta (V > Vf), ocorre o fluxo de elétrons cruzando a barreira fina do semicondutor para o metal.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-tachometer-fast"></i>
+                        O Segredo da Velocidade
+                    </div>
+                    <ul class="bullet-list">
+                        <li class="bullet-item">
+                            <i class="fas fa-info-circle bullet-icon"></i>
+                            <span class="bullet-text">
+                                Como no diodo Schottky a condução <strong> ocorre apenas por portadores majoritários (elétrons)</strong>, não há armazenamento significativo de carga na junção. Isso faz com que <strong>o tempo de recuperação reversa seja praticamente nulo.</strong>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Apresentação Acadêmica</span>
+            </div>
+            <div>
+                <span>Slide 3</span>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

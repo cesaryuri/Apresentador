@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Diodo Zener - Funcionamento Interativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-ieee-blue { background-color: #00629B; }
+        .text-ieee-blue { color: #00629B; }
+        .bg-ieee-dark { background-color: #002855; }
+        .text-ieee-dark { color: #002855; }
+        .text-ieee-orange { color: #E37222; }
+
+        .junction {
+            width: 200px;
+            height: 80px;
+            border-radius: 40px;
+            background: linear-gradient(to right, #002855, #00629B);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .electron {
+            width: 8px;
+            height: 8px;
+            background: #E37222;
+            border-radius: 50%;
+            position: absolute;
+            animation: move 2s linear infinite;
+        }
+
+        @keyframes move {
+            from { left: -10px; }
+            to { left: 210px; }
+        }
+
+        .blocked .electron {
+            display: none;
+        }
+
+        .breakdown {
+            box-shadow: 0 0 20px #E37222;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+    
+    <div class="w-16 bg-ieee-dark h-full flex flex-col items-center justify-between py-8 z-20 shrink-0">
+        <div class="text-white font-bold text-xl">ZN</div>
+        <div class="h-1/2 w-0.5 bg-white opacity-20"></div>
+        <div class="text-ieee-orange text-2xl"><i class="fas fa-bolt"></i></div>
+    </div>
+
+    <div class="flex-1 flex flex-col p-10 relative overflow-hidden bg-white">
+        
+        <div class="mb-8 z-10">
+            <div class="flex items-center space-x-4 mb-2">
+                <div class="h-1 w-12 bg-ieee-orange"></div>
+                <p class="text-ieee-orange font-bold uppercase tracking-widest text-sm">Eletrônica</p>
+            </div>
+            <h1 class="font-montserrat font-bold text-4xl text-ieee-dark">
+                Funcionamento do <span class="text-ieee-blue">Diodo Zener</span>
+            </h1>
+        </div>
+
+        <div class="flex-1 flex flex-col items-center justify-center space-y-6">
+            
+            <input id="tensao" type="range" min="0" max="10" step="0.1" value="0" class="w-2/3">
+
+            <div class="text-xl">
+                Tensão aplicada: <span id="valor">0</span> V
+            </div>
+
+            <div id="junção" class="junction blocked flex items-center justify-center">
+                <!-- elétrons -->
+                <div class="electron" style="top:10px;"></div>
+                <div class="electron" style="top:30px; animation-delay:0.5s;"></div>
+                <div class="electron" style="top:50px; animation-delay:1s;"></div>
+            </div>
+
+            <div id="estado" class="text-lg font-bold text-gray-600">
+                Região de bloqueio (sem corrente)
+            </div>
+
+            <div class="text-center max-w-xl text-sm text-gray-600">
+                Aumente a tensão reversa. Ao atingir a tensão Zener (~5.1V), ocorre ruptura e o diodo passa a conduzir, mantendo a tensão praticamente constante.
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+const slider = document.getElementById("tensao");
+const valor = document.getElementById("valor");
+const estado = document.getElementById("estado");
+const juncao = document.getElementById("junção");
+
+const VZ = 5.1;
+
+slider.addEventListener("input", () => {
+    let v = parseFloat(slider.value);
+    valor.innerText = v.toFixed(1);
+
+    if (v < VZ) {
+        estado.innerText = "Região de bloqueio (sem corrente)";
+        estado.className = "text-lg font-bold text-gray-600";
+        juncao.classList.add("blocked");
+        juncao.classList.remove("breakdown");
+    } else {
+        estado.innerText = "Ruptura Zener: condução + estabilização de tensão";
+        estado.className = "text-lg font-bold text-ieee-orange";
+        juncao.classList.remove("blocked");
+        juncao.classList.add("breakdown");
+    }
+});
+</script>
+
+</body>
+</html>
