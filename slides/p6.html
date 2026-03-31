@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"/>
@@ -7,222 +6,199 @@
 <title>Aplicações do Diodo Schottky</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet"/>
 <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            font-family: 'Roboto', sans-serif;
-            background: #f8fafc;
-        }
-        .slide-container {
-            position: relative;
-            width: 1280px;
-            height: 720px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-        }
-        .header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: linear-gradient(90deg, #1e3a5f 0%, #2c5282 100%);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .header-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-        }
-        .header-title {
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            margin: 0;
-        }
-        .header-subtitle {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 14px;
-            margin-top: 2px;
-        }
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .header-info {
-            text-align: right;
-            color: white;
-        }
-        .header-info-label {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        .header-info-value {
-            font-size: 14px;
-            font-weight: 500;
-        }
-        .main-content {
-            position: absolute;
-            top: 100px;
-            left: 40px;
-            right: 40px;
-            bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .card-container {
-            display: flex;
-            gap: 20px;
-            flex: 1;
-        }
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e2e8f0;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-        .card-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #3b82f6 0%, #1e3a5f 100%);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
-        }
-        .card-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            color: #1e3a5f;
-            margin: 0;
-        }
-        .card-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .application-item {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 12px;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-        .application-icon {
-            color: #3b82f6;
-            font-size: 16px;
-            margin-top: 2px;
-            /* Added to prevent textExceedsShape issue for icons */
-            min-width: 18px;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .application-text {
-            flex: 1;
-            font-size: 13px;
-            color: #4a5568;
-            line-height: 1.5;
-        }
-        .application-title {
-            font-weight: 600;
-            color: #1e3a5f;
-            margin-bottom: 2px;
-        }
-        .highlight {
-            background: rgba(59, 130, 246, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: #1e3a5f;
-            font-weight: 500;
-        }
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-        .feature-item {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            /* Increased vertical padding to prevent content from looking flush */
-            padding: 12px 10px;
-            text-align: center;
-        }
-        .feature-label {
-            font-size: 12px;
-            color: #4a5568;
-            margin-bottom: 2px;
-        }
-        .feature-value {
-            font-size: 14px;
-            color: #1e3a5f;
-            font-weight: 600;
-        }
-        .bullet-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .bullet-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            margin-bottom: 8px;
-            font-size: 13px;
-            color: #4a5568;
-            line-height: 1.4;
-        }
-        .bullet-icon {
-            color: #3b82f6;
-            font-size: 12px;
-            margin-top: 3px;
-            /* Added to prevent textExceedsShape issue for icons */
-            min-width: 14px;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        font-family: 'Roboto', sans-serif;
+        background: #f8fafc;
+    }
+    .slide-container {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    }
+    .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        background: linear-gradient(90deg, #1e3a5f 0%, #2c5282 100%);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .header-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+    }
+    .header-title {
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        margin: 0;
+    }
+    .header-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 14px;
+        margin-top: 2px;
+    }
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .header-info {
+        text-align: right;
+        color: white;
+    }
+    .header-info-label {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    .header-info-value {
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .main-content {
+        position: absolute;
+        top: 90px;
+        left: 40px;
+        right: 40px;
+        bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .card-container {
+        display: flex;
+        gap: 20px;
+        flex: 1;
+    }
+    .card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e2e8f0;
+    }
+    .card-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #3b82f6 0%, #1e3a5f 100%);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+    }
+    .card-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #1e3a5f;
+        margin: 0;
+    }
+    .application-item {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 14px;
+        display: flex;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+    .application-icon {
+        color: #3b82f6;
+        font-size: 18px;
+        margin-top: 2px;
+        min-width: 20px;
+    }
+    .application-text {
+        font-size: 13.5px;
+        color: #334155;
+        line-height: 1.55;
+    }
+    .application-title {
+        font-weight: 600;
+        color: #1e3a5f;
+        margin-bottom: 4px;
+    }
+    .highlight {
+        background: rgba(59, 130, 246, 0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: #1e3a5f;
+        font-weight: 500;
+    }
+    .photo-container {
+        margin-top: 8px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        height: 140px;
+        background: #f1f5f9;
+    }
+    .photo-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-top: auto;
+    }
+    .feature-item {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+    }
+    .feature-label {
+        font-size: 12px;
+        color: #64748b;
+    }
+    .feature-value {
+        font-size: 14px;
+        color: #1e3a5f;
+        font-weight: 600;
+    }
+</style>
 </head>
 <body>
 <div class="slide-container">
@@ -247,181 +223,96 @@
 </div>
 </div>
 </div>
+
 <div class="main-content">
 <div class="card-container">
-<div class="card">
-<div class="card-header">
-<div class="card-icon">
-<i class="fas fa-bolt"></i>
+
+    <!-- Card 1: Fontes Chaveadas -->
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon"><i class="fas fa-bolt"></i></div>
+            <div class="card-title">1. Fontes Chaveadas (SMPS)</div>
+        </div>
+        <div class="application-item">
+            <div class="application-icon"><i class="fas fa-plug"></i></div>
+            <div class="application-text">
+                <div class="application-title">Retificação e Diodo de Roda Livre</div>
+                Usado na saída de fontes chaveadas de computadores, carregadores de celular, TVs e fontes ATX. <span class="highlight">Por quê?</span> Baixa queda de tensão (0,2–0,4V) aumenta a eficiência para acima de 90% e reduz aquecimento em altas frequências.
+            </div>
+        </div>
+        <div class="photo-container">
+            <img src="https://i.ibb.co/nsyF1524/diodo-retificador.jpg" alt="Fonte chaveada com diodo Schottky">
+        </div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-label">Eficiência</div>
+                <div class="feature-value">92–96%</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-label">Frequência</div>
+                <div class="feature-value">50kHz – 1MHz</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 2: Painéis Solares -->
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon"><i class="fas fa-sun"></i></div>
+            <div class="card-title">2. Sistemas Fotovoltaicos (Energia Solar)</div>
+        </div>
+        <div class="application-item">
+            <div class="application-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="application-text">
+                <div class="application-title">Diodo de Bypass e Bloqueio</div>
+                Colocado em paralelo com células ou strings de painéis solares. <span class="highlight">Por quê?</span> Evita que células sombreadas ou danificadas consumam energia das demais e protege contra corrente reversa à noite.
+            </div>
+        </div>
+        <div class="photo-container">
+            <img src="https://i.ibb.co/WN2RKyRm/Solar-Panel-Diodes.jpg" alt="Diodo Schottky em painel solar">
+        </div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-label">Vantagem</div>
+                <div class="feature-value">Baixa perda de potência</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-label">Tensão</div>
+                <div class="feature-value">20–60V</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 3: Proteção e RF -->
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="card-title">3. Proteção e Circuitos de Alta Frequência</div>
+        </div>
+        <div class="application-item">
+            <div class="application-icon"><i class="fas fa-lock"></i></div>
+            <div class="application-text">
+                <div class="application-title">Proteção contra Polaridade Invertida e OR-ing</div>
+                Em placas de laptop, USB, baterias e fontes redundantes. Também usado em detectores e misturadores de RF.
+            </div>
+        </div>
+        <div class="photo-container">
+            <img src="https://i.ibb.co/WpswFj8t/diodo-schottkyvidro.jpg" alt="Proteção com diodo Schottky em placa">
+        </div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-label">Velocidade</div>
+                <div class="feature-value">t_rr &lt; 10 ns</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-label">Uso comum</div>
+                <div class="feature-value">Laptops, USB, RF</div>
+            </div>
+        </div>
+    </div>
+
 </div>
-<div class="card-title">Fontes Chaveadas (SMPS)</div>
-</div>
-<div class="card-content">
-<div class="application-item">
-<div class="application-icon"><i class="fas fa-plug"></i></div>
-<div class="application-text">
-<div class="application-title">Retificação de Alta Eficiência</div>
-<div>Utilizado em <span class="highlight">fontes chaveadas</span> para retificação na saída e como diodo de roda livre. Ideal para <span class="highlight">conversores DC-DC</span> devido à baixa queda de tensão.</div>
-</div>
-</div>
-<div class="application-item">
-<div class="application-icon"><i class="fas fa-sync-alt"></i></div>
-<div class="application-text">
-<div class="application-title">Diodo de Roda Livre</div>
-<div>Protege contra tensões induzidas em <span class="highlight">bobinas</span> e <span class="highlight">solenoides</span> durante a comutação.</div>
-</div>
-</div>
-<div class="feature-grid">
-<div class="feature-item">
-<div class="feature-label">Eficiência</div>
-<div class="feature-value">95%+</div>
-</div>
-<div class="feature-item">
-<div class="feature-label">Frequência</div>
-<div class="feature-value">100kHz+</div>
-</div>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="card-header">
-<div class="card-icon">
-<i class="fas fa-wave-square"></i>
-</div>
-<div class="card-title">Retificadores de Alta Frequência</div>
-</div>
-<div class="card-content">
-<div class="application-item">
-<div class="application-icon"><i class="fas fa-signal"></i></div>
-<div class="application-text">
-<div class="application-title">Operação em Alta Frequência</div>
-<div>Menor <span class="highlight">t_rr</span> (tempo de recuperação reversa) e <span class="highlight">C_j</span> (capacitância de junção) para melhor desempenho em MHz.</div>
-</div>
-</div>
-<div class="application-item">
-<div class="application-icon"><i class="fas fa-filter"></i></div>
-<div class="application-text">
-<div class="application-title">Filtragem Eficiente</div>
-<div>Ideal para <span class="highlight">retificação</span> de sinais de RF e aplicações em comunicações.</div>
-</div>
-</div>
-<div class="feature-grid">
-<div class="feature-item">
-<div class="feature-label">t_rr</div>
-<div class="feature-value">&lt; 10ns</div>
-</div>
-<div class="feature-item">
-<div class="feature-label">C_j</div>
-<div class="feature-value">&lt; 1pF</div>
-</div>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="card-header">
-<div class="card-icon">
-<i class="fas fa-shield-alt"></i>
-</div>
-<div class="card-title">Proteção de Circuitos</div>
-</div>
-<div class="card-content">
-<div class="application-item">
-<div class="application-icon"><i class="fas fa-lock"></i></div>
-<div class="application-text">
-<div class="application-title">Proteção OR-ing</div>
-<div>Utilizado em <span class="highlight">circuitos de proteção</span> contra polaridade invertida e curto-circuito.</div>
-</div>
-</div>
-<div class="application-item">
-<div class="application-icon"><i class="fas fa-usb"></i></div>
-<div class="application-text">
-<div class="application-title">Proteção USB</div>
-<div>Proteção de <span class="highlight">portas USB</span> e circuitos sensíveis contra surtos.</div>
-</div>
-</div>
-<div class="feature-grid">
-<div class="feature-item">
-<div class="feature-label">V_rr</div>
-<div class="feature-value">20-100V</div>
-</div>
-<div class="feature-item">
-<div class="feature-label">I_f</div>
-<div class="feature-value">1-10A</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div style="display: flex; gap: 20px;">
-<div class="card" style="flex: 1;">
-<div class="card-header">
-<div class="card-icon">
-<i class="fas fa-check-circle"></i>
-</div>
-<div class="card-title">Vantagens nas Aplicações</div>
-</div>
-<div class="card-content">
-<div style="display: flex; gap: 15px;">
-<div style="flex: 1;">
-<ul class="bullet-list">
-<li class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<span class="bullet-text" style="font-size: 12px;"><strong>Baixa queda de tensão:</strong> 0,15-0,45V</span>
-</li>
-<li class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<span class="bullet-text" style="font-size: 12px;"><strong>Alta velocidade:</strong> t_rr ≈ 0</span>
-</li>
-<li class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<span class="bullet-text" style="font-size: 12px;"><strong>Baixa EMI:</strong> Melhor em alta frequência</span>
-</li>
-</ul>
-</div>
-<div style="flex: 1;">
-<ul class="bullet-list">
-<li class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<span class="bullet-text" style="font-size: 12px;"><strong>Alta eficiência:</strong> 95%+</span>
-</li>
-<li class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<span class="bullet-text" style="font-size: 12px;"><strong>Menor aquecimento:</strong> Dissipação reduzida</span>
-</li>
-<li class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<span class="bullet-text" style="font-size: 12px;"><strong>Compacto:</strong> Menor tamanho</span>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="card" style="width: 400px;">
-<div class="card-header">
-<div class="card-icon">
-<i class="fas fa-info-circle"></i>
-</div>
-<div class="card-title">Dicas de Uso</div>
-</div>
-<div class="card-content">
-<div class="application-item">
-<div class="application-icon"><i class="fas fa-thermometer-half"></i></div>
-<div class="application-text" style="font-size: 12px;">
-<div class="application-title">Temperatura de Operação</div>
-<div>Manter abaixo de <span class="highlight">150°C</span> para melhor desempenho.</div>
-</div>
-</div>
-<div class="application-item">
-<div class="application-icon"><i class="fas fa-arrows-alt"></i></div>
-<div class="application-text" style="font-size: 12px;">
-<div class="application-title">Dimensionamento</div>
-<div>Usar margem de <span class="highlight">20-30%</span> em V_rr e I_f.</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+
 </div>
 </div>
 </body>

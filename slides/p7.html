@@ -1,87 +1,234 @@
 <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Aplicações em Engenharia - Diodo Schottky</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet"/>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            background: #f8fafc;
+        }
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(90deg, #1e3a5f 0%, #2c5282 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .header-title {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .header-subtitle {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 15px;
+        }
+        .main-content {
+            position: absolute;
+            top: 95px;
+            left: 40px;
+            right: 40px;
+            bottom: 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 22px;
+            box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.6s forwards;
+        }
+        .card:nth-child(1) { animation-delay: 100ms; }
+        .card:nth-child(2) { animation-delay: 200ms; }
+        .card:nth-child(3) { animation-delay: 300ms; }
+        .card:nth-child(4) { animation-delay: 400ms; }
 
-<html lang="pt-BR"><head><meta charset="utf-8"/></head><body>
-<div class="slide-container" style="position: relative; width: 1280px; height: 720px; overflow: hidden; background: linear-gradient(135deg, #f5f7fa 0%, #e8edf2 100%); font-family: 'Roboto', sans-serif;">
-<!-- Header -->
-<div style="position: absolute; top: 0; left: 0; right: 0; height: 80px; background: linear-gradient(90deg, #1976d2, #1565c0); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-<div style="display: flex; align-items: center; gap: 12px;">
-<i class="fas fa-microchip" style="font-size: 24px; color: white;"></i>
-<span style="font-size: 24px; font-weight: 600; color: white;">Diodo Schottky</span>
-</div>
-<span style="font-size: 14px; color: rgba(255,255,255,0.9);">Engenharia da Computação - UFRPE-UABJ</span>
-</div>
-<!-- Title -->
-<div style="position: absolute; top: 100px; left: 40px; right: 40px;">
-<h1 style="font-size: 28px; color: #1976d2; margin: 0 0 8px 0; font-weight: 600;">Aplicação em Engenharia</h1>
-<p style="font-size: 14px; color: #666; margin: 0;">Engenharia de Computação, Automação, Sistemas Embarcados e IoT</p>
-</div>
-<!-- Main Content Grid -->
-<!-- Adjusted 'top' from 150px to 170px to provide better spacing between the title description and the grid items. -->
-<div style="position: absolute; top: 170px; left: 40px; right: 40px; bottom: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-<!-- Card 1: Engenharia de Computação -->
-<div style="background: white; border-radius: 8px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #4caf50;">
-<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-<div style="width: 32px; height: 32px; background: #4caf50; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-<i class="fas fa-desktop" style="font-size: 14px; color: white;"></i>
-</div>
-<span style="font-size: 16px; font-weight: 600; color: #333;">Eng. Computação</span>
-</div>
-<ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #555; line-height: 1.6;">
-<li><strong>VRM:</strong> Reguladores de tensão em placas</li>
-<li><strong>Proteção I/O:</strong> Proteção de portas</li>
-<li><strong>OR-ing:</strong> Combinação de fontes</li>
-</ul>
-</div>
-<!-- Card 2: Automação -->
-<div style="background: white; border-radius: 8px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #ff9800;">
-<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-<div style="width: 32px; height: 32px; background: #ff9800; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-<i class="fas fa-cogs" style="font-size: 14px; color: white;"></i>
-</div>
-<span style="font-size: 16px; font-weight: 600; color: #333;">Automação</span>
-</div>
-<ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #555; line-height: 1.6;">
-<li><strong>Drivers PWM:</strong> Controle de atuadores</li>
-<li><strong>Freewheel:</strong> Proteção de solenoides</li>
-<li><strong>Controle:</strong> Sistemas de automação</li>
-</ul>
-</div>
-<!-- Card 3: Sistemas Embarcados -->
-<div style="background: white; border-radius: 8px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #2196f3;">
-<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-<div style="width: 32px; height: 32px; background: #2196f3; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-<i class="fas fa-microchip" style="font-size: 14px; color: white;"></i>
-</div>
-<span style="font-size: 16px; font-weight: 600; color: #333;">Sistemas Embarcados</span>
-</div>
-<ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #555; line-height: 1.6;">
-<li><strong>Economia:</strong> Redução de perdas em bateria</li>
-<li><strong>Retificação:</strong> Alta frequência 100kHz+</li>
-<li><strong>Design:</strong> Circuitos compactos</li>
-</ul>
-</div>
-<!-- Card 4: IoT -->
-<div style="background: white; border-radius: 8px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #9c27b0;">
-<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-<div style="width: 32px; height: 32px; background: #9c27b0; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-<i class="fas fa-wifi" style="font-size: 14px; color: white;"></i>
-</div>
-<span style="font-size: 16px; font-weight: 600; color: #333;">IoT</span>
-</div>
-<ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #555; line-height: 1.6;">
-<li><strong>Energy Harvesting:</strong> Coleta de energia RF</li>
-<li><strong>NFC/RFID:</strong> Retificadores</li>
-<li><strong>Sensores:</strong> Dispositivos conectados</li>
-</ul>
-</div>
-</div>
-<!-- Footer -->
-<div style="position: absolute; bottom: 0; left: 0; right: 0; height: 40px; background: #f5f7fa; display: flex; align-items: center; justify-content: center; border-top: 1px solid #e0e0e0;">
-<span style="font-size: 12px; color: #666;">Dsc. BANDIRI Sabi | Discentes: CAMELO Benjamim, SANTOS Cesar</span>
-</div>
-<!-- Page Number -->
-<div style="position: absolute; bottom: 10px; right: 20px; font-size: 12px; color: #666;">
-        7/13
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.12);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+        .card-icon {
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 17.5px;
+            font-weight: 600;
+            color: #1e3a5f;
+            line-height: 1.2;
+        }
+        .application-list {
+            font-size: 14px;
+            color: #334155;
+            line-height: 1.75;
+        }
+        .application-list li {
+            margin-bottom: 11px;
+            position: relative;
+            padding-left: 26px;
+        }
+        .application-list li:before {
+            content: "→";
+            position: absolute;
+            left: 2px;
+            color: #3b82f6;
+            font-size: 16px;
+        }
+        .highlight {
+            background: rgba(59, 130, 246, 0.08);
+            padding: 2px 7px;
+            border-radius: 5px;
+            color: #1e3a5f;
+            font-weight: 500;
+        }
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            left: 40px;
+            right: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #64748b;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+
+    <!-- Header -->
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <div style="width: 52px; height: 52px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px;">
+                <i class="fas fa-microchip"></i>
+            </div>
+            <div>
+                <div class="header-title">Diodo Schottky</div>
+                <div class="header-subtitle">Aplicações em Engenharia</div>
+            </div>
+        </div>
+        <div style="text-align: right; color: white;">
+            <div style="font-size: 15.5px; font-weight: 500;">Engenharia de Computação</div>
+            <div style="font-size: 13.5px; opacity: 0.9;">UFRPE - UABJ</div>
+        </div>
     </div>
+
+    <div class="main-content">
+
+        <!-- Card 1: Engenharia de Computação -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon"><i class="fas fa-desktop"></i></div>
+                <div class="card-title">Engenharia de Computação</div>
+            </div>
+            <ul class="application-list">
+                <li><strong>VRM nas placas-mãe:</strong> Conversão eficiente de tensão para CPU e GPU</li>
+                <li><strong>Proteção de portas USB e I/O:</strong> Contra polaridade invertida e surtos</li>
+                <li><strong>Power OR-ing:</strong> Combinação de fontes de alimentação redundantes</li>
+            </ul>
+        </div>
+
+        <!-- Card 2: Automação -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon"><i class="fas fa-cogs"></i></div>
+                <div class="card-title">Automação Industrial</div>
+            </div>
+            <ul class="application-list">
+                <li><strong>Diodo de roda livre:</strong> Proteção de motores, solenoides e relés contra picos indutivos</li>
+                <li><strong>Drivers PWM de alta velocidade:</strong> Controle preciso de atuadores</li>
+                <li><strong>Fontes chaveadas em CLPs e inversores:</strong> Maior eficiência e menor aquecimento</li>
+            </ul>
+        </div>
+
+        <!-- Card 3: Sistemas Embarcados -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon"><i class="fas fa-microchip"></i></div>
+                <div class="card-title">Sistemas Embarcados</div>
+            </div>
+            <ul class="application-list">
+                <li><strong>Alimentação de baixa tensão:</strong> Reduz perdas em projetos com bateria (3,3V / 5V)</li>
+                <li><strong>Conversores DC-DC compactos:</strong> Alta eficiência em espaços reduzidos</li>
+                <li><strong>Proteção contra polaridade invertida:</strong> Aumenta a confiabilidade do circuito</li>
+            </ul>
+        </div>
+
+        <!-- Card 4: IoT -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon"><i class="fas fa-wifi"></i></div>
+                <div class="card-title">Internet das Coisas (IoT)</div>
+            </div>
+            <ul class="application-list">
+                <li><strong>Energy Harvesting:</strong> Retificação de energia captada de RF ou luz solar</li>
+                <li><strong>NFC e RFID:</strong> Retificadores de alta frequência para tags passivos</li>
+                <li><strong>Dispositivos de ultra baixa potência:</strong> Maximiza a duração da bateria</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div>Dsc. BANDIRI Sabi | Discentes: CAMELO Benjamim, SANTOS Cesar</div>
+        <div style="font-weight: 500;">Slide 7 / 13</div>
+    </div>
+
 </div>
-</body></html>
+</body>
+</html>
