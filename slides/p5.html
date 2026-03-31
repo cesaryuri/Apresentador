@@ -1,120 +1,481 @@
 <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Estrutura Física - Diodo Schottky</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            background: #f8fafc;
+        }
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(90deg, #1e3a5f 0%, #2c5282 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .header-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        .header-title {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+        }
+        .header-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-top: 2px;
+        }
+        .header-right {
+            text-align: right;
+            color: white;
+        }
+        .header-info-label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .header-info-value {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .main-content {
+            position: absolute;
+            top: 100px;
+            left: 40px;
+            right: 40px;
+            bottom: 60px;
+            display: flex;
+            gap: 25px;
+        }
+        .left-column {
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .right-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e3a5f;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-title i {
+            color: #3b82f6;
+        }
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .bullet-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #4a5568;
+            line-height: 1.4;
+        }
+        .bullet-icon {
+            color: #3b82f6;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .materials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .material-box {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        .material-label {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+        .material-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            overflow: hidden;
+        }
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+        .diagram-container {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+        .process-animation-box {
+            width: 100%;
+            height: 120px;
+            position: relative;
+            background: #eff6ff;
+            border-radius: 6px;
+            border: 1px dashed #bfdbfe;
+            margin-bottom: 15px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 20px;
+        }
+        .semi-base {
+            width: 60%;
+            height: 35px;
+            background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+            z-index: 1;
+        }
+        .metal-contact {
+            width: 60%;
+            height: 33px;
+            background: linear-gradient(90deg, #94a3b8 0%, #64748b 100%);
+            border-radius: 4px;
+            position: absolute;
+            bottom: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+            border-bottom: 3px solid #fef08a;
+            opacity: 0;
+            z-index: 2;
+            animation: formingMetal 4s ease-out infinite;
+        }
+        .vapor-mist {
+            width: 70%;
+            height: 80px;
+            position: absolute;
+            top: -90px;
+            background: rgba(100, 116, 139, 0.4);
+            filter: blur(8px);
+            border-radius: 50%;
+            z-index: 3;
+            animation: fallingMist 4s ease-in infinite;
+        }
+        .process-stage-text {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: #dcfce7;
+            color: #166534;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 4;
+            display: flex;
+        }
+        @keyframes fallingMist {
+            0% { top: -90px; opacity: 0; }
+            10% { opacity: 0.7; }
+            40% { top: 10px; opacity: 0.7; width: 70%; }
+            60%, 100% { top: 35px; opacity: 0; width: 60%; }
+        }
+        @keyframes formingMetal {
+            0%, 50% { opacity: 0; transform: translateY(-10px); }
+            60%, 90% { opacity: 1; transform: translateY(0); }
+            95% { border-bottom-color: #f59e0b; }
+            100% { opacity: 0; }
+        }
+        @keyframes stageTextSwitcher {
+            0%, 25% { content: "Passo 1: Preparação N-Si"; }
+            26%, 60% { content: "Passo 2: Deposição Vapor Metálico"; }
+            61%, 100% { content: "Passo 3: Formação Barreira Schottky"; }
+        }
+        .process-stage-text::after {
+            content: "Passo 1: Preparação N-Si";
+            animation: stageTextSwitcher 4s linear infinite;
+        }
+        .construction-text-box {
+            width: 100%;
+            background: #ffffff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 0 8px 8px 0;
+            box-sizing: border-box;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .construction-text-box p {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+        .construction-text-box p:last-child { margin: 0; }
+        .classification-box {
+            flex: 1;
+            background: #eff6ff;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 4px solid #3b82f6;
+        }
 
-<html lang="pt-BR"><head><meta charset="utf-8"/><script src="https://cdn.tailwindcss.com"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/></head><body style="margin: 0; padding: 0; overflow: hidden; font-family: 'Inter', sans-serif;">
-<div class="slide-container" style="position: relative; width: 1280px; height: 720px; overflow: hidden; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);">
-<!-- Header -->
-<div style="position: absolute; top: 0; left: 0; right: 0; height: 80px; background: linear-gradient(90deg, #1e3a5f 0%, #2563eb 100%); display: flex; align-items: center; justify-content: space-between; padding: 0 40px;">
-<div style="display: flex; align-items: center; gap: 15px;">
-<i class="fas fa-microchip" style="font-size: 28px; color: #ffffff;"></i>
-<div>
-<div style="font-size: 24px; font-weight: 700; color: #ffffff;">Estrutura Física</div>
-<div style="font-size: 12px; color: #94a3b8;">Diodo Schottky - Junção Metal-Semicondutor</div>
-</div>
-</div>
-<div style="text-align: right;">
-<div style="font-size: 14px; color: #ffffff;">UFRPE-UABJ</div>
-<div style="font-size: 11px; color: #94a3b8;">Dispositivos Eletrônicos</div>
-</div>
-</div>
-<!-- Main Content -->
-<!-- Adjusted height to create a 20px gap between main content and footer -->
-<div style="position: absolute; top: 100px; left: 40px; right: 40px; height: 560px; display: flex; gap: 30px;">
-<!-- Left Panel - Structure Diagram -->
-<div style="flex: 1; background: #ffffff; border-radius: 12px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
-<div style="font-size: 16px; font-weight: 600; color: #1e3a5f; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
-<i class="fas fa-layer-group" style="color: #2563eb;"></i>
-                Estrutura da Junção
+        /* Características Construtivas integradas */
+        .caracteristicas-section {
+            width: 100%;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid #e2e8f0;
+        }
+        .caracteristicas-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e3a5f;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .caracteristicas-title i { color: #3b82f6; font-size: 12px; }
+        .caract-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .caract-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            font-size: 13px;
+            color: #4a5568;
+            line-height: 1.35;
+        }
+        .caract-item i { color: #3b82f6; font-size: 12px; margin-top: 3px; flex-shrink: 0; }
+        .warning-box {
+            background: #fef3c7;
+            border-radius: 8px;
+            padding: 11px 14px;
+            border-left: 4px solid #f59e0b;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 45px;
+            background: #1e3a5f;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            font-size: 12px;
+            color: #cbd5e1;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <div class="header-left">
+                <div class="header-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <div>
+                    <div class="header-title">Estrutura Física</div>
+                    <div class="header-subtitle">Diodo Schottky - Junção Metal-Semicondutor</div>
+                </div>
             </div>
-<!-- Diagram -->
-<div style="flex: 1; position: relative; background: #f8fafc; border-radius: 8px; padding: 20px; display: flex; align-items: center; justify-content: center;">
-<div style="width: 100%; height: 100%; position: relative;">
-<!-- Metal Layer -->
-<div style="position: absolute; top: 20%; left: 15%; width: 70%; height: 25%; background: linear-gradient(90deg, #94a3b8 0%, #64748b 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center;">
-<div style="color: white; font-size: 14px; font-weight: 600;">METAL (Al, Ti, Pt, Mo, Ni)</div>
-</div>
-<!-- Semiconductor Layer -->
-<div style="position: absolute; top: 50%; left: 15%; width: 70%; height: 35%; background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center;">
-<div style="color: white; font-size: 14px; font-weight: 600;">SEMICONDUTOR TIPO-N (Si, SiC, GaAs)</div>
-</div>
-<!-- Junction Line -->
-<div style="position: absolute; top: 45%; left: 15%; width: 70%; height: 2px; background: #1e3a5f;"></div>
-<!-- Anode/Cathode Labels -->
-<div style="position: absolute; top: 10%; left: 10%; font-size: 12px; color: #64748b;">Ânodo (+)</div>
-<div style="position: absolute; bottom: 10%; left: 10%; font-size: 12px; color: #64748b;">Cátodo (-)</div>
-<!-- Arrows -->
-<div style="position: absolute; top: 32%; right: 10%;">
-<i class="fas fa-arrow-right" style="color: #2563eb; font-size: 20px;"></i>
-</div>
-</div>
-</div>
-<!-- Key Points -->
-<div style="margin-top: 15px; display: flex; gap: 10px;">
-<div style="flex: 1; background: #f0f9ff; border-radius: 6px; padding: 10px; border-left: 3px solid #2563eb;">
-<div style="font-size: 11px; color: #64748b;">Junção</div>
-<div style="font-size: 12px; font-weight: 600; color: #1e3a5f;">Metal-Semicondutor</div>
-</div>
-<div style="flex: 1; background: #f0f9ff; border-radius: 6px; padding: 10px; border-left: 3px solid #2563eb;">
-<div style="font-size: 11px; color: #64748b;">Tipo</div>
-<div style="font-size: 12px; font-weight: 600; color: #1e3a5f;">Retificador</div>
-</div>
-</div>
-</div>
-<!-- Right Panel - Technical Details -->
-<div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-<!-- Materials -->
-<div style="background: #ffffff; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-<div style="font-size: 16px; font-weight: 600; color: #1e3a5f; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
-<i class="fas fa-atom" style="color: #2563eb;"></i>
-                    Materiais Utilizados
+            <div class="header-right">
+                <div class="header-info-label">UFRPE-UABJ</div>
+                <div class="header-info-value">Dispositivos Eletrônicos</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-column">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-camera"></i>
+                        Aparência Real (Encapsulamentos)
+                    </div>
+                    <div class="image-placeholder">
+                        <img src="https://i.ibb.co/R4CYC5GN/diodo-schottky.jpg" alt="Diodo Schottky THT" />
+                    </div>
+                    <ul class="bullet-list" style="margin-top: 15px;">
+                        <li class="bullet-item">
+                            <i class="fas fa-microchip bullet-icon"></i>
+                            <span class="bullet-text"><strong>THT (Through-Hole):</strong> Usados em protoboards e fontes maiores (Ex: 1N5819, 1N5822).</span>
+                        </li>
+                        <li class="bullet-item">
+                            <i class="fas fa-border-none bullet-icon"></i>
+                            <span class="bullet-text"><strong>SMD (Surface Mount):</strong> Padrão em placas de controle compactas e módulos sem fio (Ex: SS34, SS14).</span>
+                        </li>
+                    </ul>
                 </div>
-<div style="display: flex; gap: 15px;">
-<div style="flex: 1; background: #f8fafc; border-radius: 8px; padding: 12px; border: 1px solid #e2e8f0;">
-<div style="font-size: 11px; color: #64748b; margin-bottom: 4px;">Metal</div>
-<div style="font-size: 13px; font-weight: 600; color: #1e3a5f;">Al, Ti, Pt, Mo, Ni</div>
-</div>
-<div style="flex: 1; background: #f8fafc; border-radius: 8px; padding: 12px; border: 1px solid #e2e8f0;">
-<div style="font-size: 11px; color: #64748b; margin-bottom: 4px;">Semicondutor</div>
-<div style="font-size: 13px; font-weight: 600; color: #1e3a5f;">Si, SiC, GaAs</div>
-</div>
-</div>
-</div>
-<!-- Characteristics -->
-<div style="background: #ffffff; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex: 1;">
-<div style="font-size: 16px; font-weight: 600; color: #1e3a5f; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
-<i class="fas fa-bolt" style="color: #2563eb;"></i>
-                    Características
+
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-atom"></i>
+                        Materiais Utilizados
+                    </div>
+                    <div class="materials-grid">
+                        <div class="material-box">
+                            <div class="material-label">Metal (Ânodo)</div>
+                            <div class="material-value">Al, Ti, Pt, Mo, Ni</div>
+                        </div>
+                        <div class="material-box">
+                            <div class="material-label">Semicondutor (Cátodo)</div>
+                            <div class="material-value">Si, SiC, GaAs (Tipo-N)</div>
+                        </div>
+                    </div>
                 </div>
-<div style="display: flex; flex-direction: column; gap: 10px;">
-<div style="display: flex; align-items: center; gap: 10px;">
-<div style="width: 8px; height: 8px; background: #2563eb; border-radius: 50%;"></div>
-<div style="font-size: 13px; color: #1e3a5f; flex: 1;">Junção metal-semicondutor</div>
-<div style="font-size: 12px; color: #64748b;">Sem junção PN</div>
-</div>
-<div style="display: flex; align-items: center; gap: 10px;">
-<div style="width: 8px; height: 8px; background: #2563eb; border-radius: 50%;"></div>
-<div style="font-size: 13px; color: #1e3a5f; flex: 1;">Alta velocidade de comutação</div>
-<div style="font-size: 12px; color: #64748b;">~ns</div>
-</div>
-<div style="display: flex; align-items: center; gap: 10px;">
-<div style="width: 8px; height: 8px; background: #2563eb; border-radius: 50%;"></div>
-<div style="font-size: 13px; color: #1e3a5f; flex: 1;">Baixa queda de tensão</div>
-<div style="font-size: 12px; color: #64748b;">~0.3V</div>
-</div>
-</div>
-</div>
-<!-- Key Insight -->
-<div style="background: #fef3c7; border-radius: 8px; padding: 12px; border-left: 4px solid #f59e0b;">
-<div style="font-size: 12px; color: #92400e; display: flex; align-items: center; gap: 8px;">
-<i class="fas fa-lightbulb"></i>
-<span><strong>Importante:</strong> Ausência de junção PN ativa de condução</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Footer -->
-<div style="position: absolute; bottom: 0; left: 0; right: 0; height: 40px; background: #1e3a5f; display: flex; align-items: center; justify-content: space-between; padding: 0 40px;">
-<div style="font-size: 12px; color: #94a3b8;">Docente: Dsc. BANDIRI Sabi | Discentes: CAMELO Benjamim, SANTOS Cesar</div>
-<div style="font-size: 12px; color: #94a3b8;">UFRPE-UABJ | 2026</div>
-</div>
-</div>
-</body></html>
+            </div>
+
+            <div class="right-column">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-tools"></i>
+                        Processo de Construção
+                    </div>
+                    <div class="diagram-container">
+                        <div class="process-animation-box">
+                            <span class="process-stage-text"></span>
+                            <div class="vapor-mist"></div>
+                            <div class="metal-contact">METAL</div>
+                            <div class="semi-base">SEMICONDUTOR N-Si</div>
+                        </div>
+
+                        <div class="construction-text-box">
+                            <p><strong>1. Preparação:</strong> O substrato semicondutor (tipo-N) é limpo e quimicamente preparado.</p>
+                            <p><strong>2. Deposição:</strong> O metal de contato é depositado via vapor sobre o silício sob vácuo.</p>
+                            <p><strong>3. Junção:</strong> O contato direto cria a <strong>Barreira de Schottky</strong> sem necessidade de difusão de impurezas tipo P.</p>
+                        </div>
+
+                        <div style="display: flex; gap: 15px; margin-top: 15px; width: 100%;">
+                            <div class="classification-box">
+                                <div style="font-size: 11px; color: #64748b;">Classificação</div>
+                                <div style="font-size: 14px; font-weight: 600; color: #1e3a5f;">Dispositivo Unipolar</div>
+                            </div>
+                            <div class="classification-box">
+                                <div style="font-size: 11px; color: #64748b;">Tipo de Junção</div>
+                                <div style="font-size: 14px; font-weight: 600; color: #1e3a5f;">Metal-Semicondutor (M-S)</div>
+                            </div>
+                        </div>
+
+                        <!-- Características Construtivas integradas abaixo -->
+                        <div class="caracteristicas-section">
+                            <div class="caracteristicas-title">
+                                <i class="fas fa-list-ul"></i>
+                                Características Construtivas
+                            </div>
+                            <div class="caract-grid">
+                                <div class="caract-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span><strong>Sem Junção P-N Clássica:</strong> A substituição do tipo P por metal elimina atrasos de recombinação de cargas.</span>
+                                </div>
+                                <div class="caract-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span><strong>Comutação Rápida:</strong> Condução exclusiva por portadores majoritários (elétrons).</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>Docente: Dsc. BANDIRI Sabi | Discentes: CAMELO Benjamim, SANTOS Cesar</div>
+            <div>UFRPE-UABJ | 2026</div>
+        </div>
+    </div>
+</body>
+</html>
