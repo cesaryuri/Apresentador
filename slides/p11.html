@@ -4,250 +4,225 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Curiosidades e Aplicações Avançadas do Diodo Schottky</title>
+<title>Conclusão - Diodo Schottky</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        font-family: 'Roboto', sans-serif;
-        background: #f8fafc;
-    }
-    .slide-container {
-        position: relative;
-        width: 1280px;
-        height: 720px;
-        overflow: hidden;
-        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    }
-    .header {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 80px;
-        background: linear-gradient(90deg, #1e3a5f 0%, #2c5282 100%);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 40px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    }
-    .header-left {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-    .header-icon {
-        width: 50px;
-        height: 50px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 24px;
-    }
-    .header-title {
-        color: white;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 28px;
-        font-weight: 700;
-        margin: 0;
-    }
-    .header-subtitle {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 14px;
-        margin-top: 2px;
-    }
-    .header-right {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
-    .header-info {
-        text-align: right;
-        color: white;
-    }
-    .header-info-label {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.7);
-    }
-    .header-info-value {
-        font-size: 14px;
-        font-weight: 500;
-    }
-    .main-content {
-        position: absolute;
-        top: 100px;
-        left: 40px;
-        right: 40px;
-        bottom: 40px;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-    .card-container {
-        display: flex;
-        gap: 20px;
-        flex: 1;
-    }
-    .card {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e2e8f0;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-    .card-header {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 15px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #e2e8f0;
-    }
-    .card-icon {
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(135deg, #3b82f6 0%, #1e3a5f 100%);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 18px;
-    }
-    .card-title {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 16px;
-        font-weight: 600;
-        color: #1e3a5f;
-        margin: 0;
-    }
-    .card-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-    .application-item {
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 8px;
-        padding: 12px;
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    .application-icon {
-        color: #3b82f6;
-        font-size: 16px;
-        margin-top: 2px;
-        min-width: 18px;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .application-text {
-        flex: 1;
-        font-size: 13px;
-        color: #4a5568;
-        line-height: 1.5;
-    }
-    .application-title {
-        font-weight: 600;
-        color: #1e3a5f;
-        margin-bottom: 2px;
-    }
-    .highlight {
-        background: rgba(59, 130, 246, 0.1);
-        padding: 2px 6px;
-        border-radius: 4px;
-        color: #1e3a5f;
-        font-weight: 500;
-    }
-    .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-    .feature-item {
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 8px;
-        padding: 10px;
-        text-align: center;
-    }
-    .feature-label {
-        font-size: 11px;
-        color: #4a5568;
-        margin-bottom: 2px;
-    }
-    .feature-value {
-        font-size: 12px; /* Adjusted from 13px to 12px for better padding */
-        color: #1e3a5f;
-        font-weight: 600;
-    }
-    .status-bar {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-top: 10px;
-    }
-    .status-label {
-        font-size: 12px;
-        color: #4a5568;
-        width: 100px;
-    }
-    .status-value {
-        flex: 1;
-        height: 8px;
-        background: #e2e8f0;
-        border-radius: 4px;
-        overflow: hidden;
-    }
-    .status-fill {
-        height: 100%;
-        background: linear-gradient(90deg, #3b82f6 0%, #1e3a5f 100%);
-        border-radius: 4px;
-    }
-    .status-text {
-        font-size: 11px;
-        color: #1e3a5f;
-        margin-left: 5px;
-    }
-    .bullet-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    .bullet-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 8px;
-        margin-bottom: 8px;
-        font-size: 13px;
-        color: #4a5568;
-        line-height: 1.4;
-    }
-    .bullet-icon {
-        color: #3b82f6;
-        font-size: 12px;
-        margin-top: 3px;
-        min-width: 14px;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-    }
-</style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            background: #f8fafc;
+        }
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(90deg, #1e3a5f 0%, #2c5282 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .header-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        .header-title {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+        }
+        .header-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-top: 2px;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .header-info {
+            text-align: right;
+            color: white;
+        }
+        .header-info-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .header-info-value {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .main-content {
+            position: absolute;
+            top: 100px;
+            left: 40px;
+            right: 40px;
+            bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            flex: 1;
+        }
+        .summary-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6 0%, #1e3a5f 100%);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a5f 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e3a5f;
+            margin: 0;
+        }
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .key-point {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px 16px; /* Adjusted padding to prevent text being flush */
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .key-icon {
+            color: #3b82f6;
+            font-size: 14px;
+            margin-top: 3px;
+        }
+        .key-text {
+            flex: 1;
+            font-size: 13px;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+        .key-title {
+            font-weight: 600;
+            color: #1e3a5f;
+            margin-bottom: 2px;
+        }
+        .highlight {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #1e3a5f;
+            font-weight: 500;
+        }
+        .stats-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .stat-item {
+            flex: 1;
+            background: #f8fafc;
+            border-radius: 6px;
+            padding: 8px;
+            text-align: center;
+        }
+        .stat-label {
+            font-size: 11px;
+            color: #64748b;
+        }
+        .stat-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+        .conclusion-text {
+            font-size: 14px;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #4a5568;
+        }
+        .check-icon {
+            color: #10b981;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 <div class="slide-container">
@@ -257,8 +232,8 @@
 <i class="fas fa-microchip"></i>
 </div>
 <div>
-<div class="header-title">Diodo Schottky</div>
-<div class="header-subtitle">Curiosidades e Aplicações Avançadas</div>
+<div class="header-title">Conclusão</div>
+<div class="header-subtitle">Diodo Schottky - Resumo dos Pontos Principais</div>
 </div>
 </div>
 <div class="header-right">
@@ -273,172 +248,139 @@
 </div>
 </div>
 <div class="main-content">
-<div class="card-container">
-<div class="card">
+<div class="summary-grid">
+<!-- Card 1: Estrutura -->
+<div class="summary-card">
 <div class="card-header">
 <div class="card-icon">
-<i class="fas fa-broadcast-tower"></i>
+<i class="fas fa-layer-group"></i>
 </div>
-<div class="card-title">Aplicações em RF</div>
+<div class="card-title">1. Junção Metal-Semicondutor</div>
 </div>
 <div class="card-content">
-<div class="application-item">
-<div class="application-icon"><i class="fas fa-signal"></i></div>
-<div class="application-text">
-<div class="application-title">Detectores de RF</div>
-<div>Utilizado em <span class="highlight">detectores/mixers</span> de micro-ondas com <span class="highlight">barreira baixa</span> para alta sensibilidade.</div>
+<div class="key-point">
+<div class="key-icon"><i class="fas fa-check-circle"></i></div>
+<div class="key-text">
+<div class="key-title">Estrutura única</div>
+<div>Diodo formado por <span class="highlight">junção metal-semicondutor</span>, não possui junção PN tradicional.</div>
 </div>
 </div>
-<div class="application-item">
-<div class="application-icon"><i class="fas fa-wave-square"></i></div>
-<div class="application-text">
-<div class="application-title">Comunicações</div>
-<div>Ideal para <span class="highlight">retificação</span> de sinais de RF em <span class="highlight">GHz</span>.</div>
+<div class="key-point">
+<div class="key-icon"><i class="fas fa-atom"></i></div>
+<div class="key-text">
+<div class="key-title">Materiais</div>
+<div>Metal (Al, Ti, Pt, Mo, Ni) + Semicondutor tipo-N (Si, SiC, GaAs)</div>
 </div>
 </div>
-<div class="feature-grid">
-<div class="feature-item">
-<div class="feature-label">Freq. Máx</div>
-<div class="feature-value">100+ GHz</div>
+<div class="stats-row">
+<div class="stat-item">
+<div class="stat-label">Tipo</div>
+<div class="stat-value">Retificador</div>
 </div>
-<div class="feature-item">
-<div class="feature-label">Sensibilidade</div>
-<div class="feature-value">Alta</div>
-</div>
-</div>
+<div class="stat-item">
+<div class="stat-label">Junção</div>
+<div class="stat-value">Metal-N</div>
 </div>
 </div>
-<div class="card">
+</div>
+</div>
+<!-- Card 2: Características -->
+<div class="summary-card">
 <div class="card-header">
 <div class="card-icon">
-<i class="fas fa-exchange-alt"></i>
+<i class="fas fa-bolt"></i>
 </div>
-<div class="card-title">Conversores DC-DC</div>
+<div class="card-title">2. Baixa Queda de Tensão</div>
 </div>
 <div class="card-content">
-<div class="application-item">
-<div class="application-icon"><i class="fas fa-bolt"></i></div>
-<div class="application-text">
-<div class="application-title">Diodo de Roda Livre</div>
-<div>Em <span class="highlight">buck/boost</span> para proteção contra <span class="highlight">tensões induzidas</span>.</div>
+<div class="key-point">
+<div class="key-icon"><i class="fas fa-arrow-down"></i></div>
+<div class="key-text">
+<div class="key-title">Vf = 0,15-0,45V</div>
+<div>Menor queda de tensão que diodo PN (0,6-0,7V)</div>
 </div>
 </div>
-<div class="application-item">
-<div class="application-icon"><i class="fas fa-battery-full"></i></div>
-<div class="application-text">
-<div class="application-title">Retificação Síncrona</div>
-<div>Alternativa à <span class="highlight">retificação síncrona</span> com <span class="highlight">eficiência</span>.</div>
+<div class="key-point">
+<div class="key-icon"><i class="fas fa-tachometer-alt"></i></div>
+<div class="key-text">
+<div class="key-title">Alta velocidade</div>
+<div>Tempo de recuperação reversa ≈ 0</div>
 </div>
 </div>
-<div class="feature-grid">
-<div class="feature-item">
-<div class="feature-label">Eficiência</div>
-<div class="feature-value">98%+</div>
+<div class="stats-row">
+<div class="stat-item">
+<div class="stat-label">Vf</div>
+<div class="stat-value">0,3V</div>
 </div>
-<div class="feature-item">
-<div class="feature-label">Perdas</div>
-<div class="feature-value">&lt; 1%</div>
-</div>
-</div>
+<div class="stat-item">
+<div class="stat-label">t_rr</div>
+<div class="stat-value">&lt;10ns</div>
 </div>
 </div>
-<div class="card">
+</div>
+</div>
+<!-- Card 3: Cuidados -->
+<div class="summary-card">
 <div class="card-header">
 <div class="card-icon">
-<i class="fas fa-usb"></i>
+<i class="fas fa-exclamation-triangle"></i>
 </div>
-<div class="card-title">Carregadores Rápidos</div>
+<div class="card-title">3. Limitações e Cuidados</div>
 </div>
 <div class="card-content">
-<div class="application-item">
-<div class="application-icon"><i class="fas fa-charging-station"></i></div>
-<div class="application-text">
-<div class="application-title">USB-PD</div>
-<div>Proteção de porta <span class="highlight">USB-PD</span> com <span class="highlight">baixas perdas</span>.</div>
+<div class="key-point">
+<div class="key-icon"><i class="fas fa-shield-alt"></i></div>
+<div class="key-text">
+<div class="key-title">VRRM limitada</div>
+<div>Tensão reversa: 20-100V (Si), até 200V (SiC)</div>
 </div>
 </div>
-<div class="application-item">
-<div class="application-icon"><i class="fas fa-mobile-alt"></i></div>
-<div class="application-text">
-<div class="application-title">Dispositivos Portáteis</div>
-<div>Para <span class="highlight">smartphones</span> e <span class="highlight">tablets</span>.</div>
+<div class="key-point">
+<div class="key-icon"><i class="fas fa-thermometer-half"></i></div>
+<div class="key-text">
+<div class="key-title">Corrente de fuga</div>
+<div>Aumenta com temperatura, requer dissipação</div>
 </div>
 </div>
-<div class="feature-grid">
-<div class="feature-item">
-<div class="feature-label">Potência</div>
-<div class="feature-value">100W+</div>
+<div class="stats-row">
+<div class="stat-item">
+<div class="stat-label">VRRM</div>
+<div class="stat-value">100V</div>
 </div>
-<div class="feature-item">
-<div class="feature-label">Segurança</div>
-<div class="feature-value">Alta</div>
-</div>
-</div>
+<div class="stat-item">
+<div class="stat-label">Temp</div>
+<div class="stat-value">150°C</div>
 </div>
 </div>
 </div>
-<div style="display: flex; gap: 20px;">
-<div class="card" style="flex: 1;">
-<div class="card-header">
-<div class="card-icon">
+</div>
+</div>
+<!-- Resumo final -->
+<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e2e8f0;">
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+<div style="width: 40px; height: 40px; background: linear-gradient(135deg, #3b82f6 0%, #1e3a5f 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;">
 <i class="fas fa-lightbulb"></i>
 </div>
-<div class="card-title">Curiosidades Técnicas</div>
+<div style="font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 600; color: #1e3a5f;">Pontos-Chave para Memorização</div>
 </div>
-<div class="card-content">
-<div class="bullet-list">
-<div class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<span class="bullet-text"><strong>Tecnologia SiC:</strong> Diodos Schottky de SiC oferecem maior tensão de bloqueio e menor corrente de fuga.</span>
+<div style="display: flex; gap: 20px;">
+<div style="flex: 1;">
+<div class="conclusion-text" style="padding: 0 8px;">
+<strong>1. Estrutura:</strong> Junção metal-semicondutor tipo-N, sem junção PN ativa de condução. Materiais: metal (Al, Ti, Pt) + semicondutor (Si, SiC, GaAs).
+                    </div>
 </div>
-<div class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<span class="bullet-text"><strong>Barreira Schottky:</strong> A interface metal-semicondutor forma uma barreira de potencial que controla o fluxo de elétrons.</span>
+<div style="flex: 1;">
+<div class="conclusion-text" style="padding: 0 8px;">
+<strong>2. Vantagens:</strong> Baixa queda de tensão (0,15-0,45V), alta velocidade de comutação, eficiência superior a 95%.
+                    </div>
 </div>
-<div class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<span class="bullet-text"><strong>Portadores Majoritários:</strong> Condução por elétrons, sem recuperação reversa significativa.</span>
-</div>
-<div class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<span class="bullet-text"><strong>Aplicações Futuras:</strong> Uso crescente em veículos elétricos e energia solar.</span>
+<div style="flex: 1;">
+<div class="conclusion-text" style="padding: 0 8px;">
+<strong>3. Limitações:</strong> Tensão reversa limitada, corrente de fuga elevada, sensibilidade térmica. Requer dimensionamento adequado.
+                    </div>
 </div>
 </div>
 </div>
 </div>
-<div class="card" style="width: 400px;">
-<div class="card-header">
-<div class="card-icon">
-<i class="fas fa-chart-line"></i>
-</div>
-<div class="card-title">Tendências de Uso</div>
-</div>
-<div class="card-content">
-<div class="status-bar">
-<div class="status-label">RF</div>
-<div class="status-value">
-<div class="status-fill" style="width: 85%;"></div>
-</div>
-<div class="status-text">85%</div>
-</div>
-<div class="status-bar">
-<div class="status-label">DC-DC</div>
-<div class="status-value">
-<div class="status-fill" style="width: 92%;"></div>
-</div>
-<div class="status-text">92%</div>
-</div>
-<div class="status-bar">
-<div class="status-label">USB-PD</div>
-<div class="status-value">
-<div class="status-fill" style="width: 78%;"></div>
-</div>
-<div class="status-text">78%</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</body>
+</div></body>
 </html>

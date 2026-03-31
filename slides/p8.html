@@ -1,258 +1,305 @@
 <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Slide 8 - Exemplo de Circuito (Comportamento em Frequência)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet"/>
+    <style>
+        body { margin: 0; padding: 0; overflow: hidden; font-family: 'Roboto', sans-serif; background: #f8fafc; }
+        .slide-container { position: relative; width: 1280px; height: 720px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); overflow: hidden; }
+        .header { position: absolute; top: 0; left: 0; right: 0; height: 82px; background: linear-gradient(90deg, #1e3a5f 0%, #2c5282 100%); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; color: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); z-index: 10; }
+        .main-content { position: absolute; top: 95px; left: 40px; right: 40px; bottom: 70px; display: grid; grid-template-columns: 400px 1fr; gap: 20px; }
+        .card { background: white; border-radius: 12px; padding: 16px; box-shadow: 0 6px 15px -3px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; display: flex; flex-direction: column; }
+        .card-title { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 600; color: #1e3a5f; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .graph-title { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; color: #1e3a5f; margin-bottom: 2px; display: flex; align-items: center; gap: 8px; }
+        .footer { position: absolute; bottom: 15px; left: 40px; right: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #64748b; z-index: 10; }
+        
+        /* Controles customizados */
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]:focus { outline: none; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 8px; cursor: pointer; background: #e2e8f0; border-radius: 4px; }
+        input[type=range]::-webkit-slider-thumb { height: 20px; width: 20px; border-radius: 50%; background: #3b82f6; cursor: pointer; -webkit-appearance: none; margin-top: -6px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: background 0.2s; }
+        input[type=range]::-webkit-slider-thumb:hover { background: #2563eb; }
 
-<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=1280, initial-scale=1.0" name="viewport"/><title>Exemplo de Circuito - Diodo Schottky</title><script src="https://cdn.tailwindcss.com"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/><style>
-        @import url("https://www.genspark.ai/image_placeholder.png");
-        
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            background: #f8fafc;
-            overflow: hidden;
-        }
-        
-        .slide-container {
-            position: relative;
-            width: 1280px;
-            height: 720px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-        }
-        
-        .circuit-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            padding: 20px;
-        }
-        
-        .circuit-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border: 1px solid #e2e8f0;
-        }
-        
-        .schottky-symbol {
-            width: 100px;
-            height: 60px;
-            border: 2px solid #1e3a8a;
-            border-radius: 4px;
-            position: relative;
-            background: white;
-        }
-        
-        .schottky-symbol::before {
-            content: '';
-            position: absolute;
-            left: 30%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border-left: 20px solid #1e3a8a;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-        }
-        
-        .schottky-symbol::after {
-            content: '';
-            position: absolute;
-            right: 25%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 15px;
-            height: 2px;
-            background: #1e3a8a;
-        }
-        
-        .circuit-diagram {
-            background: #f8fafc;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 10px 0;
-        }
-        
-        .component-label {
-            font-family: 'Roboto Mono', monospace;
-            font-size: 12px;
-            color: #1e3a8a;
-            font-weight: 500;
-        }
-        
-        .voltage-value {
-            font-weight: 600;
-            color: #059669;
-        }
-        
-        .current-value {
-            font-weight: 600;
-            color: #dc2626;
-        }
-        
-        .efficiency-badge {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        
-        .formula-box {
-            background: #fef3c7;
-            border: 1px solid #f59e0b;
-            border-radius: 8px;
-            padding: 12px; /* Adjusted from 10px to 12px for better vertical spacing */
-            margin: 10px 0;
-        }
-        
-        .step-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 8px 0;
-        }
-        
-        .step-number {
-            width: 24px;
-            height: 24px;
-            background: #3b82f6;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        
-        .highlight {
-            background: #fef3c7;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-    </style></head><body>
+        /* Estilos SVG dos Gráficos */
+        .graph-svg { width: 100%; height: 100%; background: #fdfdfd; border-radius: 6px; border: 1px solid #f1f5f9; }
+        .axis { stroke: #cbd5e1; stroke-width: 1; stroke-dasharray: 4,4; }
+        .axis-main { stroke: #94a3b8; stroke-width: 1.5; }
+        .tick-label { font-size: 10px; fill: #64748b; font-weight: 500; }
+        .vin-path { stroke: #3b82f6; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .vout-pn-path { stroke: #f59e0b; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .vout-schottky-path { stroke: #10b981; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .glitch-path { stroke: #ef4444; stroke-width: 2.5; fill: none; stroke-dasharray: 4,4; opacity: 0; transition: opacity 0.3s; stroke-linecap: round; stroke-linejoin: round; }
+        .glitch-path.active { opacity: 1; }
+        .failure-bg { fill: #fef2f2; opacity: 0; transition: opacity 0.3s; }
+        .failure-bg.active { opacity: 1; }
+    </style>
+</head>
+<body>
 <div class="slide-container">
-<div class="circuit-grid">
-<!-- Left Column: Circuit Diagram -->
-<div class="circuit-card">
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-<h3 style="font-size: 18px; font-weight: 600; color: #1e3a8a; margin: 0;">
-<i class="fas fa-microchip" style="margin-right: 8px;"></i>
-                        Retificador Schottky
-                    </h3>
-<span class="efficiency-badge">Eficiência: 95%</span>
+
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <div style="width: 52px; height: 52px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 28px;">
+                <i class="fas fa-wave-square"></i>
+            </div>
+            <div>
+                <div style="font-size: 26px; font-weight: 700; font-family: 'Montserrat', sans-serif;">Comportamento em Frequência</div>
+                <div style="font-size: 15px; opacity: 0.9;">Retificador: Diodo Schottky vs. Diodo PN</div>
+            </div>
+        </div>
+        <div style="text-align: right;">
+            <div style="font-size: 16px; font-weight: 500;">Slide 8 / 13</div>
+            <div style="font-size: 13.5px; opacity: 0.85;">Engenharia de Computação - UFRPE/UABJ</div>
+        </div>
+    </div>
+
+    <div class="main-content">
+
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-project-diagram text-blue-600"></i>
+                Esquemático do Circuito
+            </div>
+            
+            <div style="flex-grow: 1; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
+                <img src="https://i.ibb.co/PzPf59M0/diodo-schottky-circuito.jpg" alt="Esquemático do Circuito" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 4px;">
+            </div>
+
+            <div style="margin-top: 20px; border-top: 1px solid #e2e8f0; padding-top: 15px;">
+                <div class="flex justify-between items-center mb-4">
+                    <label class="text-sm font-semibold text-slate-700">Ajuste a Frequência (Oscilador)</label>
+                    <span id="freq-value" class="text-xl font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-md">60 Hz</span>
+                </div>
+                <input id="freq-slider" type="range" min="0" max="100" value="0">
+                <div class="flex justify-between text-[11px] text-slate-500 mt-2 font-medium uppercase tracking-wide">
+                    <span>Baixa (60 Hz)</span>
+                    <span>Média (10 kHz)</span>
+                    <span>Alta (>100 kHz)</span>
+                </div>
+            </div>
+            
+            <div style="background: #f1f5f9; border-radius: 8px; padding: 12px; border: 1px solid #e2e8f0; font-size: 12.5px; color: #475569; line-height: 1.5; margin-top: 15px;">
+                <p id="explanation-text"></p>
+            </div>
+        </div>
+
+        <div class="card" style="gap: 12px; padding: 12px 16px;">
+            
+            <div style="flex: 1; position: relative; display: flex; flex-direction: column;">
+                <div class="graph-title text-blue-700">
+                    <i class="fas fa-sign-in-alt text-blue-500"></i> Sinal de Entrada (V<sub>in</sub>)
+                </div>
+                <svg class="graph-svg" viewBox="0 0 500 110">
+                    <line x1="40" y1="55" x2="490" y2="55" class="axis-main"/> 
+                    <line x1="40" y1="10" x2="490" y2="10" class="axis"/> 
+                    <line x1="40" y1="100" x2="490" y2="100" class="axis"/> 
+                    <line x1="40" y1="10" x2="40" y2="100" class="axis-main"/> 
+                    <text x="35" y="14" text-anchor="end" class="tick-label">+10V</text>
+                    <text x="35" y="58" text-anchor="end" class="tick-label">0V</text>
+                    <text x="35" y="104" text-anchor="end" class="tick-label">-10V</text>
+                    <path id="vin-path" d="" class="vin-path"/>
+                </svg>
+            </div>
+
+            <div style="flex: 1; position: relative; display: flex; flex-direction: column;">
+                <div class="graph-title text-amber-600">
+                    <i class="fas fa-microchip text-amber-500"></i> Saída Diodo PN (Típico)
+                </div>
+                <svg class="graph-svg" viewBox="0 0 500 110">
+                    <path id="failure-bg-pn" d="M 40 10 L 490 10 L 490 100 L 40 100 Z" class="failure-bg"/>
+                    
+                    <line x1="40" y1="55" x2="490" y2="55" class="axis-main"/> 
+                    <line x1="40" y1="10" x2="490" y2="10" class="axis"/> 
+                    <line x1="40" y1="100" x2="490" y2="100" class="axis"/> 
+                    <line x1="40" y1="10" x2="40" y2="100" class="axis-main"/> 
+                    <text x="35" y="14" text-anchor="end" class="tick-label">+9.3V</text>
+                    <text x="35" y="58" text-anchor="end" class="tick-label">0V</text>
+                    
+                    <path id="vout-pn-path" d="" class="vout-pn-path"/>
+                    <path id="glitch-pn-path" d="" class="glitch-path"/> 
+                    
+                    <g id="failure-indicator-pn" style="opacity: 0; transition: opacity 0.3s;">
+                        <rect x="360" y="15" width="120" height="24" rx="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"></rect>
+                        <text x="420" y="31" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="bold"><tspan class="fas">&#xf071;</tspan> Falha de Trr</text>
+                    </g>
+                </svg>
+            </div>
+
+            <div style="flex: 1; position: relative; display: flex; flex-direction: column;">
+                <div class="graph-title text-emerald-600">
+                    <i class="fas fa-bolt text-emerald-500"></i> Saída Diodo Schottky
+                </div>
+                <svg class="graph-svg" viewBox="0 0 500 110">
+                    <line x1="40" y1="55" x2="490" y2="55" class="axis-main"/> 
+                    <line x1="40" y1="10" x2="490" y2="10" class="axis"/> 
+                    <line x1="40" y1="100" x2="490" y2="100" class="axis"/> 
+                    <line x1="40" y1="10" x2="40" y2="100" class="axis-main"/> 
+                    <text x="35" y="14" text-anchor="end" class="tick-label">+9.7V</text>
+                    <text x="35" y="58" text-anchor="end" class="tick-label">0V</text>
+                    
+                    <path id="vout-schottky-path" d="" class="vout-schottky-path"/>
+                </svg>
+            </div>
+        </div>
+
+    </div>
+
+
 </div>
-<div class="circuit-diagram">
-<svg height="200" viewbox="0 0 500 200" width="100%">
-<!-- Transformer -->
-<rect fill="#e2e8f0" height="100" stroke="#1e3a8a" stroke-width="2" width="60" x="20" y="50"></rect>
-<text fill="#1e3a8a" font-size="12" text-anchor="middle" x="50" y="35">Transformador</text>
-<!-- Diode symbol -->
-<polygon fill="white" points="120,80 140,100 120,120" stroke="#1e3a8a" stroke-width="2"></polygon>
-<line stroke="#1e3a8a" stroke-width="2" x1="140" x2="160" y1="100" y2="100"></line>
-<!-- Schottky diode -->
-<rect fill="white" height="30" stroke="#dc2626" stroke-width="2" width="40" x="180" y="85"></rect>
-<text fill="#dc2626" font-size="10" text-anchor="middle" x="200" y="105">D_S</text>
-<!-- Capacitor -->
-<line stroke="#059669" stroke-width="2" x1="250" x2="250" y1="90" y2="110"></line>
-<line stroke="#059669" stroke-width="2" x1="260" x2="260" y1="90" y2="110"></line>
-<text fill="#059669" font-size="10" text-anchor="middle" x="255" y="125">C</text>
-<!-- Load -->
-<rect fill="#fef3c7" height="60" stroke="#f59e0b" stroke-width="2" width="80" x="300" y="70"></rect>
-<text fill="#f59e0b" font-size="12" text-anchor="middle" x="340" y="105">Carga</text>
-<!-- Connections -->
-<line stroke="#1e3a8a" stroke-width="2" x1="80" x2="120" y1="100" y2="100"></line>
-<line stroke="#1e3a8a" stroke-width="2" x1="160" x2="180" y1="100" y2="100"></line>
-<line stroke="#1e3a8a" stroke-width="2" x1="220" x2="250" y1="100" y2="100"></line>
-<line stroke="#1e3a8a" stroke-width="2" x1="260" x2="300" y1="100" y2="100"></line>
-</svg>
-</div>
-<div style="display: flex; justify-content: space-between; margin-top: 10px;">
-<div>
-<span class="component-label">V<sub>in</sub> = 12V AC</span>
-<br/>
-<span class="voltage-value">V<sub>out</sub> ≈ 11.65V</span>
-</div>
-<div style="text-align: right;">
-<span class="component-label">I<sub>load</sub> = 2A</span>
-<br/>
-<span class="current-value">P<sub>perda</sub> = 0.7W</span>
-</div>
-</div>
-</div>
-<!-- Right Column: Explanation -->
-<div class="circuit-card">
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-<h3 style="font-size: 18px; font-weight: 600; color: #1e3a8a; margin: 0;">
-<i class="fas fa-info-circle" style="margin-right: 8px;"></i>
-                        Funcionamento
-                    </h3>
-<span style="font-size: 12px; color: #64748b;">V<sub>f</sub> = 0.35V</span>
-</div>
-<div style="display: flex; flex-direction: column; gap: 10px;">
-<div class="step-item">
-<div class="step-number">1</div>
-<div style="flex: 1;">
-<strong style="color: #1e3a8a;">Entrada AC:</strong>
-<span style="font-size: 13px; color: #64748b;">Tensão alternada de 12V RMS</span>
-</div>
-</div>
-<div class="step-item">
-<div class="step-number">2</div>
-<div style="flex: 1;">
-<strong style="color: #1e3a8a;">Retificação:</strong>
-<span style="font-size: 13px; color: #64748b;">Diodo Schottky conduz apenas semiciclo positivo</span>
-</div>
-</div>
-<div class="step-item">
-<div class="step-number">3</div>
-<div style="flex: 1;">
-<strong style="color: #1e3a8a;">Filtragem:</strong>
-<span style="font-size: 13px; color: #64748b;">Capacitor suaviza a tensão de saída</span>
-</div>
-</div>
-<div class="step-item">
-<div class="step-number">4</div>
-<div style="flex: 1;">
-<strong style="color: #1e3a8a;">Carga:</strong>
-<span style="font-size: 13px; color: #64748b;">Alimentação do circuito com ~11.65V</span>
-</div>
-</div>
-</div>
-<div class="formula-box">
-<div style="font-size: 12px; color: #92400e;">
-<strong>Queda de Tensão:</strong> V<sub>out</sub> = V<sub>in</sub> - V<sub>f</sub> = 12V - 0.35V = 11.65V
-                        <br/>
-<strong>Perda de Potência:</strong> P = I × V<sub>f</sub> = 2A × 0.35V = 0.7W
-                    </div>
-</div>
-</div>
-<!-- Bottom: Comparison -->
-<div class="circuit-card" style="grid-column: 1 / -1;">
-<div style="display: flex; justify-content: space-between; align-items: center;">
-<div style="display: flex; align-items: center; gap: 15px;">
-<div style="background: #fef3c7; padding: 8px 12px; border-radius: 8px; border: 1px solid #f59e0b;">
-<span style="font-size: 12px; color: #92400e;">
-<i class="fas fa-check-circle" style="margin-right: 5px;"></i>
-                                Schottky: V<sub>f</sub> = 0.35V, P<sub>perda</sub> = 0.7W
-                            </span>
-</div>
-<div style="background: #fee2e2; padding: 8px 12px; border-radius: 8px; border: 1px solid #ef4444;">
-<span style="font-size: 12px; color: #991b1b;">
-<i class="fas fa-times-circle" style="margin-right: 5px;"></i>
-                                Diodo PN: V<sub>f</sub> = 0.7V, P<sub>perda</sub> = 1.4W
-                            </span>
-</div>
-</div>
-<div style="font-size: 14px; color: #1e3a8a; font-weight: 600;">
-                        Economia: <span style="color: #059669;">50%</span> menos perdas
-                    </div>
-</div>
-</div>
-</div>
-</div>
-</body></html>
+
+<script>
+    const freqSlider = document.getElementById('freq-slider');
+    const freqValueDisplay = document.getElementById('freq-value');
+    const explanationText = document.getElementById('explanation-text');
+    
+    // Caminhos SVG
+    const vinPath = document.getElementById('vin-path');
+    const voutPnPath = document.getElementById('vout-pn-path');
+    const glitchPnPath = document.getElementById('glitch-pn-path');
+    const voutSchottkyPath = document.getElementById('vout-schottky-path');
+    
+    // Elementos Visuais de Falha
+    const failureBgPn = document.getElementById('failure-bg-pn');
+    const failureIndicatorPn = document.getElementById('failure-indicator-pn');
+
+    // Configurações do Gráfico
+    const graphWidth = 450; 
+    const numCycles = 5; // Mantém 5 ondas na tela para mostrar oscilação contínua
+    const xOrig = 40; 
+    const yOrig = 55; 
+    const amp = 45; 
+
+    // Parâmetros Físicos Simulados
+    const VF_PN = 0.7; 
+    const VF_S = 0.3; 
+    const V_PEAK = 10; 
+    const scaleAmp = amp / V_PEAK;
+
+    let timeOffset = 0; // Para animar a onda deslizando
+    let currentFreqFactor = 0;
+
+    // Atualiza a interface e textos apenas quando o slider move
+    function updateUI() {
+        currentFreqFactor = parseInt(freqSlider.value);
+        
+        let freqHz;
+        if (currentFreqFactor < 5) freqHz = "60 Hz";
+        else if (currentFreqFactor < 40) freqHz = "1 kHz";
+        else if (currentFreqFactor < 75) freqHz = "50 kHz";
+        else freqHz = "> 100 kHz";
+        
+        freqValueDisplay.innerText = freqHz;
+
+        if (currentFreqFactor > 70) {
+            glitchPnPath.classList.add('active');
+            failureBgPn.classList.add('active');
+            failureIndicatorPn.style.opacity = '1';
+            explanationText.innerHTML = `<strong>Em Alta Frequência (> 100 kHz):</strong> A onda desliza rápido. O Diodo PN <strong>falha</strong> ao desligar (Tempo de Recuperação Reversa - t<sub>rr</sub>), permitindo que a tensão negativa vaze. O <strong>Schottky</strong> mantém a retificação perfeita.`;
+        } else {
+            glitchPnPath.classList.remove('active');
+            failureBgPn.classList.remove('active');
+            failureIndicatorPn.style.opacity = '0';
+            explanationText.innerHTML = `<strong>Em Baixa Frequência:</strong> Ambos operam corretamente. O <strong>Schottky</strong> entrega um pico ligeiramente maior à carga (menor queda de tensão). A oscilação lenta mostra o comportamento ideal de retificação de meia onda.`;
+        }
+    }
+
+    freqSlider.addEventListener('input', updateUI);
+    updateUI(); // Inicialização do texto
+
+    // Loop de Animação Contínua
+    function renderFrame() {
+        // Velocidade da animação cresce com o slider
+        let speed = 0.02 + (currentFreqFactor / 100) * 0.12; 
+        timeOffset -= speed; // Move para a esquerda
+
+        // Calcula a severidade da falha (trr_factor)
+        let trr_factor = 0;
+        if (currentFreqFactor > 50) {
+            trr_factor = (currentFreqFactor - 50) / 100; 
+        }
+
+        let dVin = `M ${xOrig} ${yOrig}`;
+        let dVoutPN = `M ${xOrig} ${yOrig}`;
+        let dGlitchPN = ""; 
+        let dVoutS = `M ${xOrig} ${yOrig}`;
+        
+        let wasGlitchingPN = false;
+
+        for (let x = 0; x <= graphWidth; x++) {
+            // "t" mapeia o pixel horizontal para uma fase da onda
+            let t = (x / graphWidth) * numCycles * 2 * Math.PI;
+            let phase = t + timeOffset; 
+            
+            let vIn = V_PEAK * Math.sin(phase);
+            let yIn = yOrig - (vIn * scaleAmp);
+            dVin += ` L ${xOrig + x} ${yIn}`;
+
+            // Fase normalizada de 0 a 2PI para identificar começo/meio do ciclo
+            let phaseInCycle = ((phase % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+
+            // -----------------------------
+            // Lógica Diodo PN
+            // -----------------------------
+            let vOutPN = 0;
+            let drawGlitchPN = false;
+            
+            if (vIn > VF_PN) {
+                // Condução normal (Semiciclo Positivo)
+                vOutPN = vIn - VF_PN;
+            } else {
+                // Semiciclo Negativo
+                if (currentFreqFactor > 70) {
+                    let trr_window = Math.PI * 1.0 * trr_factor; 
+                    // Se acabou de cruzar o zero (fase > PI) e está dentro da janela de falha
+                    if (phaseInCycle > Math.PI && phaseInCycle < (Math.PI + trr_window)) {
+                        vOutPN = vIn; 
+                        drawGlitchPN = true;
+                    }
+                }
+            }
+
+            let yOutPN = yOrig - (vOutPN * scaleAmp);
+            
+            // Desenha a linha amarela (saída) ou vermelha (falha trr)
+            if (drawGlitchPN) {
+                if (!wasGlitchingPN) dGlitchPN += `M ${xOrig + x} ${yOrig} `;
+                dGlitchPN += `L ${xOrig + x} ${yOutPN} `;
+                dVoutPN += `L ${xOrig + x} ${yOrig} `; // Linha principal em zero
+                wasGlitchingPN = true;
+            } else {
+                if (wasGlitchingPN) dGlitchPN += `L ${xOrig + x} ${yOrig} `; // Retorna glitch ao zero
+                dVoutPN += `L ${xOrig + x} ${yOutPN} `;
+                wasGlitchingPN = false;
+            }
+
+            // -----------------------------
+            // Lógica Diodo Schottky
+            // -----------------------------
+            let vOutS = 0;
+            if (vIn > VF_S) {
+                vOutS = vIn - VF_S;
+            }
+            let yOutS = yOrig - (vOutS * scaleAmp);
+            dVoutS += `L ${xOrig + x} ${yOutS} `;
+        }
+
+        // Aplica os paths
+        vinPath.setAttribute('d', dVin);
+        voutPnPath.setAttribute('d', dVoutPN);
+        glitchPnPath.setAttribute('d', dGlitchPN || "M 0 0");
+        voutSchottkyPath.setAttribute('d', dVoutS);
+
+        // Chama o próximo quadro
+        requestAnimationFrame(renderFrame);
+    }
+
+    // Inicia a animação
+    requestAnimationFrame(renderFrame);
+
+</script>
+</body>
+</html>

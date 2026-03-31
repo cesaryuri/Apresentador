@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 
-<html lang="pt-BR"><head><meta charset="utf-8"/><script src="https://cdn.tailwindcss.com"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/><style>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vantagens, Desvantagens, Limitações e Cuidados do Diodo Schottky</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<style>
         body {
             margin: 0;
             padding: 0;
@@ -158,109 +166,81 @@
         .bullet-text {
             flex: 1;
         }
-        .highlight {
-            background: rgba(59, 130, 246, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: #1e3a5f;
-            font-weight: 500;
-        }
-        .warning-box {
-            background: #fef3c7;
-            border: 1px solid #f59e0b;
-            border-radius: 8px;
-            padding: 12px;
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 10px;
         }
-        .warning-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #92400e;
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .warning-text {
+        .comparison-table th {
+            background: #f8fafc;
+            padding: 8px 12px;
+            text-align: left;
             font-size: 12px;
-            color: #92400e;
+            color: #1e3a5f;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
         }
-        .status-bar {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-            padding: 0 15px; /* Added horizontal padding for alignment */
-        }
-        .status-label {
+        .comparison-table td {
+            padding: 8px 12px;
             font-size: 12px;
             color: #4a5568;
-            width: 100px;
+            border-bottom: 1px solid #e2e8f0;
         }
-        .status-value {
-            flex: 1;
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 4px;
-            overflow: hidden;
+        .comparison-table tr:hover {
+            background: #f8fafc;
         }
-        .status-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #3b82f6 0%, #1e3a5f 100%);
-            border-radius: 4px;
-        }
-        .status-text {
-            font-size: 11px;
-            color: #1e3a5f;
-            width: 60px; /* Fixed width for alignment */
-            text-align: right; /* Right align the text */
-            /* Removed margin-left: 5px; */
-        }
-        .feature-grid {
+        .pros-cons-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .pros-column, .cons-column {
+            display: flex;
+            flex-direction: column;
             gap: 10px;
         }
-        .feature-item {
+        .pros-item, .cons-item {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
             border-radius: 8px;
             padding: 10px;
-            text-align: center;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
         }
-        .feature-label {
-            font-size: 11px;
+        .pros-text, .cons-text {
+            flex: 1;
+            font-size: 12px;
             color: #4a5568;
-            margin-bottom: 2px;
+            line-height: 1.4;
+            padding-right: 5px;
         }
-        .feature-value {
-            font-size: 13px;
-            color: #1e3a5f;
-            font-weight: 600;
-        }
+        /* Estilos usados no card de Limites */
         .limitation-item {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 8px 15px; /* Adjusted horizontal padding for better spacing */
+            padding: 9px 15px;
             background: #f8fafc;
             border-radius: 6px;
             margin-bottom: 8px;
         }
         .limitation-icon {
             color: #ef4444;
-            font-size: 14px;
+            font-size: 15px;
+            width: 18px;
         }
         .limitation-text {
-            font-size: 12px;
+            font-size: 12.5px;
             color: #4a5568;
             flex: 1;
         }
         .limitation-value {
-            font-size: 11px;
+            font-size: 11.5px;
             color: #1e3a5f;
             font-weight: 600;
-            text-align: right; /* Right align the text */
+            text-align: right;
+            white-space: nowrap;
         }
     </style>
 </head>
@@ -269,11 +249,11 @@
 <div class="header">
 <div class="header-left">
 <div class="header-icon">
-<i class="fas fa-exclamation-triangle"></i>
+<i class="fas fa-microchip"></i>
 </div>
 <div>
-<div class="header-title">Limitações e Cuidados</div>
-<div class="header-subtitle">Diodo Schottky - Parâmetros de Operação</div>
+<div class="header-title">Diodo Schottky</div>
+<div class="header-subtitle">Vantagens, Desvantagens, Limitações e Cuidados</div>
 </div>
 </div>
 <div class="header-right">
@@ -287,152 +267,217 @@
 </div>
 </div>
 </div>
+
 <div class="main-content">
+<!-- LEFT COLUMN -->
 <div class="left-column">
-<div class="card">
-<div class="card-header">
-<div class="card-icon">
-<i class="fas fa-thermometer-half"></i>
+
+    <!-- Vantagens -->
+    <div class="card">
+    <div class="card-header">
+    <div class="card-icon">
+    <i class="fas fa-plus-circle"></i>
+    </div>
+    <div class="card-title">Pontos Fortes (Vantagens)</div>
+    </div>
+    <div class="card-content">
+    <div class="pros-cons-grid">
+    <div class="pros-column">
+    <div class="pros-item">
+    <div class="pros-icon"><i class="fas fa-check-circle"></i></div>
+    <div class="pros-text">
+    <strong>Baixa queda de tensão:</strong> 0,15-0,45V vs 0,6-0,7V em diodos PN
+    </div>
+    </div>
+    <div class="pros-item">
+    <div class="pros-icon"><i class="fas fa-bolt"></i></div>
+    <div class="pros-text">
+    <strong>Alta velocidade:</strong> t<sub>rr</sub> ≈ 0 (sem recuperação reversa)
+    </div>
+    </div>
+    <div class="pros-item">
+    <div class="pros-icon"><i class="fas fa-thermometer-half"></i></div>
+    <div class="pros-text">
+    <strong>Menor aquecimento:</strong> Menores perdas por condução
+    </div>
+    </div>
+    <div class="pros-item">
+    <div class="pros-icon"><i class="fas fa-wave-square"></i></div>
+    <div class="pros-text">
+    <strong>Baixa EMI:</strong> Melhor desempenho em alta frequência
+    </div>
+    </div>
+    </div>
+    <div class="pros-column">
+    <div class="pros-item">
+    <div class="pros-icon"><i class="fas fa-battery-full"></i></div>
+    <div class="pros-text">
+    <strong>Alta eficiência:</strong> 95%+ em retificação
+    </div>
+    </div>
+    <div class="pros-item">
+    <div class="pros-icon"><i class="fas fa-compress-arrows-alt"></i></div>
+    <div class="pros-text">
+    <strong>Compacto:</strong> Menor tamanho físico
+    </div>
+    </div>
+    <div class="pros-item">
+    <div class="pros-icon"><i class="fas fa-clock"></i></div>
+    <div class="pros-text">
+    <strong>Resposta rápida:</strong> Ideal para comutação
+    </div>
+    </div>
+    <div class="pros-item">
+    <div class="pros-icon"><i class="fas fa-shield-alt"></i></div>
+    <div class="pros-text">
+    <strong>Proteção eficiente:</strong> Contra surtos
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Comparação -->
+    <div class="card">
+    <div class="card-header">
+    <div class="card-icon">
+    <i class="fas fa-chart-bar"></i>
+    </div>
+    <div class="card-title">Comparação de Desempenho</div>
+    </div>
+    <div class="card-content">
+    <table class="comparison-table">
+    <thead>
+    <tr>
+    <th>Parâmetro</th>
+    <th>Schottky</th>
+    <th>Diodo PN</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>V_f (V)</td>
+    <td>0,15-0,45</td>
+    <td>0,6-0,7</td>
+    </tr>
+    <tr>
+    <td>t<sub>rr</sub> (ns)</td>
+    <td>&lt; 10</td>
+    <td>50-1000</td>
+    </tr>
+    <tr>
+    <td>Freq. máx (MHz)</td>
+    <td>100+</td>
+    <td>1-10</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+
 </div>
-<div class="card-title">Limites de Operação</div>
-</div>
-<div class="card-content">
-<div class="limitation-item">
-<i class="fas fa-bolt limitation-icon"></i><!-- Changed from fa-voltage-high to fa-bolt -->
-<div class="limitation-text">Tensão reversa máxima (VRRM)</div>
-<div class="limitation-value">20-100V</div>
-</div>
-<div class="limitation-item">
-<i class="fas fa-bolt limitation-icon"></i>
-<div class="limitation-text">Corrente direta média (IF(AV))</div>
-<div class="limitation-value">1-10A</div>
-</div>
-<div class="limitation-item">
-<i class="fas fa-bolt limitation-icon"></i>
-<div class="limitation-text">Corrente de surto (IFSM)</div>
-<div class="limitation-value">10-50A</div>
-</div>
-<div class="limitation-item">
-<i class="fas fa-temperature-high limitation-icon"></i>
-<div class="limitation-text">Temperatura de junção (Tj)</div>
-<div class="limitation-value">-55°C a +150°C</div>
-</div>
-<div class="warning-box">
-<div class="warning-title">
-<i class="fas fa-info-circle"></i>
-<span>Importante</span>
-</div>
-<div class="warning-text">Respeitar sempre os limites do datasheet para evitar danos permanentes.</div>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="card-header">
-<div class="card-icon">
-<i class="fas fa-chart-line"></i>
-</div>
-<div class="card-title">Dimensionamento</div>
-</div>
-<div class="card-content">
-<div class="status-bar">
-<div class="status-label">Margem VRRM</div>
-<div class="status-value">
-<div class="status-fill" style="width: 80%;"></div>
-</div>
-<div class="status-text">20-30%</div>
-</div>
-<div class="status-bar">
-<div class="status-label">Margem IF</div>
-<div class="status-value">
-<div class="status-fill" style="width: 75%;"></div>
-</div>
-<div class="status-text">20-30%</div>
-</div>
-<div class="status-bar">
-<div class="status-label">Margem Tj</div>
-<div class="status-value">
-<div class="status-fill" style="width: 85%;"></div>
-</div>
-<div class="status-text">15-20%</div>
-</div>
-</div>
-</div>
-</div>
+
+<!-- RIGHT COLUMN -->
 <div class="right-column">
-<div class="card">
-<div class="card-header">
-<div class="card-icon">
-<i class="fas fa-gear"></i><!-- Changed from fa-fire to fa-gear -->
+
+    <!-- Desvantagens -->
+    <div class="card">
+    <div class="card-header">
+    <div class="card-icon">
+    <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <div class="card-title">Limitações (Desvantagens)</div>
+    </div>
+    <div class="card-content">
+    <div class="pros-cons-grid">
+    <div class="cons-column">
+    <div class="cons-item">
+    <div class="cons-icon"><i class="fas fa-times-circle"></i></div>
+    <div class="cons-text">
+    <strong>Corrente de fuga:</strong> Elevada, especialmente em alta temperatura
+    </div>
+    </div>
+    <div class="cons-item">
+    <div class="cons-icon"><i class="fas fa-voltage-high"></i></div>
+    <div class="cons-text">
+    <strong>Baixa tensão reversa:</strong> Limitada a 20-100V (Si)
+    </div>
+    </div>
+    <div class="cons-item">
+    <div class="cons-icon"><i class="fas fa-thermometer-full"></i></div>
+    <div class="cons-text">
+    <strong>Sensibilidade térmica:</strong> Performance degradada &gt;150°C
+    </div>
+    </div>
+    <div class="cons-item">
+    <div class="cons-icon"><i class="fas fa-dollar-sign"></i></div>
+    <div class="cons-text">
+    <strong>Custo:</strong> Mais caro que diodos convencionais
+    </div>
+    </div>
+    </div>
+    <div class="cons-column">
+    <div class="cons-item">
+    <div class="cons-icon"><i class="fas fa-battery-half"></i></div>
+    <div class="cons-text">
+    <strong>Consumo:</strong> Maior corrente de fuga
+    </div>
+    </div>
+    <div class="cons-item">
+    <div class="cons-icon"><i class="fas fa-shield-alt"></i></div>
+    <div class="cons-text">
+    <strong>Proteção:</strong> Menor robustez a surtos
+    </div>
+    </div>
+    <div class="cons-item">
+    <div class="cons-icon"><i class="fas fa-wave-square"></i></div>
+    <div class="cons-text">
+    <strong>Ruído:</strong> Maior em algumas aplicações
+    </div>
+    </div>
+    <div class="cons-item">
+    <div class="cons-icon"><i class="fas fa-wrench"></i></div>
+    <div class="cons-text">
+    <strong>Manutenção:</strong> Requer cuidados especiais
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Limites de Operação (mantido exatamente como você enviou) -->
+    <div class="card">
+    <div class="card-header">
+    <div class="card-icon">
+    <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <div class="card-title">Limites de Operação</div>
+    </div>
+    <div class="card-content">
+
+        <div class="limitation-item">
+            <i class="fas fa-bolt limitation-icon"></i>
+            <div class="limitation-text">Tensão reversa máxima (VRRM)</div>
+            <div class="limitation-value">20-100 V</div>
+        </div>
+        <div class="limitation-item">
+            <i class="fas fa-bolt limitation-icon"></i>
+            <div class="limitation-text">Corrente direta média (IF(AV))</div>
+            <div class="limitation-value">1-10 A</div>
+        </div>
+        <div class="limitation-item">
+            <i class="fas fa-bolt limitation-icon"></i>
+            <div class="limitation-text">Corrente de surto (IFSM)</div>
+            <div class="limitation-value">10-50 A</div>
+        </div>
+
+    </div>
+    </div>
+
 </div>
-<div class="card-title">Aquecimento e Dissipação</div>
-</div>
-<div class="card-content">
-<div class="bullet-list">
-<div class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<div class="bullet-text">
-<strong>Potência dissipada:</strong> P = I·Vf + Vr·Ir
-                                    </div>
-</div>
-<div class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<div class="bullet-text">
-<strong>Prever dissipação:</strong> Usar dissipadores quando necessário
-                                    </div>
-</div>
-<div class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<div class="bullet-text">
-<strong>Layout:</strong> Trilhas curtas, baixa indutância
-                                    </div>
-</div>
-<div class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<div class="bullet-text">
-<strong>Verificar Cj:</strong> Em alta frequência
-                                    </div>
 </div>
 </div>
-<div class="warning-box">
-<div class="warning-title">
-<i class="fas fa-exclamation-circle"></i>
-<span>Cuidado</span>
-</div>
-<div class="warning-text">Aquecimento excessivo pode degradar o desempenho e reduzir a vida útil.</div>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="card-header">
-<div class="card-icon">
-<i class="fas fa-shield-alt"></i>
-</div>
-<div class="card-title">Proteção e Segurança</div>
-</div>
-<div class="card-content">
-<div class="bullet-list">
-<div class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<div class="bullet-text">
-<strong>Proteção térmica:</strong> Usar fusíveis ou circuitos de proteção
-                                    </div>
-</div>
-<div class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<div class="bullet-text">
-<strong>Isolamento:</strong> Manter distância adequada entre componentes
-                                    </div>
-</div>
-<div class="bullet-item">
-<i class="fas fa-check-circle bullet-icon"></i>
-<div class="bullet-text">
-<strong>Teste:</strong> Verificar funcionamento regularmente
-                                    </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div></body>
+</body>
 </html>
