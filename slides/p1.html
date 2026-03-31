@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Diodo Schottky - Capa</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Diodo Schottky - Capa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <style>
         body {
             margin: 0;
             padding: 0;
@@ -63,76 +63,89 @@
 </head>
 <body>
 <div class="slide-container circuit-bg">
-<div class="diagonal-strip flex items-center justify-center">
-<svg class="opacity-10" fill="none" height="400" viewBox="0 0 200 200" width="400" xmlns="http://www.w3.org/2000/svg">
-<path d="M100 0V200M0 100H200" stroke="white" stroke-width="0.5"></path>
-<circle cx="100" cy="100" r="50" stroke="white" stroke-width="0.5"></circle>
-<rect height="100" stroke="white" stroke-width="0.5" width="100" x="50" y="50"></rect>
-</svg>
-</div>
+    
+    <div class="diagonal-strip flex items-center justify-center">
+        <svg class="opacity-10" fill="none" height="400" viewBox="0 0 200 200" width="400" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 0V200M0 100H200" stroke="white" stroke-width="0.5"></path>
+            <circle cx="100" cy="100" r="50" stroke="white" stroke-width="0.5"></circle>
+            <rect height="100" stroke="white" stroke-width="0.5" width="100" x="50" y="50"></rect>
+        </svg>
+    </div>
 
-<div class="flex-1 flex flex-col justify-center px-24 z-10 relative" style="max-width: 65%;">
-<div class="mb-8">
-<div class="flex items-center space-x-3 text-ieee-dark opacity-80">
-<i class="fas fa-university text-2xl"></i>
-<p class="font-bold tracking-widest uppercase text-sm">Engenharia Da Computação</p>
-</div>
-</div>
-<div class="mb-8">
-<div class="w-20 h-2 bg-ieee-orange mb-6"></div>
-<h1 class="font-montserrat font-extrabold text-7xl text-ieee-dark leading-tight mb-2">
-                    Diodo <span class="text-ieee-blue">Schottky</span>
-</h1>
-<h2 class="font-montserrat text-3xl text-gray-600 font-light">
-                    Junção Metal-Semicondutor e Comutação Rápida
-                </h2>
-</div>
-<div class="mb-12 w-32">
-<svg class="w-full h-full drop-shadow-md schottky-symbol" fill="none" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
-<line stroke="#002855" stroke-width="3" x1="0" x2="100" y1="30" y2="30"></line>
-<path d="M35 15V45L65 30L35 15Z" fill="#00629B" stroke="#002855" stroke-width="2"></path>
-<path d="M65 10 L65 50 M65 10 L72 10 L72 18 M65 50 L58 50 L58 42" stroke="#E37222" stroke-linecap="square" stroke-linejoin="miter" stroke-width="3.5"></path>
-</svg>
-</div>
-<div class="grid grid-cols-2 gap-x-12 gap-y-4 text-gray-700">
-<div>
-<p class="text-xs font-bold text-ieee-orange uppercase tracking-wider mb-1">Integrantes</p>
-<p class="font-semibold text-lg border-b border-gray-300 pb-1">Cesar Yuri, Benjamim</p>
-</div>
-<div>
-<p class="text-xs font-bold text-ieee-orange uppercase tracking-wider mb-1">Professor</p>
-<p class="font-semibold text-lg border-b border-gray-300 pb-1">Sabi</p>
-</div>
-<div>
-<p class="text-xs font-bold text-ieee-orange uppercase tracking-wider mb-1">Disciplina</p>
-<p class="font-semibold text-lg border-b border-gray-300 pb-1">Dispositivos Eletrônicos</p>
-</div>
-<div>
-<p class="text-xs font-bold text-ieee-orange uppercase tracking-wider mb-1">Data</p>
-<p class="font-semibold text-lg border-b border-gray-300 pb-1">25/03/2026</p>
-</div>
-</div>
-</div>
+    <div class="flex-1 flex flex-col justify-center px-24 z-10 relative" style="max-width: 65%;">
+        
+        <div class="mb-10">
+            <div class="flex items-center space-x-4 text-ieee-dark opacity-85">
+                <i class="fas fa-university text-3xl"></i>
+                <div>
+                    <p class="font-bold tracking-widest uppercase text-sm leading-tight">Universidade Federal Rural de Pernambuco</p>
+                    <p class="font-semibold text-xs opacity-75 uppercase tracking-wider mt-1">Unidade Acadêmica de Belo Jardim</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mb-8">
+            <div class="w-20 h-2 bg-ieee-orange mb-6"></div>
+            <h1 class="font-montserrat font-extrabold text-7xl text-ieee-dark leading-tight mb-2">
+                Diodo <span class="text-ieee-blue">Schottky</span>
+            </h1>
+            <h2 class="font-montserrat text-3xl text-gray-600 font-light">
+                Junção Metal-Semicondutor e Comutação Rápida
+            </h2>
+        </div>
+        
+        <div class="mb-12 w-32">
+            <svg class="w-full h-full drop-shadow-md schottky-symbol" fill="none" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                <line stroke="#002855" stroke-width="3" x1="0" x2="100" y1="30" y2="30"></line>
+                <path d="M35 15V45L65 30L35 15Z" fill="#00629B" stroke="#002855" stroke-width="2"></path>
+                <path d="M65 10 L65 50 M65 10 L72 10 L72 18 M65 50 L58 50 L58 42" stroke="#E37222" stroke-linecap="square" stroke-linejoin="miter" stroke-width="3.5"></path>
+            </svg>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-x-12 gap-y-6 text-gray-700">
+            <div>
+                <p class="text-xs font-bold text-ieee-orange uppercase tracking-wider mb-1">Discentes</p>
+                <p class="font-semibold text-[15px] border-b border-gray-300 pb-1">CAMELO Benjamim, SANTOS Cesar</p>
+            </div>
+            <div>
+                <p class="text-xs font-bold text-ieee-orange uppercase tracking-wider mb-1">Docente</p>
+                <p class="font-semibold text-[15px] border-b border-gray-300 pb-1">Dsc. BANDIRI Sabi</p>
+            </div>
+            <div>
+                <p class="text-xs font-bold text-ieee-orange uppercase tracking-wider mb-1">Disciplina</p>
+                <p class="font-semibold text-[15px] border-b border-gray-300 pb-1">Dispositivos Eletrônicos</p>
+            </div>
+            <div>
+                <p class="text-xs font-bold text-ieee-orange uppercase tracking-wider mb-1">Data</p>
+                <p class="font-semibold text-[15px] border-b border-gray-300 pb-1">31/03/2026</p>
+            </div>
+        </div>
+    </div>
 
-<div class="absolute right-0 top-0 h-full w-1/3 flex flex-col justify-center items-center z-10 text-white">
-<div class="relative w-64 h-64 border-l-2 border-b-2 border-white/30 p-4">
-<p class="absolute top-0 -left-6 text-xs font-mono">I</p>
-<p class="absolute bottom-4 right-0 text-xs font-mono">V</p>
-<svg class="w-full h-full overflow-visible" viewBox="0 0 100 100">
-<path d="M20 90 H60 Q75 90 85 20" fill="none" stroke="white" stroke-opacity="0.4" stroke-dasharray="3 3" stroke-width="2"></path>
-<path class="filter drop-shadow-lg" d="M20 90 H40 Q50 90 60 20" fill="none" stroke="#E37222" stroke-width="3"></path>
-<text fill="#E37222" font-family="Montserrat" font-size="9" font-weight="bold" x="42" y="15">Schottky</text>
-<text fill="white" fill-opacity="0.6" font-family="Montserrat" font-size="8" x="80" y="15">PN</text>
-<line x1="45" y1="88" x2="45" y2="92" stroke="#E37222" stroke-width="1"></line>
-<text fill="#E37222" font-family="Montserrat" font-size="6" x="35" y="100">~0.3V</text>
-<line x1="68" y1="88" x2="68" y2="92" stroke="white" stroke-opacity="0.5" stroke-width="1"></line>
-<text fill="white" fill-opacity="0.6" font-family="Montserrat" font-size="6" x="60" y="100">~0.7V</text>
-</svg>
-</div>
-<div class="mt-8 text-center opacity-80">
-<p class="text-sm font-light italic">Dispositivos Eletrônicos - Diodo Schottky</p>
-</div>
-</div>
+    <div class="absolute right-0 top-0 h-full w-1/3 flex flex-col justify-center items-center z-10 text-white">
+        <div class="relative w-64 h-64 border-l-2 border-b-2 border-white/30 p-4">
+            <p class="absolute top-0 -left-6 text-xs font-mono">I</p>
+            <p class="absolute bottom-4 right-0 text-xs font-mono">V</p>
+            
+            <svg class="w-full h-full overflow-visible" viewBox="0 0 100 100">
+                <path d="M20 90 H60 Q75 90 85 20" fill="none" stroke="white" stroke-opacity="0.4" stroke-dasharray="3 3" stroke-width="2"></path>
+                <path class="filter drop-shadow-lg" d="M20 90 H40 Q50 90 60 20" fill="none" stroke="#E37222" stroke-width="3"></path>
+                
+                <text fill="#E37222" font-family="Montserrat" font-size="9" font-weight="bold" x="42" y="15">Schottky</text>
+                <text fill="white" fill-opacity="0.6" font-family="Montserrat" font-size="8" x="80" y="15">PN</text>
+                
+                <line x1="45" y1="88" x2="45" y2="92" stroke="#E37222" stroke-width="1"></line>
+                <text fill="#E37222" font-family="Montserrat" font-size="6" x="35" y="100">~0.3V</text>
+                
+                <line x1="68" y1="88" x2="68" y2="92" stroke="white" stroke-opacity="0.5" stroke-width="1"></line>
+                <text fill="white" fill-opacity="0.6" font-family="Montserrat" font-size="6" x="60" y="100">~0.7V</text>
+            </svg>
+        </div>
+        <div class="mt-8 text-center opacity-80">
+            <p class="text-sm font-light italic">Engenharia de Computação - UABJ</p>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>
