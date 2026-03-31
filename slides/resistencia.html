@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Slide 10 - Resistência Interna Quantificada</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet"/>
+    <style>
+        body { margin: 0; padding: 0; overflow: hidden; font-family: 'Roboto', sans-serif; background: #f8fafc; }
+        .slide-container { position: relative; width: 1280px; height: 720px; background: white; overflow: hidden; }
+        .header { height: 82px; background: linear-gradient(90deg, #1e3a5f 0%, #2c5282 100%); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; color: white; }
+        .main-content { padding: 30px 40px; display: grid; grid-template-columns: 1fr 1.1fr; gap: 25px; height: calc(100% - 130px); }
+        .card { background: #fff; border-radius: 12px; padding: 22px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
+        .card-title { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #1e3a5f; margin-bottom: 15px; border-bottom: 2px solid #3b82f6; padding-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .footer { position: absolute; bottom: 15px; left: 40px; right: 40px; display: flex; justify-content: space-between; font-size: 13px; color: #64748b; }
+        .math-box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; font-family: 'Times New Roman', serif; text-align: center; font-size: 22px; color: #1e293b; letter-spacing: 1px; }
+        .formula-var { font-family: 'Times New Roman', serif; font-style: italic; font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+    <div class="header">
+        <div class="flex items-center gap-4">
+            <i class="fas fa-bolt text-3xl text-amber-400"></i>
+            <div>
+                <h1 class="text-2xl font-bold font-montserrat">Resistência Dinâmica (R<sub>d</sub>) Quantificada</h1>
+                <p class="text-sm opacity-90">Cálculo pela Equação de Shockley: Schottky vs. Junção PN</p>
+            </div>
+        </div>
+        <div class="text-right text-sm">Slide 10 / 13</div>
+    </div>
+
+    <div class="main-content">
+        <div class="card">
+            <div class="card-title"><i class="fas fa-square-root-variable"></i> Cálculo da Resistência (R<sub>d</sub>)</div>
+            
+            <div class="h-48 w-full bg-slate-50 rounded flex items-center justify-center border border-slate-100 mb-4">
+                <svg viewBox="0 0 400 200" class="w-full h-full p-2">
+                    <line x1="40" y1="170" x2="380" y2="170" stroke="#475569" stroke-width="2"/>
+                    <line x1="40" y1="10" x2="40" y2="170" stroke="#475569" stroke-width="2"/>
+                    <text x="380" y="185" text-anchor="end" font-size="11" fill="#64748b">Vf (Tensão)</text>
+                    <text x="20" y="20" text-anchor="start" font-size="11" fill="#64748b" transform="rotate(-90 20,20)">If (Corrente)</text>
+                    
+                    <path d="M 170 170 Q 200 170 230 40" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="5,3"/>
+                    <text x="240" y="50" font-size="11" fill="#64748b">Diodo PN</text>
+                    
+                    <path d="M 80 170 Q 110 170 140 40" fill="none" stroke="#3b82f6" stroke-width="3"/>
+                    <text x="90" y="30" font-size="12" font-weight="bold" fill="#1e40af">Schottky</text>
+                    
+                    <path d="M 120 120 L 140 120 L 140 80" fill="none" stroke="#ef4444" stroke-width="1.5"/>
+                    <text x="145" y="105" font-size="11" fill="#ef4444">&Delta;V / &Delta;I = R<sub>d</sub></text>
+                </svg>
+            </div>
+            
+            <p class="text-sm text-slate-700 mb-2">A resistência dinâmica não é fixa; ela varia inversamente com a corrente (<span class="formula-var">I<sub>D</sub></span>), derivada da Equação de Shockley:</p>
+            
+            <div class="math-box mb-4">
+                R<sub>d</sub> &approx; <span class="inline-block align-middle text-center"><span class="border-b border-slate-400 block pb-1">n &middot; 26mV</span><span class="block pt-1">I<sub>D</sub></span></span>
+            </div>
+            
+            <ul class="text-[13.5px] text-slate-700 space-y-2">
+                <li><i class="fas fa-circle text-[8px] text-blue-500 mr-2 relative -top-0.5"></i><strong><span class="formula-var">n</span> (Fator de Idealidade):</strong> Schottky &approx; 1.0 a 1.1. Diodo PN Comum &approx; 1.0 a 2.0 (sendo 2 em baixas correntes devido à recombinação).</li>
+                <li><i class="fas fa-circle text-[8px] text-blue-500 mr-2 relative -top-0.5"></i><strong>26mV (Tensão Térmica):</strong> Valor constante à temperatura ambiente (~25&deg;C).</li>
+                <li><i class="fas fa-circle text-[8px] text-blue-500 mr-2 relative -top-0.5"></i><strong><span class="formula-var">I<sub>D</sub></span>:</strong> Corrente contínua atravessando o componente.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title"><i class="fas fa-balance-scale"></i> Comparativo e Prática</div>
+            
+            <p class="text-[14px] text-slate-700 mb-3">Devido ao fator de idealidade frequentemente mais alto em baixas correntes (<span class="formula-var">n</span> &approx; 2), a resistência do diodo comum pode ser o dobro do Schottky:</p>
+            
+            <div class="overflow-hidden rounded-lg border border-slate-200 mb-5">
+                <table class="w-full text-sm text-center text-slate-700">
+                    <thead class="bg-slate-100 text-slate-800 font-bold border-b border-slate-200">
+                        <tr>
+                            <th class="py-2.5 px-4 border-r border-slate-200">Corrente (I<sub>D</sub>)</th>
+                            <th class="py-2.5 px-4 border-r border-slate-200 text-blue-700">Schottky (<span class="formula-var">n</span>&approx;1)</th>
+                            <th class="py-2.5 px-4 text-slate-600">PN Comum (<span class="formula-var">n</span>&approx;2)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr class="bg-white">
+                            <td class="py-2 px-4 font-semibold border-r border-slate-100">1 mA</td>
+                            <td class="py-2 px-4 text-blue-600 border-r border-slate-100">&approx; 26 &Omega;</td>
+                            <td class="py-2 px-4">&approx; 52 &Omega;</td>
+                        </tr>
+                        <tr class="bg-slate-50">
+                            <td class="py-2 px-4 font-semibold border-r border-slate-100">10 mA</td>
+                            <td class="py-2 px-4 text-blue-600 border-r border-slate-100">&approx; 2,6 &Omega;</td>
+                            <td class="py-2 px-4">&approx; 5,2 &Omega;</td>
+                        </tr>
+                        <tr class="bg-white">
+                            <td class="py-2 px-4 font-semibold border-r border-slate-100">100 mA</td>
+                            <td class="py-2 px-4 text-blue-600 border-r border-slate-100">&approx; 0,26 &Omega;</td>
+                            <td class="py-2 px-4">&approx; 0,52 &Omega;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 class="font-bold text-slate-800 mb-2 border-l-4 border-amber-500 pl-3">O que muda na prática?</h4>
+            <div class="space-y-3 text-[13.5px] text-slate-700">
+                <div>
+                    <strong class="text-blue-800">1. Queda de Tensão Inicial (V<sub>F</sub>):</strong>
+                    <p>Mesmo com R<sub>d</sub> baixa, o Schottky tem uma queda fixa inicial de 0,2V a 0,45V. O PN comum precisa de ~0,7V para começar a conduzir.</p>
+                </div>
+                <div>
+                    <strong class="text-amber-800">2. Resistência Ôhmica / de Série (R<sub>s</sub>):</strong>
+                    <p>Em altas correntes, a resistência física do material (bulk) domina sobre a R<sub>d</sub> da junção. Em diodos de potência (ex: 1N4007), a R<sub>s</sub> é geralmente maior que em modelos Schottky, elevando as perdas térmicas do PN em regime de alta potência.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>Engenharia de Computação - UFRPE / UABJ</div>
+        <div>Docente: Dsc. BANDIRI Sabi</div>
+    </div>
+</div>
+</body>
+</html>

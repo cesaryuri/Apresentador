@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Slide 11 - Schottky Tipo P</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet"/>
+    <style>
+        body { margin: 0; padding: 0; overflow: hidden; font-family: 'Roboto', sans-serif; background: #f1f5f9; }
+        .slide-container { position: relative; width: 1280px; height: 720px; background: white; overflow: hidden; }
+        .header { height: 82px; background: #1e293b; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; color: white; }
+        .main-content { padding: 30px 40px; height: calc(100% - 150px); }
+        .card { background: #fff; border-radius: 12px; padding: 20px; border: 1px solid #e2e8f0; }
+        .card-title { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; color: #334155; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .pro-con { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+        .footer { position: absolute; bottom: 20px; left: 40px; right: 40px; display: flex; justify-content: space-between; font-size: 13px; color: #64748b; }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+    <div class="header">
+        <div class="flex items-center gap-4">
+            <i class="fas fa-atom text-3xl text-blue-400"></i>
+            <div>
+                <h1 class="text-2xl font-bold font-montserrat">Variante: Schottky de Junção Metal-P</h1>
+                <p class="text-sm opacity-90">Eles existem? Por que são raros?</p>
+            </div>
+        </div>
+        <div class="text-right text-sm">Slide 11 / 13</div>
+    </div>
+
+    <div class="main-content">
+        <div class="card mb-6">
+            <div class="card-title text-blue-800"><i class="fas fa-question-circle"></i> Definição e Realidade Técnica</div>
+            <p class="text-slate-700 leading-relaxed">
+                Sim, é fisicamente possível criar um diodo Schottky utilizando um metal em contato com um semicondutor <strong>tipo P</strong>. Nesses dispositivos, os portadores majoritários são as <strong>lacunas (holes)</strong> em vez de elétrons. No entanto, na indústria, a esmagadora maioria é do tipo N.
+            </p>
+        </div>
+
+        <div class="vs-grid">
+            <div class="card border-t-4 border-t-emerald-500">
+                <div class="card-title text-emerald-700"><i class="fas fa-check-circle"></i> Vantagens / Aplicações</div>
+                <ul class="space-y-2 text-sm text-slate-600">
+                    <li><i class="fas fa-caret-right text-emerald-500 mr-2"></i><strong>Lógica Complementar:</strong> Essencial em circuitos integrados que requerem dispositivos complementares (similar ao PMOS).</li>
+                    <li><i class="fas fa-caret-right text-emerald-500 mr-2"></i><strong>Contatos Ôhmicos:</strong> Frequentemente usado para criar contatos de baixa resistência em dispositivos semicondutores tipo P.</li>
+                    <li><i class="fas fa-caret-right text-emerald-500 mr-2"></i><strong>Sensores Específicos:</strong> Úteis em detectores de infravermelho e fotodetectores baseados em Silício-Germânio.</li>
+                </ul>
+            </div>
+
+            <div class="card border-t-4 border-t-red-500">
+                <div class="card-title text-red-700"><i class="fas fa-times-circle"></i> Desvantagens Críticas</div>
+                <ul class="space-y-2 text-sm text-slate-600">
+                    <li><i class="fas fa-caret-right text-red-500 mr-2"></i><strong>Baixa Mobilidade:</strong> Lacunas se movem muito mais devagar que elétrons, resultando em <strong>maior resistência interna</strong>.</li>
+                    <li><i class="fas fa-caret-right text-red-500 mr-2"></i><strong>Ruído Térmico:</strong> Tendem a ter maior nível de ruído em altas frequências.</li>
+                    <li><i class="fas fa-caret-right text-red-500 mr-2"></i><strong>Dificuldade de Fabricação:</strong> Ajustar a altura da barreira de Schottky em semicondutores tipo P é quimicamente mais complexo.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card mt-6 bg-slate-800 text-white border-none">
+            <h4 class="font-bold mb-2 flex items-center gap-2"><i class="fas fa-lightbulb text-yellow-400"></i> Por que o tipo N domina?</h4>
+            <p class="text-xs opacity-90">
+                A mobilidade dos elétrons no Silício é cerca de <strong>3 vezes maior</strong> que a das lacunas. Para a mesma área de silício, um Schottky tipo N terá 1/3 da resistência de um tipo P, tornando-o muito mais eficiente para potência e alta velocidade.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>UABJ - Engenharia de Computação</div>
+        <div>Discentes: CAMELO Benjamim, SANTOS Cesar</div>
+    </div>
+</div>
+</body>
+</html>
